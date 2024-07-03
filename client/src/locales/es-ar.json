@@ -1,0 +1,103 @@
+{
+  "es-ar": {
+    "General": {
+      "Back": "Volver",
+      "Save": "Guardar",
+      "GetBackToHome": "Volver al inicio"
+    },
+    "Components": {
+      "DataFilter": {
+        "Title": "Filtros",
+        "Search": "Buscar",
+        "Clean": "Limpiar"
+      },
+      "Modal": {
+        "Close": "Cerrar",
+        "Delete": "Eliminar"
+      },
+      "PageTitle": {
+        "New": "Nuevo",
+        "Edit": "Edición",
+        "View": "Vista"
+      },
+      "Table": {
+        "ActionDelete": "Eliminar",
+        "ActionEdit": "Editar",
+        "ActionSeeDetails": "Ver Detalles",
+        "AddNewItem": "Agregar nuevo",
+        "DeleteCheckedItems": "Eliminar marcados",
+        "ModalDeleteDescription": "Esta acción eliminará los {n} registros seleccionados. ¿Desea continuar?",
+        "ModalDeleteTitle": "Eliminación",
+        "NoResults": "No hay resultados",
+        "Page": "Página",
+        "PagePosition": "{page} de {totalPages}"
+      }
+    },
+    "Dashboard": {
+      "Title": "Inicio",
+      "Subtitle": "Bienvenid{'@'} a {appName}"
+    },
+    "LogIn": {
+      "ErrorMessage": "Ha surgido un error al intentar ingresar a su cuenta. Vuelva a intentarlo más tarde o contáctese con el administrador.",
+      "ForgotPassword": "Olvidé mi contraseña",
+      "LogIn": "Ingresar",
+      "SignUp": "Registrarse",
+      "Title": "Ingresá a Justina.io",
+      "NonValidAccountMessage": "La cuenta aún no se encuentra validada. Verifique el email que se le ha enviado en el momento del registro.",
+      "WrongCredentials": "Email o contraseña incorrectos. Verifique los datos y vuelva a intentarlo."
+    },
+    "Recovery": {
+      "ErrorMessage": "El email especificado no existe en el sistema, verifique que esté correctamente escrito y vuelva a intentarlo.",
+      "RecoverPassword": "Recuperar contraseña",
+      "Subtitle": "Ingrese el email del usuario que quiera recuperar y presione el botón Recuperar Contraseña",
+      "SuccessMessage": "Hemos enviado a su email un link para que pueda generar su nueva contraseña",
+      "Title": "Recuperar contraseña"
+    },
+    "Verification": {
+      "ErrorMessage": "El código ingresado no es válido.",
+      "Subtitle": "Ingrese el código que hemos enviado a su email.",
+      "Title": "Verificación de seguridad",
+      "Validate": "Verificar"
+    },
+    "ChangePassword": {
+      "Change": "Cambiar",
+      "ErrorMessage": "Ha surgido un error al intentar cambiar la contraseña. Vuelva a intentarlo más tarde o contáctese con el administrador.",
+      "Subtitle": "Ingrese su nueva contraseña y presione el botón cambiar",
+      "Title": "Cambiar contraseña"
+    },
+    "SignUp": {
+      "ErrorMessage": "Ha surgido un error al intentar crear la cuenta. Vuelva a intentarlo más tarde o contáctese con el administrador.",
+      "Register": "Registrarse",
+      "SuccessMessage": "Se ha creado el usuario satisfactoriamente y se ha enviado un email para confirmar su cuenta.",
+      "Title": "Registración de usuarios",
+      "SignUpSuccessfully": "Se ha creado el usuario de forma satisfactoria. Ve al inicio e ingresa tus credenciales para acceder al sitio."
+    },
+    "Profile": {
+      "Title": "Mi perfil",
+      "ChangePasswordWarning": "Al cambiar la contraseña se cerrará la sesión automáticamente. Luego tendrá que volver a ingresar sus nuevas credenciales para iniciar sesión.",
+      "ProfileUpdateSuccess": "Se cambió la información del perfil satisfactoriamente.",
+      "ProfileUpdateError": "Ha surgido un error al actualizar el perfil."
+    },
+    "ClinicHistory": {
+      "Title": "Historia Clínica",
+      "GetBackToList": "Volver al listado",
+      "LastVisit": {
+        "SetLastVisitSuccess": "Se ha creado el registro de la última visita de forma satisfactoria.",
+        "SetLastVisitError": "Ha surgido un error al intentar crear la última visita."
+      },
+      "SocialHistory": {
+        "SetSocialHistorySuccess": "Se han guardado los antecedentes sociales del paciente satisfactoriamente.",
+        "SetSocialHistoryError": "No se han podido guardar los antecedentes sociales del paciente."
+      }
+    },
+    "Patients": {
+      "CreatePatientError": "Ha surgido un error al crear el paciente.",
+      "CreatePatientSuccess": "Se ha creado el paciente de forma satisfactoria.",
+      "ModalDeleteDescription": "¿Esta seguro que desea Eliminar al Paciente {name}? Si continúa, perderá su historia sin posibilidad de recuperarlo",
+      "ModalDeleteTitle": "Cancelación de Alta de Paciente",
+      "Title": "Pacientes",
+      "UpdatePatientError": "Ha surgido un error al intentar actualizar los datos del paciente.",
+      "UpdatePatientSuccess": "Se han guardado los cambios del paciente de forma satisfactoria."
+    }
+  }
+}
