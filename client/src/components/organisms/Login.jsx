@@ -6,7 +6,7 @@ const Login = () => {
     <div className="flex flex-col	justify-center items-center	my-10">
       <h1 className="">Iniciar Sesión</h1>
 
-      <div className="flex flex-col w-80 gap-3 rounded-xl ps-5 my-10">
+      <div className="flex flex-col w-96 gap-3 rounded-xl p-5 my-5">
 
         <LoginForm />
 

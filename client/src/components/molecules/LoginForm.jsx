@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form"
 import Input from '../atoms/Input'
-import Person from '../../assets/icons/forms/person.svg';
+import Email from '../../assets/icons/forms/mail.svg';
 import Lock from '../../assets/icons/forms/lock.svg';
-import { usernameValidation, passwordValidation } from '../../validations/commonFormValidation';
+import { passwordValidation, emailValidation } from '../../validations/commonFormValidation';
 
 const LoginForm = () => {
     const { register, handleSubmit, formState: { errors, } } = useForm()
@@ -16,11 +16,11 @@ const LoginForm = () => {
         <form className="flex flex-col gap-1">
             <div>
                 <Input
-                    register={register("username", usernameValidation)}
-                    error={errors.username}
-                    icon={Person}
+                    register={register("email", emailValidation)}
+                    error={errors.email}
+                    icon={Email}
                     alt={"person-icon"}
-                    placeholder="Usuario"
+                    placeholder="Email"
                 />
 
                 <Input

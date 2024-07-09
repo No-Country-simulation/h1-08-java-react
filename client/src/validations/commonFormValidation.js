@@ -1,9 +1,12 @@
-
-export const usernameValidation = Object.freeze({
+export const defaultRequireValidation = Object.freeze({
    required: {
       value: true,
       message: "Este campo es requerido."
-   },
+   }
+})
+
+export const usernameValidation = Object.freeze({
+   ...defaultRequireValidation,
    minLength: {
       value: 6,
       message: "Debe contener al menos 6 caracteres."
@@ -15,10 +18,7 @@ export const usernameValidation = Object.freeze({
 })
 
 export const passwordValidation = Object.freeze({
-   required: {
-      value: true,
-      message: "Este campo es requerido."
-   },
+   ...defaultRequireValidation,
    minLength: {
       value: 8,
       message: "Debe contener al menos 8 caracteres."
@@ -30,10 +30,7 @@ export const passwordValidation = Object.freeze({
 })
 
 export const emailValidation = Object.freeze({
-   required: {
-      value: true,
-      message: "Este campo es requerido."
-   },
+   ...defaultRequireValidation,
    minLength: {
       value: 6,
       message: "Debe contener al menos 6 caracteres."
@@ -45,10 +42,7 @@ export const emailValidation = Object.freeze({
 })
 
 export const namesValidation = Object.freeze({
-   required: {
-      value: true,
-      message: "Este campo es requerido."
-   },
+   ...defaultRequireValidation,
    maxLength: {
       value: 20,
       message: "Debe contener como máximo 20 caracteres."
