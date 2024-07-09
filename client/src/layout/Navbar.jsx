@@ -1,4 +1,5 @@
-import { shallow } from "zustand/shallow"; import { Link } from 'wouter'
+import { shallow } from "zustand/shallow";
+import { Link } from 'wouter'
 import Navigation from '../routes'
 import useLanguageStore from '../store/language-store';
 
@@ -37,7 +38,7 @@ const Navbar = () => {
                         {
                             navigation.getNavigation(role).map((item, i) => (
                                 <li key={`${i}-${item.name}`}>
-                                    <Link to={item.path}>
+                                    <Link href={item.path}>
                                         {item.name}
                                     </Link>
                                     {
@@ -45,7 +46,7 @@ const Navbar = () => {
                                             <ul className="p-2">
                                                 {item.sub_items.map((subItem, j) => (
                                                     <li key={`${i}-${j}-${subItem.name}`}>
-                                                        <Link to={subItem.path}>
+                                                        <Link href={subItem.path}>
                                                             {subItem.name}
                                                         </Link>
                                                     </li>
@@ -58,7 +59,7 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost text-xl">
+                <Link href="/" className="btn btn-ghost text-xl">
                     <img src="/logo.webp" alt="Logo" className="h-7" />
                 </Link>
             </div>
@@ -76,7 +77,7 @@ const Navbar = () => {
                                                 <ul className="p-2">
                                                     {item.sub_items.map((subItem, j) => (
                                                         <li key={`${i}-${j}-${subItem.name}`}>
-                                                            <Link to={subItem.path}>
+                                                            <Link href={subItem.path}>
                                                                 {subItem.name}
                                                             </Link>
                                                         </li>
@@ -85,7 +86,7 @@ const Navbar = () => {
                                             </details>
                                         )
                                         :
-                                        <Link to={item.path}>
+                                        <Link href={item.path}>
                                             {item.name}
                                         </Link>
                                 }
@@ -116,16 +117,15 @@ const Navbar = () => {
                                     type="checkbox"
                                     checked={currentLanguage === "en"}
                                     onChange={handleLanguageChange}
-                                    className="toggle theme-controller"
+                                    className="toggle"
                                 />
-                                {/* <input type="checkbox" value="en" className="toggle theme-controller" /> */}
                                 <span className="label-text">{navigation.getLanguages()[1]}</span>
                             </label>
                         </li>
                         {
                             navigation.getProfileNavigation().map((item, i) => (
                                 <li key={`${i}-${item.name}`} className="capitalize">
-                                    <Link to={item.path}>
+                                    <Link href={item.path}>
                                         {item.name}
                                     </Link>
                                 </li>

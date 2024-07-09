@@ -4,6 +4,7 @@ import Navbar from './layout/Navbar';
 import Footer from './layout/Footer';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
+import Auth from './pages/Auth';
 
 const queryClient = new QueryClient()
 
@@ -16,8 +17,8 @@ function App() {
           <Route path="/" component={Home} />
 
           {/* Ejemplo de uso con params */}
-          <Route path="/user/:name">
-            {(params) => <>Hello, {params.name}!</>}
+          <Route path="/auth/:page">
+            {(params) => <Auth page={params.page} />}
           </Route>
 
           {/* Default */}
