@@ -1,15 +1,14 @@
 
-const Select = ({ options, icon, alt, label, register }) => {
+const Select = ({ options, label, register }) => {
     return (
-        <div className="flex justify-between items-center mt-1 mb-5">
-            <div className="w-3/6 flex justify-center items-center text-center">
-                <img src={icon} alt={alt} className="opacity-70" />
+        <div className="flex items-center">
+            <div className="w-2/4 items-center">
                 <label className="label">
-                {label}
+                    {label}
                 </label>
             </div>
 
-            <div className="form-control w-full">
+            <div className="form-control w-2/4">
                 <select className="select select-accent w-full max-w-xs" {...register}>
                     {options && options.map((item, i) => (
                         <option key={i} value={item.value}>{item.name}</option>
