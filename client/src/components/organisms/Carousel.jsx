@@ -15,9 +15,9 @@ const Carousel = () => {
         </div>
       </div>
       <div className="flex w-full justify-center gap-2 py-2">
-        <a href="#item1" className="rounded-full size-2 bg-darkGreen hover:bg-black"></a>
-        <a href="#item2" className="rounded-full size-2 bg-darkGreen hover:bg-black"></a>
-        <a href="#item3" className="rounded-full size-2 bg-darkGreen hover:bg-black"></a>
+        <a href="#item1" className="rounded-full size-2 bg-darkOrange hover:bg-black"></a>
+        <a href="#item2" className="rounded-full size-2 bg-darkOrange hover:bg-black"></a>
+        <a href="#item3" className="rounded-full size-2 bg-darkOrange hover:bg-black"></a>
       </div>
     </div>
   );
