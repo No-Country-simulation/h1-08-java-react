@@ -18,9 +18,9 @@ const Navbar = () => {
     const role = "patient"; // Puedes cambiar este valor para probar con diferentes roles
 
 
-
+    // text-neutral-content 
     return (
-        <div className="navbar bg-neutral text-neutral-content h-10">
+        <div className="navbar bg-transparent shadow-sm shadow-orange h-10">
             <div className="navbar-start">
                 {isLogged &&
                     <div className="dropdown">
@@ -161,10 +161,10 @@ const Navbar = () => {
 
                         <ul className="menu menu-horizontal px-1 capitalize text-base gap-5">
                             <li>
-                                <Link className="btn btn-accent" href="/auth/iniciar-sesion">Iniciar sesión</Link>
+                                <Link className="btn bg-magenta text-orange hover:text-accent hover:bg-magenta capitalize" href="/auth/iniciar-sesion">Iniciar sesión</Link>
                             </li>
                             <li>
-                                <Link className="btn btn-outline btn-accent" href="/auth/registrarme">Registrarme</Link>
+                                <Link className="btn btn-outline text-magenta border-magenta hover:text-accent hover:border-accent hover:bg-transparent" href="/auth/registrarme">Registrarme</Link>
                             </li>
                         </ul>
                     </div>

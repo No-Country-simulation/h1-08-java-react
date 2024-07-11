@@ -4,7 +4,7 @@ import { Link } from 'wouter';
 
 const LoginForm = ({ register, onSubmit, errors }) => {
     return (<>
-        <form className="flex flex-col gap-4 py-2 px-5 rounded-lg bg-green-light/20 backdrop-blur-2xl border-r-2 border-b-2 border-accent my-5">
+        <form className="flex flex-col gap-4 py-2 px-5 rounded-xl bg-green-light/20 backdrop-blur-2xl border-r-2 border-b-2 border-orange my-5">
             <Input
                 register={register("email", emailValidation)}
                 error={errors.email}
@@ -23,7 +23,7 @@ const LoginForm = ({ register, onSubmit, errors }) => {
                 ¿Has olvidado tu contraseña?
             </Link>
         </form>
-        <button type="submit" className="btn btn-accent capitalize" onClick={onSubmit}>ingresar</button>
+        <button type="submit" className="btn bg-magenta text-orange hover:text-accent hover:bg-magenta capitalize" onClick={onSubmit}>ingresar</button>
     </>
 
     )

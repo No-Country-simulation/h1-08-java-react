@@ -10,9 +10,12 @@ const Input = ({ label, placeholder, password, register, error }) => {
       }
 
       {/* rounded-b-none  */}
-      <div className={`px-2.5 bg-white border-x-neutral-700 focus-within:bg-base-500 input 
-      border-x-0 rounded	rounded-b-none shadow-md
-      border-t-0 flex items-center gap-2 ${error ? "input-error" : "input-accent"}`}>
+      <div className={`px-2.5 border-x-neutral-700 
+      focus-within:bg-base-500 input 
+      bg-light backdrop-blur-sm 
+      border-x-0 rounded	rounded-b-none shadow-md shadow-orange
+      border-t-0 border-orange
+       flex items-center gap-2 ${error ? "input-error" : "input-orange"}`}>
         <input
           autoComplete="off"
           type={password ? "password" : "text"}

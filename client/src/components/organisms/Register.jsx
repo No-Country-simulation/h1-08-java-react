@@ -10,11 +10,11 @@ const Register = () => {
         <RegisterForm />
 
 
-        <div className="flex flex-col gap-5">
+        <div className="flex gap-2 items-center text-sm justify-center my-2">
           <span>
             ¿Ya tienes una cuenta?
-            <Link href="/auth/iniciar-sesion" className={"px-2 link"}>Iniciar sesión</Link>
           </span>
+            <Link href="/auth/iniciar-sesion" className={"link text-accent"}>Iniciar sesión</Link>
 
   
         </div>

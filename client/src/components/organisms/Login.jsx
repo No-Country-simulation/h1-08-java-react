@@ -24,7 +24,7 @@ const Login = () => {
         />
 
         <div className="flex flex-col gap-5">
-          <Link href="/auth/registro" className={"btn btn-neutral"}>Registrarme</Link>
+          <Link href="/auth/registrarme" className={"btn btn-outline text-magenta border-magenta hover:text-accent hover:border-accent hover:bg-transparent"}>Registrarme</Link>
 
         </div>
 

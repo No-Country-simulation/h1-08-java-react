@@ -9,7 +9,9 @@ const Select = ({ options, label, register }) => {
             </div>
 
             <div className="form-control w-2/4">
-                <select className="select select-accent w-full max-w-xs" {...register}>
+                <select className="select border-orange rounded-b-none shadow-md
+                 bg-light backdrop-blur-sm  shadow-orange w-full max-w-xs"
+                  {...register}>
                     {options && options.map((item, i) => (
                         <option key={i} value={item.value}>{item.name}</option>
                     ))}

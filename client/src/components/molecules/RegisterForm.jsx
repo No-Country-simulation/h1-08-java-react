@@ -56,20 +56,20 @@ const RegisterForm = () => {
                 register={register("email", emailValidation)}
                 error={errors.email}
                 label={"Correo electrónico"}
-                placeholder={"Correo electrónico"}
+                placeholder={"ej: justina.io@gmail.com"}
             />
 
             <Input
                 register={register("document", defaultRequireValidation)}
                 error={errors.document}
                 label="Documento de ID"
-                placeholder="Documento de ID"
+                placeholder="#número"
             />
 
             <Input
                 register={register("phone", defaultRequireValidation)}
                 error={errors.phone}
-                label={"Teléfono"}
+                label={"Teléfono / Celular"}
                 placeholder={"Teléfono"}
             />
 
@@ -106,7 +106,7 @@ const RegisterForm = () => {
                     </small>
                 </label>
             </div>
-            <button type="submit" className="btn btn-accent capitalize mt-5" onClick={onSubmit}>Crear cuenta</button>
+            <button type="submit" className="btn capitalize mt-4 bg-magenta text-orange hover:text-accent hover:bg-magenta" onClick={onSubmit}>Crear cuenta</button>
         </form>
     )
 }
