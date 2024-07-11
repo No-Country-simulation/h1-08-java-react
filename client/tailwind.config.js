@@ -6,10 +6,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        lightGreen: "#B9EAE8",
-        darkGreen: "#17B8B2",
+        light: "#F0F9F84D",
+        orange: "#F6CC6A",
         textColor: "#232626",
         white: "#F0F9F8",
+        magenta: "#7030A0",
+        sky: "#17A2C8",
+        fucsia: "#D22A89",
+        accent: "#FF4A69",
+        darkOrange: "#F5C046",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
