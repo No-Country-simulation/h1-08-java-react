@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import { BrowserRouter } from "react-router-dom";
+import { useBrowserLocation } from "wouter/use-browser-location"
 import "./index.css";
 import { Router } from 'wouter'
 import "@fontsource/roboto";
