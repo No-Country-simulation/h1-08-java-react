@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import Input from '../atoms/Input'
 import Person from '../../assets/icons/forms/person.svg';
+import Person_pin from '../../assets/icons/forms/person_pin.svg';
 import Group from '../../assets/icons/forms/group.svg';
 import Call from '../../assets/icons/forms/call.svg';
 import Lock from '../../assets/icons/forms/lock.svg';
@@ -8,9 +9,10 @@ import Email from '../../assets/icons/forms/mail.svg';
 import Badge from '../../assets/icons/forms/badge.svg';
 
 import { passwordValidation, emailValidation, namesValidation, defaultRequireValidation } from '../../validations/commonFormValidation';
+import Select from "../atoms/Select";
 
 const RegisterForm = () => {
-    const { register, handleSubmit, formState: { errors, } } = useForm()
+    const { register, handleSubmit, watch, formState: { errors, } } = useForm()
 
     const onSubmit = handleSubmit(async (data) => {
         console.log(data);
@@ -19,6 +21,35 @@ const RegisterForm = () => {
     return (
         // border  border-accent
         <form className="flex flex-col flex-wrap">
+            <Select
+                label={"Tipo de usuario:"}
+                icon={Person}
+                alt={"role-icon"}
+                register={register("role", defaultRequireValidation)}
+                options={[{ name: "Paciente", value: "patient" }, { name: "Médico", value: "doctor" }]}
+            />
+            {
+                watch.apply(watch, ["role"]) == "doctor" && <div className="flex justify-between gap-5">
+                    <Input
+                        register={register("specialty", defaultRequireValidation)}
+                        error={errors.specialty}
+                        icon={Person_pin}
+                        alt={"specialty-icon"}
+                        placeholder={"Especialidad"}
+                    />
+                    <Input
+                        register={register("doctorValidation", defaultRequireValidation)}
+                        error={errors.doctorValidation}
+                        icon={Badge}
+                        alt={"doctor-validation-n"}
+                        placeholder={"N° de matricula"}
+                    />
+                </div>
+            }
+
+
+            <div className="divider mt-0 mb-8"></div>
+
             <div className="flex justify-between gap-5">
                 <Input
                     register={register("name", namesValidation)}
