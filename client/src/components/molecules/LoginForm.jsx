@@ -1,16 +1,9 @@
-import { useForm } from "react-hook-form"
 import Input from '../atoms/Input'
 import Email from '../../assets/icons/forms/mail.svg';
 import Lock from '../../assets/icons/forms/lock.svg';
 import { passwordValidation, emailValidation } from '../../validations/commonFormValidation';
 
-const LoginForm = () => {
-    const { register, handleSubmit, formState: { errors, } } = useForm()
-
-    const onSubmit = handleSubmit(async (data) => {
-        console.log(data);
-    })
-
+const LoginForm = ({register, onSubmit, errors }) => {
     return (
         // border  border-accent
         <form className="flex flex-col gap-1">
