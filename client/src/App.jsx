@@ -5,6 +5,7 @@ import Footer from './layout/Footer';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import Auth from './pages/Auth';
+import Historial from './pages/Historial';
 
 const queryClient = new QueryClient()
 
@@ -22,7 +23,8 @@ function App() {
           </Route>
 
           {/* Default */}
-          <Route component={NotFound} />
+          {/* <Route component={NotFound} /> */}
+          <Route path="/historial" component={Historial} />
         </Switch>
       </main>
       <Footer />
