@@ -2,7 +2,7 @@
 const Select = ({ options, label, register }) => {
     return (
         <div className="flex justify-between gap-5 items-center col-span-full w-full">
-            <label className="label text-xl text-shadow">
+            <label className="label text-xl">
                 {label}
             </label>
 

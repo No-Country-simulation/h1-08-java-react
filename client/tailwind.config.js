@@ -22,9 +22,6 @@ export default {
         poppins: ["Poppins", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
       },
-      textShadow: {
-        "default": "1.5px 1.5px 1.5px rgba(0, 0, 0, 0.20)",
-      }
     },
   },
   plugins: [

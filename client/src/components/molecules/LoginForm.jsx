@@ -5,7 +5,7 @@ import PasswordInput from '../atoms/PasswordInput';
 
 const LoginForm = ({ register, onSubmit, errors }) => {
     return (<>
-        <form className="bg-[#AA80C9] bg-opacity-20 flex flex-col p-5 rounded-xl bg-green-light/20 backdrop-blur-2xl border-r-2 border-b-2 border-magenta shadow-lg shadow-magenta my-5">
+        <form className="bg-[#AA80C9] bg-opacity-20 flex flex-col p-5 rounded-2xl login-shadow my-5">
             <Input
                 register={register("doctorValidation", defaultRequireValidation)}
                 error={errors.doctorValidation}
@@ -21,7 +21,7 @@ const LoginForm = ({ register, onSubmit, errors }) => {
                 password
             />
 
-            <Link href="/" className={"link text-center no-underline hover:underline text-magenta"}>
+            <Link href="/auth/forgot-password" className={"link text-center no-underline hover:underline text-magenta"}>
                 ¿Has olvidado tu contraseña?
             </Link>
         </form>

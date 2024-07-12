@@ -4,6 +4,7 @@ import Register from '../components/organisms/Register'
 import useAuthStore from '../store/auth-store'
 import { shallow } from 'zustand/shallow'
 import { Redirect } from 'wouter'
+import ForgotPassword from '../components/molecules/ForgotPassword'
 
 const Auth = ({ page }) => {
   const isLogged = useAuthStore((state => state.isLogged), shallow)
@@ -14,8 +15,11 @@ const Auth = ({ page }) => {
   if ((page === "registrarme" || page === "register") && !isLogged) {
     return <Register />
   }
-  
-  if (isLogged) return  <Redirect to="/" />
+  if ((page === "forgot-password") && !isLogged) {
+    return <ForgotPassword />
+  }
+
+  if (isLogged) return <Redirect to="/" />
 
   else return <div>
     <h1>Página equivocada.</h1>

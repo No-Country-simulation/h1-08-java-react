@@ -5,7 +5,7 @@ const Input = ({ label, placeholder, password, register, error, viewPassword, pa
       {
         label &&
         <label className="label">
-          <span className="label-text text-shadow text-xl">{label}</span>
+          <span className="label-text text-poppins text-xl">{label}</span>
         </label>
       }
 

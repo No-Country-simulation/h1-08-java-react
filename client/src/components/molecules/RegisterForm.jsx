@@ -106,7 +106,7 @@ const RegisterForm = ({ register, onSubmit, watch, errors }) => {
                         </small>
                     </label>
                 </div>
-                <button type="submit" className="btn capitalize mt-4 bg-magenta text-orange hover:text-accent hover:bg-magenta" onClick={onSubmit}>Crear cuenta</button>
+                <button type="submit" className="btn capitalize mt-4 bg-magenta text-orange hover:text-accent hover:bg-magenta w-[306px]" onClick={onSubmit}>Crear cuenta</button>
             </div>
 
         </form>

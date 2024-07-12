@@ -1,11 +1,11 @@
-import { QueryClient, QueryClientProvider, } from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider, } from "@tanstack/react-query"
 import { Route, Switch } from "wouter";
-import Navbar from './layout/Navbar';
-import Footer from './layout/Footer';
-import NotFound from './pages/NotFound';
-import Home from './pages/Home';
-import Auth from './pages/Auth';
-import ProtectedRoute from './utils/ProtectedRoute';
+import Navbar from "./layout/Navbar";
+import Footer from "./layout/Footer";
+import NotFound from "./pages/NotFound";
+import Home from "./pages/Home";
+import Auth from "./pages/Auth";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 const queryClient = new QueryClient()
 

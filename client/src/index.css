@@ -17,6 +17,10 @@ body{
 
 }
 
+.login-shadow{
+    box-shadow: 4px 4px 4px 0px #7030A0;
+}
+
 .card-shadow{
     box-shadow: 4px 4px 4px 0px #F5C046;
 }
