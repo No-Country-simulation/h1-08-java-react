@@ -5,6 +5,7 @@ import Footer from './layout/Footer';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import Auth from './pages/Auth';
+import ProtectedRoute from './utils/ProtectedRoute';
 
 const queryClient = new QueryClient()
 
@@ -14,9 +15,8 @@ function App() {
       <Navbar />
       <main>
         <Switch>
-          <Route path="/" component={Home} />
+          <ProtectedRoute path="/" redirectTo={"/auth/login"} component={Home} />
 
-          {/* Ejemplo de uso con params */}
           <Route path="/auth/:page">
             {(params) => <Auth page={params.page} />}
           </Route>

@@ -29,6 +29,13 @@ export const passwordValidation = Object.freeze({
    },
 })
 
+export const confirmPasswordValidation = (watch) => ({
+   ...passwordValidation,
+   validate: (value) => {
+      if (watch("password") != value) return "Las contraseñas no coinciden"
+   }
+})
+
 export const emailValidation = Object.freeze({
    ...defaultRequireValidation,
    minLength: {

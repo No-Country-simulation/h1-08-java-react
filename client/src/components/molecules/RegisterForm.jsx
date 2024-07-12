@@ -1,41 +1,39 @@
-import { useForm } from "react-hook-form"
 import Input from '../atoms/Input'
-
-import { passwordValidation, emailValidation, namesValidation, defaultRequireValidation } from '../../validations/commonFormValidation';
+import {
+    passwordValidation,
+    confirmPasswordValidation,
+    emailValidation,
+    namesValidation,
+    defaultRequireValidation
+} from '../../validations/commonFormValidation';
 import Select from "../atoms/Select";
+import PasswordInput from "../atoms/PasswordInput";
 
-const RegisterForm = () => {
-    const { register, handleSubmit, watch, formState: { errors, } } = useForm()
-
-    const onSubmit = handleSubmit(async (data) => {
-        console.log(data);
-    })
-
+const RegisterForm = ({ register, onSubmit, watch, errors }) => {
     return (
-        // border  border-accent
-        <form className="flex flex-col flex-wrap gap-5">
+        <form className="grid grid-cols-1 md:grid-cols-2 gap-5 justify-center">
+
             <Select
                 label={"Tipo de usuario:"}
                 register={register("role", defaultRequireValidation)}
                 options={[{ name: "Paciente", value: "patient" }, { name: "Médico", value: "doctor" }]}
             />
             {
-                watch.apply(watch, ["role"]) == "doctor" && <div className="flex justify-between gap-5">
-                    <Input
-                        register={register("specialty", defaultRequireValidation)}
-                        error={errors.specialty}
-                        label={"Especialidad"}
-                        placeholder={"Especialidad"}
-                    />
-                    <Input
-                        register={register("doctorValidation", defaultRequireValidation)}
-                        error={errors.doctorValidation}
-                        label={"N° de matricula"}
-                        placeholder={"N° de matricula"}
-                    />
-                </div>
+                watch("role") == "doctor" && [<Input
+                    register={register("specialty", defaultRequireValidation)}
+                    error={errors.specialty}
+                    label={"Especialidad"}
+                    placeholder={"Especialidad"}
+                    key={"speciality-form"}
+                />,
+                <Input
+                    register={register("doctorValidation", defaultRequireValidation)}
+                    error={errors.doctorValidation}
+                    label={"N° de matricula"}
+                    placeholder={"N° de matricula"}
+                    key={"doctorValidation-form"}
+                />]
             }
-
 
 
             <Input
@@ -81,32 +79,36 @@ const RegisterForm = () => {
                 placeholder="País"
             />
 
-            <Input
+            <PasswordInput
                 register={register("password", passwordValidation)}
                 error={errors.password}
                 label="Contraseña"
                 placeholder="Contraseña"
-                password
             />
 
-            <Input
-                register={register("confirmPassword", passwordValidation)}
+            <PasswordInput
+                register={register("confirmPassword", confirmPasswordValidation(watch))}
                 error={errors.confirmPassword}
                 label="Repetir contraseña"
                 placeholder="Repetir contraseña"
-                password
             />
+            
+            <div className="col-span-full flex flex-col items-center">
+                <div className="form-control w-fit">
+                    <label className="label cursor-pointer flex items-center gap-1">
+                        <input type="checkbox" defaultChecked
+                            className="checkbox checkbox-xs checkbox-secondary"
+                            {...register("terms_conditions", defaultRequireValidation)}
+                        />
 
-            <div className="form-control">
-                <label className="label cursor-pointer flex justify-between">
-                    <input type="checkbox" defaultChecked className="checkbox checkbox-xs checkbox-primary" />
-
-                    <small className="label-text text-right">
-                        Acepto los términos y política de privacidad
-                    </small>
-                </label>
+                        <small className="label-text text-center ">
+                            Acepto los términos y política de privacidad
+                        </small>
+                    </label>
+                </div>
+                <button type="submit" className="btn capitalize mt-4 bg-magenta text-orange hover:text-accent hover:bg-magenta" onClick={onSubmit}>Crear cuenta</button>
             </div>
-            <button type="submit" className="btn capitalize mt-4 bg-magenta text-orange hover:text-accent hover:bg-magenta" onClick={onSubmit}>Crear cuenta</button>
+
         </form>
     )
 }

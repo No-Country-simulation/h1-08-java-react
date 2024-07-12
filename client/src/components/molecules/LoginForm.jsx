@@ -1,25 +1,27 @@
 import Input from '../atoms/Input'
-import { passwordValidation, emailValidation } from '../../validations/commonFormValidation';
+import { passwordValidation, defaultRequireValidation } from '../../validations/commonFormValidation';
 import { Link } from 'wouter';
+import PasswordInput from '../atoms/PasswordInput';
 
 const LoginForm = ({ register, onSubmit, errors }) => {
     return (<>
-        <form className="flex flex-col gap-4 py-2 px-5 rounded-xl bg-green-light/20 backdrop-blur-2xl border-r-2 border-b-2 border-orange my-5">
+        <form className="bg-[#AA80C9] bg-opacity-20 flex flex-col p-5 rounded-xl bg-green-light/20 backdrop-blur-2xl border-r-2 border-b-2 border-magenta shadow-lg shadow-magenta my-5">
             <Input
-                register={register("email", emailValidation)}
-                error={errors.email}
+                register={register("doctorValidation", defaultRequireValidation)}
+                error={errors.doctorValidation}
                 label={"Documento de ID"}
                 placeholder="Documento de ID"
             />
 
-            <Input
+            <PasswordInput
                 register={register("password", passwordValidation)}
                 error={errors.password}
                 label="Contraseña"
                 placeholder="Contraseña"
                 password
             />
-            <Link href="/" className={"link text-center no-underline"}>
+
+            <Link href="/" className={"link text-center no-underline hover:underline text-magenta"}>
                 ¿Has olvidado tu contraseña?
             </Link>
         </form>

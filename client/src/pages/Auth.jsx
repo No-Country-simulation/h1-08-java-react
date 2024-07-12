@@ -3,6 +3,7 @@ import Login from '../components/organisms/Login'
 import Register from '../components/organisms/Register'
 import useAuthStore from '../store/auth-store'
 import { shallow } from 'zustand/shallow'
+import { Redirect } from 'wouter'
 
 const Auth = ({ page }) => {
   const isLogged = useAuthStore((state => state.isLogged), shallow)
@@ -14,7 +15,7 @@ const Auth = ({ page }) => {
     return <Register />
   }
   
-  if (isLogged) return <h1>Ya estás logueado.</h1>
+  if (isLogged) return  <Redirect to="/" />
 
   else return <div>
     <h1>Página equivocada.</h1>
