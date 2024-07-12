@@ -7,7 +7,7 @@ const Historial = () => {
     
     <section className="container flex flex-col justify-center px-10 py-7 gap-6">
       <div className="flex flex-col gap-5 py-5">
-        <Link to="#">
+        <Link to="mis-patologias">
           <CardHistory title="Mis Patologías" image={medicine} icon={arrow} />
         </Link>
         <Link to="#">
