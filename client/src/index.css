@@ -8,11 +8,17 @@
     justify-content: space-between;
     min-height: 100vh;
     max-width: 100vw;
+    scroll-behavior: smooth;
+    background-color: #FAF0D7;
 }
 
 body{
     background: linear-gradient(180deg, rgba(247, 236, 211, 0.432) 0%, rgba(251, 238, 208, 0.528865) 17.75%, rgba(247, 237, 212, 0.6) 47.67%, rgba(251, 238, 208, 0.544058) 84.18%, rgba(247, 237, 212, 0.432) 100%);
 
+}
+
+.login-shadow{
+    box-shadow: 4px 4px 4px 0px #7030A0;
 }
 
 .card-shadow{
