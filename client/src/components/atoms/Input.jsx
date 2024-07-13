@@ -1,33 +1,36 @@
 
-const Input = ({ label, placeholder, password, register, error }) => {
+const Input = ({ label, placeholder, password, register, error, viewPassword, passwordType }) => {
   return (
-    <div className="form-control w-full">
+    <div className="form-control">
       {
         label &&
         <label className="label">
-          <span className="label-text text-lg">{label}</span>
+          <span className="label-text text-poppins text-xl">{label}</span>
         </label>
       }
 
-      {/* rounded-b-none  */}
-      <div className={`px-2.5 border-x-neutral-700 
-      focus-within:bg-base-500 input 
-      bg-light backdrop-blur-sm 
-      border-x-0 rounded	rounded-b-none shadow-md shadow-orange
-      border-t-0 border-orange
-       flex items-center gap-2 ${error ? "input-error" : "input-orange"}`}>
+      <div className={`px-2.5 focus-within:bg-fullWhite hover:bg-fullWhite bg-gray input w-[300px] mx-auto
+      backdrop-blur-sm rounded rounded-b-none shadow-sm  content-center 
+      ${error ? "border-error" : "border-x-0 border-t-0  border-magenta"} 
+      ${error ? "shadow-error" : "shadow-magenta"}
+      ${error ? "input-error" : "input-secondary"}
+      ${password && "flex items-center"}
+      `}
+      >
         <input
           autoComplete="off"
-          type={password ? "password" : "text"}
+          type={password ? passwordType : "text"}
           {...register}
           placeholder={placeholder}
           className={"w-full text-ellipsis overflow-hidden"}
         />
+        {password && viewPassword}
       </div>
+
       {password &&
-        <span className="label-text-alt text-error">mayor a 8 caracteres</span>
+        <span className="label-text-alt text-textColor p-1">mayor a 8 caracteres</span>
       }
-      {error && <label className="label h-8">
+      {error && <label className="label">
         <span className="label-text-alt text-error">{error?.message}</span>
       </label>}
     </div>
