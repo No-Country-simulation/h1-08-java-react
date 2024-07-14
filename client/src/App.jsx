@@ -24,10 +24,9 @@ function App() {
             {(params) => <Auth page={params.page} />}
           </Route>
 
-          {/* Default */}
-          {/* <Route component={NotFound} /> */}
-          <Route path="/historial" component={Historial} />
-          <Route path="/mis-patologias" component={Patologias} />
+          <ProtectedRoute path="/historial" redirectTo={"/auth/login"} component={Historial} />
+          <ProtectedRoute path="/mis-patologias" redirectTo={"/auth/login"} component={Patologias} />
+          <Route path="*" component={NotFound} />
         </Switch>
       </main>
       <Footer />
