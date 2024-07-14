@@ -2,6 +2,7 @@ import Input from '../atoms/Input'
 import { passwordValidation, defaultRequireValidation } from '../../validations/commonFormValidation';
 import { Link } from 'wouter';
 import PasswordInput from '../atoms/PasswordInput';
+import SubmitButton from '../atoms/SubmitButton';
 
 const LoginForm = ({ register, onSubmit, errors }) => {
     return (<>
@@ -25,7 +26,10 @@ const LoginForm = ({ register, onSubmit, errors }) => {
                 ¿Has olvidado tu contraseña?
             </Link>
         </form>
-        <button type="submit" className="btn bg-magenta text-orange hover:text-accent hover:bg-magenta capitalize" onClick={onSubmit}>ingresar</button>
+        <SubmitButton
+            onClick={onSubmit}>
+            ingresar
+        </SubmitButton>
     </>
 
     )

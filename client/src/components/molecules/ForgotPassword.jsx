@@ -1,6 +1,7 @@
 import { defaultRequireValidation, emailValidation } from "../../validations/commonFormValidation"
 import Input from "../atoms/Input"
 import { useForm } from 'react-hook-form'
+import SubmitButton from "../atoms/SubmitButton"
 
 
 const ForgotPassword = () => {
@@ -32,12 +33,12 @@ const ForgotPassword = () => {
                     cancelar
                 </button>
 
-                <button type="submit"
-                    className="text-xl font-normal font-poppins px-5 btn bg-magenta text-orange hover:text-accent hover:bg-magenta capitalize"
+                <SubmitButton
                     onClick={onSubmit}
+                    addClassName={"text-xl font-normal font-poppins px-5"}
                 >
                     enviar código
-                </button>
+                </SubmitButton>
             </div>
 
         </form>

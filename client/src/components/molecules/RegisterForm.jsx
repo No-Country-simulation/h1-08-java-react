@@ -8,6 +8,7 @@ import {
 } from '../../validations/commonFormValidation';
 import Select from "../atoms/Select";
 import PasswordInput from "../atoms/PasswordInput";
+import SubmitButton from '../atoms/SubmitButton';
 
 const RegisterForm = ({ register, onSubmit, watch, errors }) => {
     return (
@@ -92,7 +93,7 @@ const RegisterForm = ({ register, onSubmit, watch, errors }) => {
                 label="Repetir contraseña"
                 placeholder="Repetir contraseña"
             />
-            
+
             <div className="col-span-full flex flex-col items-center">
                 <div className="form-control w-fit">
                     <label className="label cursor-pointer flex items-center gap-1">
@@ -106,7 +107,13 @@ const RegisterForm = ({ register, onSubmit, watch, errors }) => {
                         </small>
                     </label>
                 </div>
-                <button type="submit" className="btn capitalize mt-4 bg-magenta text-orange hover:text-accent hover:bg-magenta w-[306px]" onClick={onSubmit}>Crear cuenta</button>
+
+                <SubmitButton
+                    addClassName={"mt-4 w-[306px]"}
+                    onClick={onSubmit}
+                >
+                    crear cuenta
+                </SubmitButton>
             </div>
 
         </form>
