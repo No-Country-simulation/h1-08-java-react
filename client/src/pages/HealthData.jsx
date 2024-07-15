@@ -5,7 +5,7 @@ import { Link } from "wouter";
 
 const HealthData = () => {
   return (
-    <section className="container flex flex-col justify-center px-10 py-7 gap-6">
+    <section className="container flex flex-col justify-center px-5 py-7 gap-6">
     <CardDescription
       image={folder}
       title="Mis Datos de  Salud"
