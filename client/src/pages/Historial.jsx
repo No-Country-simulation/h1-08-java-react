@@ -10,7 +10,7 @@ const Historial = () => {
         <Link to="mis-patologias">
           <CardHistory title="Mis Patologías" image={medicine} icon={arrow} />
         </Link>
-        <Link to="#">
+        <Link to="mis-datos-de-salud">
           <CardHistory title="Mis Datos de Salud" image={folder} icon={arrow} />
         </Link>
         <Link to="#">

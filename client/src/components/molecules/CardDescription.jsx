@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 
 const CardDescription = ({ image, title, description }) => {
   return (
-    <div className="card rounded-2xl bg-light backdrop-blur-sm border border-orange w-[350px] h-[182px] flex items-center justify-center py-6 card-shadow gap-y-1">
-      <div className="flex flex-row items-center justify-center gap-x-16">
-        <span className="text-center font-poppins font-semibold text-[26px]">
+    <div className="card rounded-2xl bg-light backdrop-blur-sm border border-orange w-[350px] h-auto flex items-stretch justify-center p-5 card-shadow gap-y-1">
+      <div className="flex flex-row items-center justify-between">
+        <span className="font-poppins font-semibold text-[26px]">
           {title}
         </span>
       <img src={image} alt={title} className="size-[60px]" />
