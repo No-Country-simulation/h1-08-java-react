@@ -59,7 +59,7 @@ const Patologias = () => {
   ];
   
   return (
-    <section className="container flex flex-col justify-center px-5 py-7 gap-6">
+    <section className="container flex flex-col justify-center items-center px-5 py-7 gap-6">
       <CardDescription
         image={medicine}
         title="Mis Patologías"

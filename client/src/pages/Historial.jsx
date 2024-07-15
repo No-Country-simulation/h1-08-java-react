@@ -5,7 +5,7 @@ import { electrocardiogram, arrow, folder, medicine, microscope } from "../asset
 const Historial = () => {
   return (
     
-    <section className="container flex flex-col justify-center px-5 pb-5 gap-6">
+    <section className="container flex flex-col justify-center items-center px-5 pb-5 gap-6">
       <div className="flex flex-col gap-5 py-5">
         <Link to="mis-patologias">
           <CardHistory title="Mis Patologías" image={medicine} icon={arrow} />

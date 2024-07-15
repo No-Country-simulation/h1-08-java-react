@@ -6,7 +6,7 @@ const MyOptions = () => {
   return (
     <div>
       <h1 className="text-textColor text-2xl font-poppins font-semibold">
-        Mis carpeta de salud
+        Mi carpeta de salud
       </h1>
       <div className="grid grid-cols-2 gap-4 py-5">
         <Link to="#">
