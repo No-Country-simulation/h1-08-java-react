@@ -6,6 +6,8 @@ import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import ProtectedRoute from "./utils/ProtectedRoute";
+import Vaccines from "./pages/Vaccines";
+import ShareInfo from "./pages/ShareInfo";
 
 const queryClient = new QueryClient()
 
@@ -16,6 +18,8 @@ function App() {
       <main>
         <Switch>
           <ProtectedRoute path="/" redirectTo={"/auth/login"} component={Home} />
+          <ProtectedRoute path="/vacunas" redirectTo={"/auth/login"} component={Vaccines} />
+          <ProtectedRoute path="/compartir-informacion" redirectTo={"/auth/login"} component={ShareInfo} />
 
           <Route path="/auth/:page">
             {(params) => <Auth page={params.page} />}
