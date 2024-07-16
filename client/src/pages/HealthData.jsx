@@ -1,14 +1,17 @@
-import CardDescription from "../components/molecules/CardDescription";
+import SectionCard from "../components/molecules/SectionCard";
 import { folder } from "../assets";
+import HealthDataCard from "../components/molecules/HealthDataCard";
 
 const HealthData = () => {
   return (
-    <section className="container flex flex-col justify-center items-center px-5 py-7 gap-6">
-    <CardDescription
-      image={folder}
-      title="Mis Datos de  Salud"
-    />
-    
+    <section className="flex flex-col gap-5 items-center mt-5 mb-20 py-5 px-2">
+    <SectionCard
+        sectionName="Mis Datos de Salud"
+        sectionIcon={folder}
+        altIcon="folder-icon"
+      />
+
+      <HealthDataCard />
   </section>
   )
 }
