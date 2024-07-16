@@ -1,7 +1,7 @@
-import { useForm } from 'react-hook-form'
-import LoginForm from '../molecules/LoginForm'
+import { useForm } from "react-hook-form"
+import LoginForm from "../molecules/LoginForm"
 import { Link } from "wouter"
-import useAuthStore from '../../store/auth-store'
+import useAuthStore from "../../store/auth-store"
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors, } } = useForm()

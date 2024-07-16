@@ -7,7 +7,7 @@ import { useLocation } from "wouter";
 // useRoute("/:locale?/home"); averiguar esto para el locale
 
 const Navbar = () => {
-    window.scrollTo(0, 0)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     const [location, setLocation] = useLocation();
     const { isLogged, logout } = useAuthStore((state => ({
         isLogged: state.isLogged,
@@ -20,10 +20,10 @@ const Navbar = () => {
 
     const navigation = new Navigation(currentLanguage); // Puedes cambiar "es" por "en" para inglés
     const role = "patient"; // Puedes cambiar este valor para probar con diferentes roles
-    if(location === "/auth/iniciar-sesion" || location === "/auth/login") return
-    // text-neutral-content 
+    if (location === "/auth/iniciar-sesion" || location === "/auth/login" || location.includes("/auth/forgot-password")) return
+
     return (
-        <div className="navbar bg-gray shadow-lg h-10">
+        <div className="navbar bg-gray shadow-lg h-10 rounded-b-2xl">
             <div className="navbar-start">
                 {isLogged &&
                     <div className="dropdown">

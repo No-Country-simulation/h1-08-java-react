@@ -3,7 +3,7 @@ import visibilityOff from "../../assets/input/visibility-off.svg";
 
 const ViewPassword = ({ isPasswordVisible, handleClick }) => {
     return (
-        <button onClick={handleClick}>
+        <button type="button" onClick={handleClick}>
             <img
                 src={isPasswordVisible ? visibilityOff : visibility}
                 width={26}
