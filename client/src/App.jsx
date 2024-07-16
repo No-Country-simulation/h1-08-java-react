@@ -11,6 +11,7 @@ import ShareInfo from "./pages/ShareInfo";
 import MedicalHistory from './pages/MedicalHistory';
 import Patologies from './pages/Patologies';
 import HealthData from "./pages/HealthData";
+import Medications from "./pages/Medications";
 
 const queryClient = new QueryClient()
 
@@ -25,11 +26,12 @@ function App() {
           </Route>
 
           <ProtectedRoute path="/" redirectTo={"/auth/login"} component={Home} />
-          <ProtectedRoute path="/vacunas" redirectTo={"/auth/login"} component={Vaccines} />
-          <ProtectedRoute path="/compartir-informacion" redirectTo={"/auth/login"} component={ShareInfo} />
+          <ProtectedRoute path="/mis-vacunas" redirectTo={"/auth/login"} component={Vaccines} />
+          <ProtectedRoute path="/mi-informacion" redirectTo={"/auth/login"} component={ShareInfo} />
           <ProtectedRoute path="/historial" redirectTo={"/auth/login"} component={MedicalHistory} />
           <ProtectedRoute path="/mis-patologias" redirectTo={"/auth/login"} component={Patologies} />
           <ProtectedRoute path="/mis-datos-de-salud" redirectTo={"/auth/login"} component={HealthData} />
+          <ProtectedRoute path="/mis-medicamentos" redirectTo={"/auth/login"} component={Medications} />
 
           {/* DEFAULT */}
           <Route path="*" component={NotFound} />
