@@ -1,5 +1,5 @@
 import SectionCard from "../components/molecules/SectionCard"
-import error from "../assets/error.svg"
+import error from "../assets/icons/error.svg"
 import { Link } from 'wouter'
 
 const NotFound = () => {

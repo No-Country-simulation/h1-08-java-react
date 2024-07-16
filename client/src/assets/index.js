@@ -1,16 +1,17 @@
 import image1 from "./img1.jpg"
 import image2 from "./img2.jpg"
 import image3 from "./img3.jpg"
-import stethoscope from "./stethoscope.svg"
-import electrocardiogram from "./electrocardiogram.svg"
-import doctor from "./doctor.svg"
-import capsule from "./capsule.svg"
-import arrow from "./arrow-filled.svg";
-import arrowDown from "./arrow-down-filled.svg";
-import folder from "./folder.svg";
-import medicine from "./medicine-icon.svg";
-import microscope from "./microscope.svg";
-import lupaIcon from "./lupa-icon.svg";
+import stethoscope from "./icons/stethoscope.svg"
+import electrocardiogram from "./icons/electrocardiogram.svg"
+import doctor from "./icons/doctor.svg"
+import capsule from "./icons/capsule.svg"
+import arrow from "./icons/arrow-filled.svg";
+import arrowDown from "./icons/arrow-down-filled.svg";
+import folder from "./icons/folder.svg";
+import medicine from "./icons/medicine-icon.svg";
+import microscope from "./icons/microscope.svg";
+import lupaIcon from "./icons/lupa-icon.svg";
+import health from "./icons/health-icon.png";
 
 
 export {
@@ -26,5 +27,6 @@ export {
     medicine,
     microscope,
     lupaIcon,
-    arrowDown
+    arrowDown,
+    health
 }

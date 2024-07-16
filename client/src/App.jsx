@@ -8,10 +8,9 @@ import Auth from "./pages/Auth";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import Vaccines from "./pages/Vaccines";
 import ShareInfo from "./pages/ShareInfo";
-import Historial from './pages/Historial';
-import Patologias from './pages/Patologias';
+import MedicalHistory from './pages/MedicalHistory';
+import Patologies from './pages/Patologies';
 import HealthData from "./pages/HealthData";
-
 
 const queryClient = new QueryClient()
 
@@ -28,8 +27,8 @@ function App() {
           <ProtectedRoute path="/" redirectTo={"/auth/login"} component={Home} />
           <ProtectedRoute path="/vacunas" redirectTo={"/auth/login"} component={Vaccines} />
           <ProtectedRoute path="/compartir-informacion" redirectTo={"/auth/login"} component={ShareInfo} />
-          <ProtectedRoute path="/historial" redirectTo={"/auth/login"} component={Historial} />
-          <ProtectedRoute path="/mis-patologias" redirectTo={"/auth/login"} component={Patologias} />
+          <ProtectedRoute path="/historial" redirectTo={"/auth/login"} component={MedicalHistory} />
+          <ProtectedRoute path="/mis-patologias" redirectTo={"/auth/login"} component={Patologies} />
           <ProtectedRoute path="/mis-datos-de-salud" redirectTo={"/auth/login"} component={HealthData} />
 
           {/* DEFAULT */}
