@@ -25,7 +25,7 @@ const Navbar = () => {
     return (
         <div className="navbar bg-gray shadow-lg h-10 rounded-b-2xl">
             <div className="navbar-start">
-                {isLogged &&
+                {/* {isLogged &&
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg
@@ -68,7 +68,7 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                }
+                } */}
 
                 <Link href="/" className="btn btn-ghost text-xl">
                     <img src="/logo.webp" alt="Logo" className="h-7" />
@@ -86,7 +86,7 @@ const Navbar = () => {
                                         item.sub_menu
                                             ?
                                             item.sub_items && (
-                                                <details>
+                                                <details className="z-10">
                                                     <summary>{item.name}</summary>
                                                     <ul className="p-2">
                                                         {item.sub_items.map((subItem, j) => (

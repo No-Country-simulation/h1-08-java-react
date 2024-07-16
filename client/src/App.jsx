@@ -12,6 +12,7 @@ import MedicalHistory from './pages/MedicalHistory';
 import Patologies from './pages/Patologies';
 import HealthData from "./pages/HealthData";
 import Medications from "./pages/Medications";
+import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient()
 
@@ -32,6 +33,7 @@ function App() {
           <ProtectedRoute path="/mis-patologias" redirectTo={"/auth/login"} component={Patologies} />
           <ProtectedRoute path="/mis-datos-de-salud" redirectTo={"/auth/login"} component={HealthData} />
           <ProtectedRoute path="/mis-medicamentos" redirectTo={"/auth/login"} component={Medications} />
+          <ProtectedRoute path="/mi-perfil" redirectTo={"/auth/login"} component={Profile} />
 
           {/* DEFAULT */}
           <Route path="*" component={NotFound} />
