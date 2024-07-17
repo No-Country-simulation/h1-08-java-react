@@ -21,7 +21,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Navbar />
-      <main>
+      <main className="mb-[70px] md:mb-0">
         <Switch>
           <Route path="/auth/:page">
             {(params) => <Auth page={params.page} />}
