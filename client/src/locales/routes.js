@@ -33,35 +33,39 @@ export default class Navigation {
 
     #es_patients_navigation = Object.freeze([
         {
-            path: "/",
-            name: "próximos turnos"
+            path: "/mis-vacunas",
+            name: "vacunas"
         },
         {
-            path: "/",
-            name: "calendario"
+            path: "/mis-medicamentos",
+            name: "medicamentos"
         },
         {
-            path: "/",
-            name: "tratamiento",
+            path: "/historial",
+            name: "historial clinico",
             sub_menu: true,
             sub_items: [
                 {
-                    path: "/",
-                    name: "medicación",
+                    path: "/mis-patologias",
+                    name: "mis patologias",
+                },
+                {
+                    path: "/mis-datos-de-salud",
+                    name: "mis datos de salud",
                 },
                 {
                     path: "/",
-                    name: "nutrición",
+                    name: "credenciales y carnets",
                 },
                 {
                     path: "/",
-                    name: "actividad física",
+                    name: "informes y resultados",
                 },
             ]
         },
         {
             path: "/",
-            name: "prepaga",
+            name: "mis citas",
         },
     ]);
 
@@ -97,41 +101,45 @@ export default class Navigation {
 
     #en_patients_navigation = Object.freeze([
         {
-            path: "/",
-            name: "upcoming appointments"
+            path: "/mis-vacunas",
+            name: "vaccines"
+        },
+        {
+            path: "/mis-medicamentos",
+            name: "medications"
         },
         {
             path: "/",
-            name: "calendar"
-        },
-        {
-            path: "/",
-            name: "treatment",
+            name: "medical history",
             sub_menu: true,
             sub_items: [
                 {
-                    path: "/",
-                    name: "medication",
+                    path: "/mis-patologias",
+                    name: "patologies",
+                },
+                {
+                    path: "/mis-datos-de-salud",
+                    name: "health data",
                 },
                 {
                     path: "/",
-                    name: "nutrition",
+                    name: "credentials and cards",
                 },
                 {
                     path: "/",
-                    name: "physical activity",
+                    name: "reports and results",
                 },
             ]
         },
         {
             path: "/",
-            name: "insurance",
+            name: "dates",
         },
     ]);
 
     #es_profile_navigation = Object.freeze([
         {
-            path: "/",
+            path: "/mi-perfil",
             name: "perfil"
         },
         {
