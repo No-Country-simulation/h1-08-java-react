@@ -13,6 +13,7 @@ import Patologies from './pages/Patologies';
 import HealthData from "./pages/HealthData";
 import Medications from "./pages/Medications";
 import Profile from "./pages/Profile";
+import MobileNav from "./layout/MobileNav";
 
 const queryClient = new QueryClient()
 
@@ -40,6 +41,7 @@ function App() {
         </Switch>
       </main>
       <Footer />
+      <MobileNav />
     </QueryClientProvider>
   );
 }
