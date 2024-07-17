@@ -1,7 +1,7 @@
 
 const Footer = () => {
     return (
-        <footer className="footer footer-center bg-gray shadow-sm p-4">
+        <footer className="footer mb-[64px] md:mb-0 footer-center bg-gray shadow-sm p-4 ">
             <div>
                 <img src="/logo-text.webp" alt="Justina.io Logo" className="h-20"/>
             </div>
