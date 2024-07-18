@@ -1,23 +1,14 @@
-import { shallow } from "zustand/shallow";
 import { Link } from 'wouter'
-import Navigation from '../locales/routes'
-import useLanguageStore from '../store/language-store';
-import { useLocation } from "wouter";
-import UserNav from "./UserNav";
-import DesktopNav from "./DesktopNav";
-// useRoute("/:locale?/home"); averiguar esto para el locale
+import UserNav from "./components/UserNav";
+import DesktopNav from "./components/DesktopNav";
+import useNavigation from '../hooks/useNavigation';
 
 const Navbar = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    const [location, setLocation] = useLocation();
-    const { currentLanguage, handleLanguageChange } = useLanguageStore(state => ({
-        currentLanguage: state.currentLanguage,
-        handleLanguageChange: state.handleLanguageChange
-    }), shallow);
+    const path = window.location.pathname
+    const navigation = useNavigation()
 
-    const navigation = new Navigation(currentLanguage); // Puedes cambiar "es" por "en" para inglés
-
-    if (location === "/auth/iniciar-sesion" || location === "/auth/login" || location.includes("/auth/forgot-password")) return
+    if (path.includes("/auth/iniciar-sesion") || path.includes("/auth/forgot-password")) return
 
     return (
         <div className="navbar bg-gray shadow-lg h-10 rounded-b-2xl">
@@ -32,8 +23,6 @@ const Navbar = () => {
             />
 
             <UserNav
-                currentLanguage={currentLanguage}
-                handleLanguageChange={handleLanguageChange}
                 navigation={navigation}
             />
 

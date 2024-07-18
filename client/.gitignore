@@ -26,3 +26,4 @@ dist-ssr
 
 # custom ignore
 .vercel
+vercel.json

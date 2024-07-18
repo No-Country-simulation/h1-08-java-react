@@ -1,8 +1,12 @@
 import { Link } from 'wouter'
-import useAuthStore from '../store/auth-store'
+import useAuthStore from '../../store/auth-store'
 import { shallow } from 'zustand/shallow'
+import LanguageSwitcher from './LanguageSwitcher'
+import useLanguage from '../../hooks/useLanguage'
 
-const UserNav = ({ currentLanguage, handleLanguageChange, navigation }) => {
+const UserNav = ({ navigation }) => {
+    const currentLanguage = useLanguage()
+
     const { isLogged, logout } = useAuthStore((state => ({
         isLogged: state.isLogged, logout: state.logout
     })), shallow)
@@ -22,18 +26,7 @@ const UserNav = ({ currentLanguage, handleLanguageChange, navigation }) => {
                 <ul
                     tabIndex={2}
                     className="menu menu-sm dropdown-content bg-base-200 rounded-box z-[1] w-30 p-2 shadow capitalize right-0 gap-1">
-                    <li>
-                        <label className="flex cursor-pointer gap-2">
-                            <span className="label-text ">{navigation.getLanguages()[0]}</span>
-                            <input
-                                type="checkbox"
-                                checked={currentLanguage === "en"}
-                                onChange={handleLanguageChange}
-                                className="toggle"
-                            />
-                            <span className="label-text">{navigation.getLanguages()[1]}</span>
-                        </label>
-                    </li>
+                    <LanguageSwitcher currentLanguage={currentLanguage} es={navigation.getLanguages()[0]} en={navigation.getLanguages()[1]} />
                     {
                         navigation.getProfileNavigation().map((item, i) => (
                             <li key={`${i}-${item.name}`} className="capitalize">

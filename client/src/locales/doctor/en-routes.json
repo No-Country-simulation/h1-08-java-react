@@ -1,0 +1,14 @@
+[
+    {
+        "path": "/appointments",
+        "name": "appointments"
+    },
+    {
+        "path": "/calendar",
+        "name": "calendar"
+    },
+    {
+        "path": "/patients",
+        "name": "patients"
+    }
+]
