@@ -12,6 +12,7 @@ import medicine from "./icons/medicine-icon.svg";
 import microscope from "./icons/microscope.svg";
 import lupaIcon from "./icons/lupa-icon.svg";
 import health from "./icons/health-icon.png";
+import gotaDeSangre from "./icons/gota-de-sangre.png"
 
 
 export {
@@ -28,5 +29,6 @@ export {
     microscope,
     lupaIcon,
     arrowDown,
-    health
+    health,
+    gotaDeSangre
 }
