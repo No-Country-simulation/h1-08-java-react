@@ -1,56 +1,38 @@
 package io.hackathon.justina.user.services.implementation;
 
-import io.hackathon.justina.user.model.User;
-import io.hackathon.justina.user.repository.UserRepository;
-import io.hackathon.justina.user.services.Interface.IUserServices;
+import io.hackathon.justina.doctor.models.Medico;
+import io.hackathon.justina.doctor.services.DoctorServicesImp;
+import io.hackathon.justina.patient.model.Patient;
+import io.hackathon.justina.patient.services.PatientServicesImp;
+import io.hackathon.justina.user.model.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
-public class UserServicesImp implements IUserServices {
+public class UserServicesImp {
+    private final DoctorServicesImp doctorServices;
+    private final PatientServicesImp patientServices;
 
-    private final UserRepository userRepository;
+    public Usuario getUserByUsername(String username) {
+        try {
+            if (username == null) {
+                return null;
+            }
+            Medico doctor = doctorServices.findByEmail(username);
+            if (doctor != null) {
+                return Usuario.map(doctor).orElse(null);
+            }
 
-    @Override
-    public User findByEmail(String email) {
-        return null;
+            Patient patient = patientServices.findByEmail(username);
+            if (patient != null) {
+                return Usuario.map(patient).orElse(null);
+            }
+
+            return null;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    @Override
-    public boolean existsByEmail(String email) {
-        return false;
-    }
-
-    @Override
-    public List<User> findAll() {
-        return List.of();
-    }
-
-    @Override
-    public User findById(Long id) {
-        return null;
-    }
-
-    @Override
-    public boolean existsById(Long id) {
-        return false;
-    }
-
-    @Override
-    public User save(Long entity) {
-        return null;
-    }
-
-    @Override
-    public User update(Long entity) {
-        return null;
-    }
-
-    @Override
-    public void delete(Long entity) {
-
-    }
 }
