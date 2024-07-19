@@ -18,28 +18,28 @@ const MobileNav = () => {
 
 
     if (isLogged) return (
-        <div className="btm-nav bg-lightOrange h-[74px] md:hidden z-10">
+        <div className="btm-nav bg-lightOrange h-[68px] md:hidden z-10">
 
             <button className={isActive("/")} type="button" onClick={() => onClickNavigateTo("/")}>
-                <img src={home} alt="home" className="w-8 h-8" />
+                <img src={home} alt="home" className="w-7 h-7" />
                 <span className="btm-nav-label">Inicio</span>
             </button>
 
 
             <button className={isActive("/agenda")} type="button" onClick={() => onClickNavigateTo("/")}>
-                <img src={medical} alt="medical-icon" className="w-8 h-8" />
+                <img src={medical} alt="medical-icon" className="w-7 h-7" />
                 <span className="btm-nav-label">Agenda</span>
             </button>
 
 
             <button className={isActive("/mi-perfil")} type="button" onClick={() => onClickNavigateTo("/mi-perfil")}>
-                <img src={user} alt="user-icon" className="w-8 h-8" />
+                <img src={user} alt="user-icon" className="w-7 h-7" />
                 <span className="btm-nav-label">Usuario</span>
             </button>
 
 
             <button className={isActive("/mi-informacion")} type="button" onClick={() => onClickNavigateTo("/mi-informacion")}>
-                <img src={qr_code} alt="qr-code-icon" className="w-8 h-8" />
+                <img src={qr_code} alt="qr-code-icon" className="w-7 h-7" />
                 <span className="btm-nav-label">QR</span>
             </button>
         </div>)

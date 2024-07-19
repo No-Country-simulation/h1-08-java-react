@@ -1,11 +1,11 @@
-import CardHistory from "../components/molecules/CardHistory";
+import CardHistory from "../../components/molecules/CardHistory";
 import {
   electrocardiogram,
   arrow,
   folder,
   medicine,
   microscope,
-} from "../assets";
+} from "../../assets";
 
 const MedicalHistory = () => {
   return (

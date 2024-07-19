@@ -1,5 +1,5 @@
 import { Link } from 'wouter'
-import useAuthStore from '../store/auth-store'
+import useAuthStore from '../../store/auth-store'
 import { shallow } from 'zustand/shallow'
 
 const DesktopNav = ({ navigation }) => {
@@ -7,7 +7,7 @@ const DesktopNav = ({ navigation }) => {
         isLogged: state.isLogged
     }), shallow)
 
-    const role = "patient"; 
+    const role = "patient";
 
     if (isLogged) return (
         < div className="navbar-center items-center hidden md:flex" >

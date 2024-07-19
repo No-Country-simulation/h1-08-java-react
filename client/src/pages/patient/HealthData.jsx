@@ -1,6 +1,6 @@
-import SectionCard from "../components/molecules/SectionCard";
-import { folder } from "../assets";
-import HealthDataCard from "../components/molecules/HealthDataCard";
+import SectionCard from "../../components/molecules/SectionCard";
+import { folder } from "../../assets";
+import HealthDataCard from "../../components/molecules/HealthDataCard";
 
 const HealthData = () => {
   return (

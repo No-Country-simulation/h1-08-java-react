@@ -9,13 +9,13 @@ import ForgotPassword from '../components/molecules/ForgotPassword'
 const Auth = ({ page }) => {
   const isLogged = useAuthStore((state => state.isLogged), shallow)
 
-  if ((page === "iniciar-sesion" || page === "login") && !isLogged) {
+  if ((page === "iniciar-sesion") && !isLogged) {
     return <Login />
   }
-  if ((page === "registrarme" || page === "register") && !isLogged) {
+  if ((page === "registrarme") && !isLogged) {
     return <Register />
   }
-  if ((page === "forgot-password") && !isLogged) {
+  if ((page === "recuperar-cuenta") && !isLogged) {
     return <ForgotPassword />
   }
 

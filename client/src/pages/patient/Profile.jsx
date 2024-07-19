@@ -1,4 +1,4 @@
-import ProfileForm from "../components/molecules/ProfileForm"
+import ProfileForm from "../../components/molecules/ProfileForm"
 
 const Profile = () => {
     return (
