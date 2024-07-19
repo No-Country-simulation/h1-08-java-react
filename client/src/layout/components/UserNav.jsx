@@ -19,7 +19,7 @@ const UserNav = ({ navigation }) => {
                     <div className="w-12 h-12 rounded-full ring-offset-base-100 ring-offset-2
                  hover:ring hover:ring-primary ">
                         {/* <span className="text-lg">UI</span> */}
-                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
                     </div>
                 </div>
 
