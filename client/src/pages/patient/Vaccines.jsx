@@ -1,6 +1,6 @@
-import SectionCard from "../components/molecules/SectionCard"
-import Collapse from "../components/atoms/Collapse"
-import injectionIcon from "../assets/icons/injection.svg"
+import SectionCard from "../../components/molecules/SectionCard"
+import Collapse from "../../components/atoms/Collapse"
+import injectionIcon from "../../assets/icons/injection.svg"
 
 const vaccinesList = [
     {

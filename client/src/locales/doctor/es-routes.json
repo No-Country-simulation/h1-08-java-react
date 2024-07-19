@@ -1,0 +1,14 @@
+[
+    {
+        "path": "/turnos",
+        "name": "turnos"
+    },
+    {
+        "path": "/calendario",
+        "name": "calendario"
+    },
+    {
+        "path": "/pacientes",
+        "name": "pacientes"
+    }
+]

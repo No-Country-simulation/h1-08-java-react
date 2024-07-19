@@ -1,21 +1,15 @@
+import patient_es_routes from "./patient/es-routes.json"
+import patient_en_routes from "./patient/en-routes.json"
+import doctor_es_routes from "./doctor/es-routes.json"
+import doctor_en_routes from "./doctor/en-routes.json"
+
 export default class Navigation {
     #navigation = [];
 
-    #es_doctor_navigation = Object.freeze([
-        {
-            path: "/",
-            name: "turnos"
-        },
-        {
-            path: "/",
-            name: "calendario"
-        },
-        {
-            path: "/",
-            name: "pacientes"
-        },
-    ]);
-
+    // ESPAÑOL
+    #es_languages = Object.freeze(["español", "inglés"])
+    #es_doctor_navigation = doctor_es_routes
+    #es_patients_navigation = patient_es_routes
     #es_labs_navigation = Object.freeze([
         {
             path: "/",
@@ -29,61 +23,22 @@ export default class Navigation {
             path: "/",
             name: "pacientes"
         },
-    ]);
+    ])
+    #es_profile_navigation = Object.freeze([
+        {
+            path: "/mi-perfil",
+            name: "perfil"
+        },
+        {
+            path: "/",
+            name: "configuraciones"
+        },
+    ])
 
-    #es_patients_navigation = Object.freeze([
-        {
-            path: "/mis-vacunas",
-            name: "vacunas"
-        },
-        {
-            path: "/mis-medicamentos",
-            name: "medicamentos"
-        },
-        {
-            path: "/historial",
-            name: "historial clinico",
-            sub_menu: true,
-            sub_items: [
-                {
-                    path: "/mis-patologias",
-                    name: "mis patologias",
-                },
-                {
-                    path: "/mis-datos-de-salud",
-                    name: "mis datos de salud",
-                },
-                {
-                    path: "/",
-                    name: "credenciales y carnets",
-                },
-                {
-                    path: "/",
-                    name: "informes y resultados",
-                },
-            ]
-        },
-        {
-            path: "/",
-            name: "mis citas",
-        },
-    ]);
-
-    #en_doctor_navigation = Object.freeze([
-        {
-            path: "/",
-            name: "appointments"
-        },
-        {
-            path: "/",
-            name: "calendar"
-        },
-        {
-            path: "/",
-            name: "patients"
-        },
-    ]);
-
+    // INGLÉS
+    #en_languages = Object.freeze(["spanish", "english"])
+    #en_doctor_navigation = doctor_en_routes
+    #en_patients_navigation = patient_en_routes
     #en_labs_navigation = Object.freeze([
         {
             path: "/",
@@ -97,59 +52,10 @@ export default class Navigation {
             path: "/",
             name: "patients"
         },
-    ]);
-
-    #en_patients_navigation = Object.freeze([
-        {
-            path: "/mis-vacunas",
-            name: "vaccines"
-        },
-        {
-            path: "/mis-medicamentos",
-            name: "medications"
-        },
-        {
-            path: "/",
-            name: "medical history",
-            sub_menu: true,
-            sub_items: [
-                {
-                    path: "/mis-patologias",
-                    name: "patologies",
-                },
-                {
-                    path: "/mis-datos-de-salud",
-                    name: "health data",
-                },
-                {
-                    path: "/",
-                    name: "credentials and cards",
-                },
-                {
-                    path: "/",
-                    name: "reports and results",
-                },
-            ]
-        },
-        {
-            path: "/",
-            name: "dates",
-        },
-    ]);
-
-    #es_profile_navigation = Object.freeze([
-        {
-            path: "/mi-perfil",
-            name: "perfil"
-        },
-        {
-            path: "/",
-            name: "configuraciones"
-        },
     ])
     #en_profile_navigation = Object.freeze([
         {
-            path: "/",
+            path: "/mi-perfil",
             name: "profile"
         },
         {
@@ -158,8 +64,6 @@ export default class Navigation {
         },
     ])
 
-    #es_languages = Object.freeze(["español", "inglés"])
-    #en_languages = Object.freeze(["spanish", "english"])
 
 
 

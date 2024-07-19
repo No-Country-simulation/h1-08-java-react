@@ -1,0 +1,37 @@
+[
+    {
+        "path": "/mis-vacunas",
+        "name": "vacunas"
+    },
+    {
+        "path": "/mis-medicamentos",
+        "name": "medicamentos"
+    },
+    {
+        "path": "/historial-clinico",
+        "name": "historial clinico",
+        "sub_menu": true,
+        "sub_items": [
+            {
+                "path": "/mis-patologias",
+                "name": "mis patologias"
+            },
+            {
+                "path": "/mis-datos-de-salud",
+                "name": "mis datos de salud"
+            },
+            {
+                "path": "/",
+                "name": "credenciales y carnets"
+            },
+            {
+                "path": "/",
+                "name": "informes y resultados"
+            }
+        ]
+    },
+    {
+        "path": "/",
+        "name": "fechas"
+    }
+]

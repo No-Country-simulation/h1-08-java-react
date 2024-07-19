@@ -1,6 +1,6 @@
-import SectionCard from "../components/molecules/SectionCard";
-import Collapse from "../components/atoms/Collapse";
-import { lupaIcon, medicine } from "../assets";
+import SectionCard from "../../components/molecules/SectionCard";
+import Collapse from "../../components/atoms/Collapse";
+import { lupaIcon, medicine } from "../../assets";
 
 const Patologies = () => {
   const patologies = [

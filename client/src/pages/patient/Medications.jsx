@@ -1,7 +1,7 @@
-import SectionCard from "../components/molecules/SectionCard"
-import { capsule, lupaIcon } from "../assets"
-import Collapse from "../components/atoms/Collapse"
-import formatDate, { getRandomDate } from "../utils/formatDate"
+import SectionCard from "../../components/molecules/SectionCard"
+import { capsule, lupaIcon } from "../../assets"
+import Collapse from "../../components/atoms/Collapse"
+import formatDate, { getRandomDate } from "../../utils/formatDate"
 
 const startDate = new Date(2023, 0, 1); // 1 de enero de 2023
 const endDate = new Date(2024, 6, 31); // 31 de diciembre de 2024
