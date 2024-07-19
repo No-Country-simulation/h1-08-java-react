@@ -1,8 +1,12 @@
-.vscode
-
-.idea
 *.iws
 *.iml
 *.ipr
 *.properties
 .env
+
+# Visual Studio Code
+.vscode
+
+# IntelliJ IDEA
+.idea 
+
