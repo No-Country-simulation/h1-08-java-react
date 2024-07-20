@@ -13,6 +13,8 @@ import microscope from "./icons/microscope.svg";
 import lupaIcon from "./icons/lupa-icon.svg";
 import health from "./icons/health-icon.png";
 import gotaDeSangre from "./icons/gota-de-sangre.png"
+import search from "./icons/search.svg";
+import arrowFilter from "./icons/arrow-filter.svg";
 
 
 export {
@@ -30,5 +32,7 @@ export {
     lupaIcon,
     arrowDown,
     health,
-    gotaDeSangre
+    gotaDeSangre,
+    search,
+    arrowFilter
 }
