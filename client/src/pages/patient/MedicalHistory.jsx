@@ -36,7 +36,7 @@ const MedicalHistory = () => {
           title="Informes y Resultados"
           image={microscope}
           icon={arrow}
-          link="#"
+          link="/informes-y-resultados"
         />
       </div>
     </section>

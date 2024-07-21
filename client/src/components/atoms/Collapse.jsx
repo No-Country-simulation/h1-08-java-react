@@ -12,7 +12,7 @@ const Collapse = ({ title, icon, children }) => {
                 </h3>
             </div>
 
-            <div className="collapse-content peer-checked:p-5 text-textColor-content">
+            <div className="collapse-content peer-checked:p-3 text-textColor-content">
                 {children}
             </div>
         </div>)
