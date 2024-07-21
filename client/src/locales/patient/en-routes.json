@@ -25,7 +25,7 @@
                 "name": "credentials and cards"
             },
             {
-                "path": "/",
+                "path": "/informes-y-resultados",
                 "name": "reports and results"
             }
         ]
