@@ -18,7 +18,6 @@ public class Medico extends Usuario {
 
     @ManyToOne
     @JoinColumn(name = "id_especialidad", referencedColumnName = "id")
-    @JsonManagedReference
     private Especialidad especialidad;
 
     @Column(name = "numerolicencia")
