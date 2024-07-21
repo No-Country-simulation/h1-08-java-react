@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import LabResultCard from "../../components/molecules/LabResultCard";
 import MedicalHistoryCard from "../../components/molecules/MedicalHistoryCard";
 import { search, arrowFilter } from "../../assets";
@@ -9,11 +9,69 @@ const ReportsAndResults = () => {
       specialty: "Cardiólogo",
       location: "Hospital Italiano",
       date: "23/04/2023",
+      details: {
+        datosGenerales: {
+          nombreYApellido: "Raul Benitez",
+          medico: "Dr. Sanchez",
+          especialidad: "Cardiología",
+        },
+        antecedentes: {
+          actual:
+            "Lorem ipsum dolor sit amet consectetur. Amet fermentum dolor tristique ultrices sit sed. Viverra viverra pretium venenatis tincidunt nisi sociis vitae pharetra blandit. Viverra libero.",
+          descripcion:
+            "Lorem ipsum dolor sit amet consectetur. Amet fermentum dolor tristique ultrices sit sed. Viverra viverra pretium venenatis tincidunt nisi sociis vitae pharetra blandit. Viverra libero.",
+        },
+        diagnostico: {
+          patologia: "Arritmia",
+          descripcion:
+            "Lorem ipsum dolor sit amet consectetur. Amet fermentum dolor tristique ultrices sit sed. Viverra viverra pretium venenatis tincidunt nisi sociis vitae pharetra blandit. Viverra libero.",
+        },
+        tratamiento: {
+          planTerapeutico: "Lorem",
+          descripcion:
+            "Lorem ipsum dolor sit amet consectetur. Amet fermentum dolor tristique ultrices sit sed. Viverra viverra pretium venenatis tincidunt nisi sociis vitae pharetra blandit. Viverra libero.",
+        },
+        examenFisico: {
+          caracteristicas:
+            "Lorem ipsum dolor sit amet consectetur. Amet fermentum dolor tristique ultrices sit sed. Viverra viverra pretium venenatis tincidunt nisi sociis vitae pharetra blandit. Viverra libero.",
+          descripcion:
+            "Lorem ipsum dolor sit amet consectetur. Amet fermentum dolor tristique ultrices sit sed. Viverra viverra pretium venenatis tincidunt nisi sociis vitae pharetra blandit. Viverra libero.",
+        },
+      },
     },
     {
       specialty: "Médico Cabecera",
       location: "Sanatorio Sur",
       date: "23/04/2023",
+      details: {
+        datosGenerales: {
+          nombreYApellido: "Raul Benitez",
+          medico: "Dr. Sanchez",
+          especialidad: "Médico Cabecera",
+        },
+        antecedentes: {
+          actual:
+            "Lorem ipsum dolor sit amet consectetur. Amet fermentum dolor tristique ultrices sit sed. Viverra viverra pretium venenatis tincidunt nisi sociis vitae pharetra blandit. Viverra libero.",
+          descripcion:
+            "Lorem ipsum dolor sit amet consectetur. Amet fermentum dolor tristique ultrices sit sed. Viverra viverra pretium venenatis tincidunt nisi sociis vitae pharetra blandit. Viverra libero.",
+        },
+        diagnostico: {
+          patologia: "Arritmia",
+          descripcion:
+            "Lorem ipsum dolor sit amet consectetur. Amet fermentum dolor tristique ultrices sit sed. Viverra viverra pretium venenatis tincidunt nisi sociis vitae pharetra blandit. Viverra libero.",
+        },
+        tratamiento: {
+          planTerapeutico: "Lorem",
+          descripcion:
+            "Lorem ipsum dolor sit amet consectetur. Amet fermentum dolor tristique ultrices sit sed. Viverra viverra pretium venenatis tincidunt nisi sociis vitae pharetra blandit. Viverra libero.",
+        },
+        examenFisico: {
+          caracteristicas:
+            "Lorem ipsum dolor sit amet consectetur. Amet fermentum dolor tristique ultrices sit sed. Viverra viverra pretium venenatis tincidunt nisi sociis vitae pharetra blandit. Viverra libero.",
+          descripcion:
+            "Lorem ipsum dolor sit amet consectetur. Amet fermentum dolor tristique ultrices sit sed. Viverra viverra pretium venenatis tincidunt nisi sociis vitae pharetra blandit. Viverra libero.",
+        },
+      },
     },
   ];
 
@@ -43,9 +101,11 @@ const ReportsAndResults = () => {
           type="radio"
           id="tab1"
           name="my_tabs_2"
-          role="tab"         
+          role="tab"
           className={`tab font-poppins text-xl min-w-[150px] h-14 rounded-2xl [--tab-border-color:orange] ${
-            selectedTabIndex === 1 ? '[--tab-bg:bg-light] text-black' : '[--tab-bg:bg-orange] [--tab-border-color:orange] text-black/50'
+            selectedTabIndex === 1
+              ? "[--tab-bg:bg-light] text-black"
+              : "[--tab-bg:bg-orange] [--tab-border-color:orange] text-black/50"
           }`}
           aria-label="Hist. Clínica"
           value="1"
@@ -88,6 +148,7 @@ const ReportsAndResults = () => {
                   location={medicalInfoItem.location}
                   date={medicalInfoItem.date}
                 />
+                
               ))}
             </div>
           </div>
@@ -99,7 +160,9 @@ const ReportsAndResults = () => {
           name="my_tabs_2"
           role="tab"
           className={`tab font-poppins text-xl min-w-[150px] h-14 rounded-2xl [--tab-border-color:orange] ${
-            selectedTabIndex === 2 ? '[--tab-bg:bg-light] text-black' : '[--tab-bg:bg-orange] [--tab-border-color:orange] text-black/50'
+            selectedTabIndex === 2
+              ? "[--tab-bg:bg-light] text-black"
+              : "[--tab-bg:bg-orange] [--tab-border-color:orange] text-black/50"
           }`}
           aria-label="Laboratorio"
           value="2"
@@ -134,14 +197,14 @@ const ReportsAndResults = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {labResultInfo.map((labResultInfoItem, index) => (
+              {labResultInfo.map((labResultInfoItem, index) => (
                 <LabResultCard
-                    key={index}
-                    examination={labResultInfoItem.examination}
-                    location={labResultInfoItem.location}
-                    date={labResultInfoItem.date}
+                  key={index}
+                  examination={labResultInfoItem.examination}
+                  location={labResultInfoItem.location}
+                  date={labResultInfoItem.date}
                 />
-                ))}
+              ))}
             </div>
           </div>
         </div>
