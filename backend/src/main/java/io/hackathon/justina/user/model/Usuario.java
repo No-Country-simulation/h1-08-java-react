@@ -1,5 +1,7 @@
 package io.hackathon.justina.user.model;
 
+import io.hackathon.justina.address.models.Address;
+import io.hackathon.justina.healthPlan.models.HealthPlan;
 import io.hackathon.justina.utils.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,10 +12,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.lang.reflect.Field;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 @Data
 @SuperBuilder
@@ -32,6 +33,12 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private String apellido;
 
+    @Column(nullable = false, unique = true)
+    private String dni;
+
+    @Column
+    private LocalDate fechaNacimiento;
+
     @Column(nullable = false)
     private String telefono;
 
@@ -41,8 +48,18 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "health_plan_id")
+    private HealthPlan healthPlan;
+
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Column
+    private Boolean enabled = true;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -52,43 +69,5 @@ public class Usuario implements UserDetails {
     @Override
     public String getUsername() {
         return this.email;
-    }
-
-    /*
-     * Convierte un objeto en un usuario utilizando reflection
-     * @param user Objeto a convertir en usuario
-     * @return Optional<Usuario>
-     * */
-    public static Optional<Usuario> map(Object user) {
-        Usuario usuario = new Usuario();
-        Class<?> clazz = user.getClass();
-
-        while (clazz != null) {
-            for (Field field : clazz.getDeclaredFields()) {
-                field.setAccessible(true);
-                try {
-                    if (Usuario.hasField(Usuario.class, field.getName())) {
-                        Field targetField = Usuario.class.getDeclaredField(field.getName());
-                        targetField.setAccessible(true);
-                        targetField.set(usuario, field.get(user));
-                    }
-                } catch (NoSuchFieldException | IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            // Sube en la jerarquía de clases
-            clazz = clazz.getSuperclass();
-        }
-
-        return Optional.of(usuario);
-    }
-
-    private static boolean hasField(Class<?> clazz, String fieldName) {
-        try {
-            clazz.getDeclaredField(fieldName);
-            return true;
-        } catch (NoSuchFieldException e) {
-            return false;
-        }
     }
 }

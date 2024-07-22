@@ -1,6 +1,8 @@
 package io.hackathon.justina.doctor.models.dto;
 
+import io.hackathon.justina.address.models.dto.AddressDTO;
 import io.hackathon.justina.doctor.models.Especialidad;
+import io.hackathon.justina.healthPlan.models.dto.HealthPlanDTO;
 import io.hackathon.justina.utils.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,13 +20,19 @@ public class DoctorDto {
 
     private String apellido;
 
+    private String dni;
+
     private String telefono;
 
     private String email;
 
+    private AddressDTO address;
+
     private Especialidad especialidad;
 
     private Integer numeroLicencia;
+
+    private HealthPlanDTO healthPlan;
 
     private Role role;
 }

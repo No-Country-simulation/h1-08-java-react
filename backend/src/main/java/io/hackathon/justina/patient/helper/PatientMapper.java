@@ -1,22 +1,35 @@
 package io.hackathon.justina.patient.helper;
 
-import io.hackathon.justina.auth.models.dto.request.RegisterRequest;
+import io.hackathon.justina.address.models.Address;
+import io.hackathon.justina.address.models.dto.AddressDTO;
+import io.hackathon.justina.auth.models.dto.request.RegisterPatientRequest;
+import io.hackathon.justina.healthPlan.models.HealthPlan;
 import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.utils.Role;
+import io.hackathon.justina.utils.modelMapper.Mapper;
 
 public class PatientMapper {
-    public static Patient toPatient(RegisterRequest request) {
+    private final static Mapper mapper = Mapper.getInstance();
+
+    public static Patient toPatient(RegisterPatientRequest request) {
         return Patient.builder()
-                .id(request.getId())
                 .nombre(request.getNombre())
                 .apellido(request.getApellido())
-                .telefono(request.getTelefono())
-                .role(Role.PATIENT)
+                .dni(request.getDni())
                 .email(request.getEmail())
+                .address(mapper.map(request.getAddress(), Address.class).orElseGet(Address::new))
+                .telefono(request.getTelefono())
+                .fechaNacimiento(request.getFechaNacimiento())
+                .role(Role.PATIENT)
                 .password(request.getPassword())
-                .dni(request.getPatient().getDni())
+                .bloodType(request.getPatient().getBloodType())
+                .gender(request.getPatient().getGender())
+                .weight(request.getPatient().getWeight())
+                .height(request.getPatient().getHeight())
+                .healthPlan(mapper.map(request.getPatient().getHealthPlan(), HealthPlan.class).orElseGet(HealthPlan::new))
                 .build();
+
     }
 
     public static PatientDTO toPatientDTO(Patient patient) {
@@ -25,6 +38,11 @@ public class PatientMapper {
                 .dni(patient.getDni())
                 .nombre(patient.getNombre())
                 .apellido(patient.getApellido())
+                .gender(patient.getGender())
+                .bloodType(patient.getBloodType())
+                .height(patient.getHeight())
+                .weight(patient.getWeight())
+                .address(mapper.map(patient.getAddress(), AddressDTO.class).orElseGet(AddressDTO::new))
                 .email(patient.getEmail())
                 .telefono(patient.getTelefono())
                 .role(patient.getRole())

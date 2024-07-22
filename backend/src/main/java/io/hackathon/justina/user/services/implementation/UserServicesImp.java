@@ -5,6 +5,7 @@ import io.hackathon.justina.doctor.services.DoctorServicesImp;
 import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.services.PatientServicesImp;
 import io.hackathon.justina.user.model.Usuario;
+import io.hackathon.justina.utils.modelMapper.Mapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,20 +14,21 @@ import org.springframework.stereotype.Service;
 public class UserServicesImp {
     private final DoctorServicesImp doctorServices;
     private final PatientServicesImp patientServices;
+    private final Mapper mapper = Mapper.getInstance();
 
     public Usuario getUserByUsername(String username) {
         try {
             if (username == null) {
                 return null;
             }
-            Medico doctor = doctorServices.findByEmail(username);
+            Medico doctor = doctorServices.findByDni(username);
             if (doctor != null) {
-                return Usuario.map(doctor).orElse(null);
+                return mapper.map(doctor, Usuario.class).orElse(null);
             }
 
-            Patient patient = patientServices.findByEmail(username);
+            Patient patient = patientServices.findByDni(username);
             if (patient != null) {
-                return Usuario.map(patient).orElse(null);
+                return mapper.map(patient, Usuario.class).orElse(null);
             }
 
             return null;
