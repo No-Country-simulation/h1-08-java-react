@@ -24,7 +24,7 @@ const LoginForm = ({ register, onSubmit, errors }) => {
                 />
 
                 <div className="text-center mt-2">
-                    <Link href="/auth/forgot-password" className={"link no-underline hover:underline text-magenta"}>
+                    <Link href="/auth/recuperar-cuenta" className={"link no-underline hover:underline text-magenta"}>
                         ¿Has olvidado tu contraseña?
                     </Link>
                 </div>

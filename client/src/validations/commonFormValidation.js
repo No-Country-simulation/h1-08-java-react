@@ -5,6 +5,18 @@ export const defaultRequireValidation = Object.freeze({
    }
 })
 
+export const phoneValidation = Object.freeze({
+   ...defaultRequireValidation,
+   minLength: {
+      value: 8,
+      message: "Debe contener al menos 8 caracteres."
+   },
+   maxLength: {
+      value: 14,
+      message: "Debe contener como máximo 14 caracteres."
+   },
+})
+
 export const usernameValidation = Object.freeze({
    ...defaultRequireValidation,
    minLength: {
@@ -23,10 +35,10 @@ export const passwordValidation = Object.freeze({
       value: 8,
       message: "Debe contener al menos 8 caracteres."
    },
-   maxLength: {
-      value: 70,
-      message: "Debe contener como máximo 70 caracteres."
-   },
+   pattern: {
+      value: /^(?:(?!.*(.)\1{2}).)*$/,
+      message: "No se permiten 3 caracteres iguales consecutivos."
+   }
 })
 
 export const confirmPasswordValidation = (watch) => ({
@@ -43,8 +55,8 @@ export const emailValidation = Object.freeze({
       message: "Debe contener al menos 6 caracteres."
    },
    pattern: {
-      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-      message: "Incluye un signo '@' y '.' en la dirección de correo electrónico. Ej: 'correo@dominio.com'"
+      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(?!mil$)([a-zA-Z]{2,4}|gob|edu|biz)$/,
+      message: "Incluye un signo '@' y '.' en la dirección de correo electrónico. Ej: 'correo@dominio.com'. No se permiten dominios '.mil'."
    }
 })
 
@@ -58,7 +70,7 @@ export const namesValidation = Object.freeze({
       message: "Debe contener al menos 3 caracteres."
    },
    pattern: {
-      value: /^[a-zA-Z\s]*$/,
-      message: "Solo se permiten letras y espacios."
+      value: /^[a-zA-ZñÑ´¨' -]*$/,
+      message: "Solo se permiten letras, espacios y los siguientes caracteres especiales: ´¨' - ñ Ñ."
    }
 })

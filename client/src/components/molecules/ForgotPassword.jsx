@@ -1,4 +1,4 @@
-import { defaultRequireValidation, emailValidation } from "../../validations/commonFormValidation"
+import { emailValidation } from "../../validations/commonFormValidation"
 import Input from "../atoms/Input"
 import { useForm } from 'react-hook-form'
 import SubmitButton from "../atoms/SubmitButton"
@@ -17,11 +17,11 @@ const ForgotPassword = () => {
 
             <div className="bg-[#AA80C9] bg-opacity-20 flex flex-col py-12 px-5 rounded-2xl login-shadow my-10 w-full">
                 <h1 className="text-2xl">¿Olvidaste tu contraseña?</h1>
-                <p className="font-roboto leading-7 px-1 text-lg my-5 text-black"> No te preocupes. Pon tu email o teléfono y te enviaremos un código con el que podrás recuperar tu contraseña.</p>
+                <p className="font-roboto leading-7 px-1 text-lg my-5 text-black"> No te preocupes. Escribe tu email y te enviaremos un código con el que podrás recuperar tu contraseña.</p>
                 <Input placeholder="Email o teléfono"
                     label={"Email o teléfono"}
                     error={errors.recover_password}
-                    register={register("recover_password", defaultRequireValidation)}
+                    register={register("recover_password", emailValidation)}
                 />
             </div>
 
