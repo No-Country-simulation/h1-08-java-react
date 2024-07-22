@@ -5,6 +5,25 @@ export const defaultRequireValidation = Object.freeze({
    }
 })
 
+export const documentIDValidation = Object.freeze({
+   required: {
+      value: true,
+      message: "El documento de identidad es obligatorio."
+   },
+   minLength: {
+      value: 6,
+      message: "El documento de identidad debe tener al menos 6 caracteres."
+   },
+   maxLength: {
+      value: 20,
+      message: "El documento de identidad debe tener como máximo 20 caracteres."
+   },
+   pattern: {
+      value: /^[a-zA-Z0-9]+$/,
+      message: "El documento de identidad solo puede contener letras y números."
+   }
+});
+
 export const phoneValidation = Object.freeze({
    ...defaultRequireValidation,
    minLength: {
@@ -48,7 +67,7 @@ export const passwordValidation = Object.freeze({
       message: "Debe contener al menos una letra mayúscula."
    },
    pattern: {
-      value: /^(?=.*[@$!%*?&])/,
+      value: /^(?=.*[@$!%*?&_])/,
       message: "Debe contener al menos un carácter especial. Por ejemplo: '@', '$', '!', '%', '*', '?', '&'."
    }
 })

@@ -1,3 +1,4 @@
+import { documentIDValidation } from "../../validations/commonFormValidation"
 import Input from "../atoms/Input"
 import Select from "../atoms/Select"
 
@@ -7,7 +8,7 @@ const documentsTypes = [
 ]
 
 
-const IDfields = ({ registerType, registerID, error }) => {
+const IDfields = ({ register, error }) => {
     return (
         <div className="form-group">
             <label className="label">
@@ -17,13 +18,13 @@ const IDfields = ({ registerType, registerID, error }) => {
             </label>
             <div className="max-w-[310px] mx-auto">
                 <Select
-                    register={registerType}
+                    register={register("document_type")}
                     options={documentsTypes}
                 >
                     <Input
                         width={"auto"}
                         error={error}
-                        register={registerID}
+                        register={register("document_id", documentIDValidation)}
                         placeholder={"Número de documento"}
                     />
                 </Select>
