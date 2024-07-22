@@ -1,18 +1,17 @@
-import Input from '../atoms/Input'
 import { passwordValidation, defaultRequireValidation } from '../../validations/commonFormValidation';
 import { Link } from 'wouter';
 import PasswordInput from '../atoms/PasswordInput';
 import SubmitButton from '../atoms/SubmitButton';
+import IDfields from './IDFields';
 
 const LoginForm = ({ register, onSubmit, errors }) => {
     return (<>
         <form className="flex flex-col gap-3">
             <div className="bg-[#AA80C9] bg-opacity-20 p-5 rounded-2xl login-shadow my-5">
-                <Input
-                    register={register("doctorValidation", defaultRequireValidation)}
-                    error={errors.doctorValidation}
-                    label={"Documento de ID"}
-                    placeholder="Documento de ID"
+                <IDfields
+                    registerType={register("document_type")}
+                    registerID={register("document_id", defaultRequireValidation)}
+                    error={errors.document_id}
                 />
 
                 <PasswordInput

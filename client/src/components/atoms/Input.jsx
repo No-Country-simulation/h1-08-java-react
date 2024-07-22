@@ -5,9 +5,9 @@ const Input = ({ label, placeholder, password, register, error, width, viewPassw
       {
         label &&
         <label className="label">
-          <span className={`label-text text-poppins text-xl ${error && "text-error"}`}>
+          <div className={`label-text text-poppins text-lg ${error && "text-error"} w-full`}>
             {label}
-          </span>
+          </div>
         </label>
       }
 
@@ -35,7 +35,7 @@ const Input = ({ label, placeholder, password, register, error, width, viewPassw
       {
         error && !width &&
         <label className="label max-w-[310px]">
-          <span className="label-text-alt text-error">{error?.message}</span>
+          <span className="label-text-alt leading-5 font-semibold text-error">{error?.message}</span>
         </label>
       }
     </div>

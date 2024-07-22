@@ -38,6 +38,18 @@ export const passwordValidation = Object.freeze({
    pattern: {
       value: /^(?:(?!.*(.)\1{2}).)*$/,
       message: "No se permiten 3 caracteres iguales consecutivos."
+   },
+   pattern: {
+      value: /^(?=.*[a-z])/,
+      message: "Debe contener al menos una letra minúscula."
+   },
+   pattern: {
+      value: /^(?=.*[A-Z])/,
+      message: "Debe contener al menos una letra mayúscula."
+   },
+   pattern: {
+      value: /^(?=.*[@$!%*?&])/,
+      message: "Debe contener al menos un carácter especial. Por ejemplo: '@', '$', '!', '%', '*', '?', '&'."
    }
 })
 

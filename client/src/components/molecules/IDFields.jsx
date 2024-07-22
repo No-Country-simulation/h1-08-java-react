@@ -1,4 +1,3 @@
-import { defaultRequireValidation } from "../../validations/commonFormValidation"
 import Input from "../atoms/Input"
 import Select from "../atoms/Select"
 
@@ -32,7 +31,7 @@ const IDfields = ({ registerType, registerID, error }) => {
             {
                 error &&
                 <label className="label mx-auto">
-                    <span className="label-text-alt text-error">{error?.message}</span>
+                    <span className="label-text-alt leading-5 font-semibold text-error">{error?.message}</span>
                 </label>
             }
         </div>

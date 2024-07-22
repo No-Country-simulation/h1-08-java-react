@@ -3,7 +3,7 @@ const Select = ({ options, label, register, children }) => {
     return (
         <div className={`flex justify-between gap-${children ? 1 : 5} items-center col-span-full w-full`}>
             {label &&
-                <label className="label text-xl">
+                <label className="label text-lg">
                     {label}
                 </label>
             }

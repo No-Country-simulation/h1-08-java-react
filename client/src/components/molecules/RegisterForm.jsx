@@ -61,7 +61,6 @@ const RegisterForm = ({ register, onSubmit, watch, errors }) => {
             />
 
             <IDfields
-                register={register}
                 error={errors.document_id}
                 registerType={register("document_type")}
                 registerID={register("document_id", defaultRequireValidation)}
