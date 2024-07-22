@@ -9,7 +9,7 @@ La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula
 const LabelForInput = ({ label }) => (
     <div className="flex justify-between items-center">
         <span>{label}</span>
-        <div className="tooltip tooltip-secondary" data-tip={helperText}>
+        <div className="tooltip tooltip-secondary tooltip-left" data-tip={helperText}>
             <img width={24} height={24} src={helper} alt="password-helper" />
         </div>
     </div>

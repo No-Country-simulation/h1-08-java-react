@@ -15,7 +15,6 @@ import IDfields from './IDFields';
 const RegisterForm = ({ register, onSubmit, watch, errors }) => {
     return (
         <form className="grid grid-cols-1 md:grid-cols-2 gap-5 justify-center">
-
             <Select
                 label={"Tipo de usuario:"}
                 register={register("role", defaultRequireValidation)}

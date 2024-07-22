@@ -9,24 +9,25 @@ const documentsTypes = [
 
 const IDfields = ({ registerType, registerID, error }) => {
     return (
-        <div className="form-group mx-auto max-w-[310px]">
+        <div className="form-group">
             <label className="label">
-                <span className={`label-text text-poppins text-xl ${error && "text-error"}`}>
+                <span className={`label-text text-poppins text-lg ${error && "text-error"}`}>
                     Tipo y N° de Documento
                 </span>
             </label>
-
-            <Select
-                register={registerType}
-                options={documentsTypes}
-            >
-                <Input
-                    width={"auto"}
-                    error={error}
-                    register={registerID}
-                    placeholder={"Número de documento"}
-                />
-            </Select>
+            <div className="max-w-[310px] mx-auto">
+                <Select
+                    register={registerType}
+                    options={documentsTypes}
+                >
+                    <Input
+                        width={"auto"}
+                        error={error}
+                        register={registerID}
+                        placeholder={"Número de documento"}
+                    />
+                </Select>
+            </div>
 
             {
                 error &&
