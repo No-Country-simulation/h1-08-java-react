@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  justina:
+    build: ./
+    container_name: justina
+    image: justina.io
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: "jdbc:mysql://host.docker.internal:3306/justina?serverTimezone=UTC"
+      DB_USER_NAME: "root"
+      DB_PASSWORD: " "
+      PORT: 8080
+    restart: always
