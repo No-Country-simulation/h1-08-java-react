@@ -1,12 +1,22 @@
 import RegisterForm from '../molecules/RegisterForm'
 import { Link } from "wouter"
 import { useForm } from "react-hook-form"
+import { transformRegisterPatient } from '../../utils/transformRegister'
+import { fetchData } from '../../data/fetchData'
+import roles from '../../data/roles'
 
 const Register = () => {
   const { register, handleSubmit, watch, formState: { errors, } } = useForm()
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
+    let userData;
+    if (data.role === roles[0].value) {
+      userData = transformRegisterPatient(data)
+      console.log(userData);
+    }
+
+    // const response = await fetchData(`auth/register/${data.role}`, "POST", userData)
+    // console.log(response);
   })
 
   return (

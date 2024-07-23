@@ -11,6 +11,7 @@ import Select from "../atoms/Select";
 import PasswordInput from "../atoms/PasswordInput";
 import SubmitButton from '../atoms/SubmitButton';
 import IDfields from './IDFields';
+import roles from '../../data/roles';
 
 const RegisterForm = ({ register, onSubmit, watch, errors }) => {
     return (
@@ -18,7 +19,7 @@ const RegisterForm = ({ register, onSubmit, watch, errors }) => {
             <Select
                 label={"Tipo de usuario:"}
                 register={register("role", defaultRequireValidation)}
-                options={[{ name: "Paciente", value: "patient" }, { name: "Médico", value: "doctor" }]}
+                options={roles}
             />
             {
                 watch("role") == "doctor" && [<Input

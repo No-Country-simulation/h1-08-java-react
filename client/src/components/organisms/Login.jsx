@@ -4,7 +4,7 @@ import { Link } from "wouter"
 import useAuthStore from "../../store/auth-store"
 
 const Login = () => {
-  const { register, handleSubmit, formState: { errors, } } = useForm()
+  const { register, handleSubmit, watch, formState: { errors, } } = useForm()
   const login = useAuthStore(state => state.login)
 
   const onSubmit = handleSubmit(async (data) => {
@@ -18,6 +18,7 @@ const Login = () => {
       <div className="flex flex-col w-96 gap-3 rounded-xl p-5 my-5">
 
         <LoginForm
+          watch={watch}
           register={register}
           errors={errors}
           onSubmit={onSubmit}
