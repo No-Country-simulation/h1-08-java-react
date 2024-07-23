@@ -2,6 +2,7 @@ package io.hackathon.justina.auth.models.dto.request;
 
 import io.hackathon.justina.address.models.dto.AddressRequest;
 import io.hackathon.justina.patient.model.dto.PatientRequest;
+import io.hackathon.justina.utils.Genders;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

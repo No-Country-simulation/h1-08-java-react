@@ -1,6 +1,7 @@
 package io.hackathon.justina.patient.model.dto;
 
 import io.hackathon.justina.address.models.dto.AddressDTO;
+import io.hackathon.justina.utils.Genders;
 import io.hackathon.justina.utils.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +21,7 @@ public class PatientDTO {
 
     private String apellido;
 
-    private String gender;
+    private Genders gender;
 
     private String bloodType;
 

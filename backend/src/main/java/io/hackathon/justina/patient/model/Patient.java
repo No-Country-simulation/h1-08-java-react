@@ -2,6 +2,7 @@ package io.hackathon.justina.patient.model;
 
 import io.hackathon.justina.doctor.models.Medico;
 import io.hackathon.justina.user.model.Usuario;
+import io.hackathon.justina.utils.Genders;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,8 +24,8 @@ public class Patient extends Usuario {
     @Column()
     private String bloodType;
 
-    @Column()
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Genders gender;
 
     @Column()
     private String height;

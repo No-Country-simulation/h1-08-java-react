@@ -1,5 +1,6 @@
 package io.hackathon.justina.healthPlan.models;
 
+import io.hackathon.justina.utils.TypeHealth;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,12 @@ public class HealthPlan {
 
     @Column()
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private TypeHealth typeHealth;
+
+    @Column()
+    private Number numAffiliate;
 
     @Column()
     private String plan;

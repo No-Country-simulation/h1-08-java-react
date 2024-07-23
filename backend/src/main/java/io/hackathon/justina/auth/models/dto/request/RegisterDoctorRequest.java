@@ -1,12 +1,8 @@
 package io.hackathon.justina.auth.models.dto.request;
 
-import io.hackathon.justina.address.models.dto.AddressDTO;
+import io.hackathon.justina.address.models.dto.AddressRequest;
 import io.hackathon.justina.doctor.models.dto.DoctorRequest;
-import io.hackathon.justina.healthPlan.models.HealthPlan;
 import io.hackathon.justina.healthPlan.models.dto.HealthPlanDTO;
-import io.hackathon.justina.patient.model.dto.PatientRequest;
-import io.hackathon.justina.utils.Role;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,7 +40,7 @@ public class RegisterDoctorRequest {
     private String email;
 
     @NotNull(message = "La dirección es obligatoria")
-    private AddressDTO address;
+    private AddressRequest address;
 
     @NotBlank(message = "La fecha de nacimiento es obligatoria")
     @NotNull(message = "La fecha de nacimiento no puede ser nula")

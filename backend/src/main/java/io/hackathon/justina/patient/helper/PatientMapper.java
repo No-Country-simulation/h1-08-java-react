@@ -32,7 +32,7 @@ public class PatientMapper {
                 .dni(patient.getDni().trim())
                 .nombre(patient.getNombre().trim())
                 .apellido(patient.getApellido().trim())
-                .gender(patient.getGender().trim())
+                .gender(patient.getGender())
                 .bloodType(patient.getBloodType().trim())
                 .height(patient.getHeight().trim())
                 .weight(patient.getWeight())
