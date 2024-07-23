@@ -10,9 +10,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class LoginRequest {
 
-    @Email(message = "El email debe ser válido")
-    @NotBlank(message = "El email es obligatorio")
-    private String email;
+    @NotBlank(message = "El dni es obligatorio")
+    @Size(min = 8, max = 8, message = "El dni debe tener 8 dígitos")
+    private String dni;
 
     @NotBlank(message = "La contraseña es obligatoria")
     @Size(min = 8, max = 100, message = "La contraseña debe tener entre 8 y 100 dígitos")

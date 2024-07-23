@@ -9,7 +9,7 @@ import lombok.Data;
 public class DoctorRequest {
 
     @NotBlank(message = "La especialidad es obligatorio")
-    private Especialidad especialidad;
+    private EspecialidadRequest especialidad;
 
     @NotBlank(message = "El numero de licencia es obligatorio")
     @Size(min = 8, max = 8, message = "El numero de licencia debe tener 8 digitos")

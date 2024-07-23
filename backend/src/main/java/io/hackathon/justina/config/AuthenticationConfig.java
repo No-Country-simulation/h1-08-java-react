@@ -22,7 +22,7 @@ public class AuthenticationConfig {
 
     @Bean
     public UserDetailsService userDetailService() {
-        return username -> userServices.getUserByUsername(username);
+        return userServices::getUserByUsername;
     }
 
     @Bean
