@@ -11,8 +11,9 @@ import io.hackathon.justina.doctor.services.DoctorServicesImp;
 import io.hackathon.justina.patient.helper.PatientMapper;
 import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.services.PatientServicesImp;
-import io.hackathon.justina.utils.modelMapper.Mapper;
+import io.hackathon.justina.user.model.Usuario;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.User;
@@ -29,10 +30,9 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
-    private final Mapper mapper = Mapper.getInstance();
 
-    public AuthResponse login(LoginRequest request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getDni(), request.getPassword()));
+    public AuthResponse login(@NotNull LoginRequest request, Class<?> clazz) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(String.valueOf(clazz.getSimpleName() + ":" + request.getDni()), request.getPassword()));
         UserDetails userDetails = User.builder()
                 .username(request.getDni())
                 .password(request.getPassword())

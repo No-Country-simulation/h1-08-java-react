@@ -54,6 +54,4 @@ public class RegisterPatientRequest {
     @Size(min = 8, max = 100, message = "La contraseña debe tener entre 8 y 100 dígitos")
     private String password;
 
-    private PatientRequest patient;
-
 }

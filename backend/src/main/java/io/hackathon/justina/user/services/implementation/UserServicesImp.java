@@ -7,6 +7,7 @@ import io.hackathon.justina.patient.services.PatientServicesImp;
 import io.hackathon.justina.user.model.Usuario;
 import io.hackathon.justina.utils.modelMapper.Mapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,23 +19,38 @@ public class UserServicesImp {
 
     public Usuario getUserByUsername(String username) {
         try {
-            if (username == null) {
-                return null;
-            }
-            Medico doctor = doctorServices.findByDni(username);
-            if (doctor != null) {
-                return mapper.map(doctor, Usuario.class).orElse(null);
+            if (username == null || username.isEmpty()) {
+                throw new UsernameNotFoundException("El dni no puede ser vacio");
             }
 
-            Patient patient = patientServices.findByDni(username);
-            if (patient != null) {
-                return mapper.map(patient, Usuario.class).orElse(null);
+            if (username.contains(Patient.class.getSimpleName() + ":")) {
+                return getPatientUser(username);
+            } else if (username.contains(Medico.class.getSimpleName() + ":")) {
+                return getDoctorUser(username);
             }
 
             return null;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private Usuario getPatientUser(String username) {
+        String dni = username.replace(Patient.class.getSimpleName() + ":", "");
+        Patient patient = patientServices.findByDni(dni);
+        if (patient != null) {
+            return mapper.map(patient, Usuario.class).orElse(null);
+        }
+        throw new UsernameNotFoundException("No se encontro el paciente con el dni: " + dni);
+    }
+
+    private Usuario getDoctorUser(String username) {
+        String dni = username.replace(Medico.class.getSimpleName() + ":", "");
+        Medico doctor = doctorServices.findByDni(dni);
+        if (doctor != null) {
+            return mapper.map(doctor, Usuario.class).orElse(null);
+        }
+        throw new UsernameNotFoundException("No se encontro el medico con el dni: " + dni);
     }
 
 }

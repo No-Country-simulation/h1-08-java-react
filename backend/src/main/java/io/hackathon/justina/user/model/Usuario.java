@@ -48,10 +48,10 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Address address;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "health_plan_id")
     private HealthPlan healthPlan;
 

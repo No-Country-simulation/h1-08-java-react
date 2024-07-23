@@ -5,6 +5,8 @@ import io.hackathon.justina.auth.models.dto.request.LoginRequest;
 import io.hackathon.justina.auth.models.dto.request.RegisterDoctorRequest;
 import io.hackathon.justina.auth.models.dto.request.RegisterPatientRequest;
 import io.hackathon.justina.auth.services.AuthService;
+import io.hackathon.justina.doctor.models.Medico;
+import io.hackathon.justina.patient.model.Patient;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +23,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final AuthService authService;
 
-    @PostMapping("/login")
+    @PostMapping("/login/patient")
     public ResponseEntity<?> login(@RequestBody @Valid LoginRequest request) {
         try {
-            return ResponseEntity.ok(authService.login(request));
+            return ResponseEntity.ok(authService.login(request, Patient.class));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/login/doctor")
+    public ResponseEntity<?> loginDoctor(@RequestBody @Valid LoginRequest request) {
+        try {
+            return ResponseEntity.ok(authService.login(request, Medico.class));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
