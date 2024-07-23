@@ -11,7 +11,7 @@ const useAuthStore = createWithEqualityFn()(
 
 
             login: () => {
-                console.log("hol");
+               
                 if (!get().isLogged) {
                     set(() => ({ isLogged: true }))
                 }

@@ -67,8 +67,8 @@ export const passwordValidation = Object.freeze({
       message: "Debe contener al menos una letra mayúscula."
    },
    pattern: {
-      value: /^(?=.*[@$!%*?&_])/,
-      message: "Debe contener al menos un carácter especial. Por ejemplo: '@', '$', '!', '%', '*', '?', '&'."
+      value: /^(?=.*[@$!%*?&#_])/,
+      message: "Debe contener al menos un carácter especial. Por ejemplo: '@', '#', '$', '!', '%', '*', '?', '&'."
    }
 })
 
