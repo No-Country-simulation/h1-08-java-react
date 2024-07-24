@@ -22,6 +22,7 @@ public class UserServicesImp {
             if (username == null || username.isEmpty()) {
                 throw new UsernameNotFoundException("El dni no puede ser vacio");
             }
+            System.out.println(username);
 
             if (username.contains(Patient.class.getSimpleName() + ":")) {
                 return getPatientUser(username);
@@ -45,12 +46,12 @@ public class UserServicesImp {
     }
 
     private Usuario getDoctorUser(String username) {
-        String dni = username.replace(Medico.class.getSimpleName() + ":", "");
-        Medico doctor = doctorServices.findByDni(dni);
+        String licence = username.replace(Medico.class.getSimpleName() + ":", "");
+        Medico doctor = doctorServices.findByLicenseNumber(Integer.parseInt(licence));
         if (doctor != null) {
             return mapper.map(doctor, Usuario.class).orElse(null);
         }
-        throw new UsernameNotFoundException("No se encontro el medico con el dni: " + dni);
+        throw new UsernameNotFoundException("No se encontro el medico con el dni: " + licence);
     }
 
 }

@@ -3,6 +3,8 @@ package io.hackathon.justina.patient.services;
 import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.patient.repository.PatientRepository;
+import io.hackathon.justina.utils.Age;
+import io.hackathon.justina.utils.Role;
 import io.hackathon.justina.utils.genInterface.IBaseCRUDServices;
 import io.hackathon.justina.utils.modelMapper.Mapper;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +37,11 @@ public class PatientServicesImp implements IBaseCRUDServices<PatientDTO, Patient
         return patientRepository.findByDni(dni);
     }
 
+    public PatientDTO PatientDTOFindByDni(String dni) {
+        Patient patient = patientRepository.findByDni(dni);
+        return mapper.map(patient, PatientDTO.class).orElse(null);
+    }
+
     @Override
     public boolean existsById(Long id) {
         return false;
@@ -44,6 +51,8 @@ public class PatientServicesImp implements IBaseCRUDServices<PatientDTO, Patient
     public PatientDTO save(Patient entity) {
         try {
             entity.setId(null);
+            entity.setRole(Role.PATIENT);
+            entity.setAge(Age.calculateAge(entity.getBirthdate()));
             return mapper.map(patientRepository.save(entity), PatientDTO.class).orElseThrow(() -> new RuntimeException("Error al crear el paciente."));
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -1,6 +1,8 @@
 package io.hackathon.justina.auth.controller;
 
 import io.hackathon.justina.auth.models.AuthResponse;
+import io.hackathon.justina.auth.models.dto.auth.AuthResponseRegister;
+import io.hackathon.justina.auth.models.dto.request.LoginDoctorRequest;
 import io.hackathon.justina.auth.models.dto.request.LoginRequest;
 import io.hackathon.justina.auth.models.dto.request.RegisterDoctorRequest;
 import io.hackathon.justina.auth.models.dto.request.RegisterPatientRequest;
@@ -20,22 +22,21 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@Valid
 public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login/patient")
     public ResponseEntity<?> login(@RequestBody @Valid LoginRequest request) {
-        try {
-            return ResponseEntity.ok(authService.login(request, Patient.class));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        AuthResponseRegister<Patient> response = authService.<Patient, LoginRequest>login(request, Patient.class);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/login/doctor")
-    public ResponseEntity<?> loginDoctor(@RequestBody @Valid LoginRequest request) {
+    public ResponseEntity<?> loginDoctor(@RequestBody @Valid LoginDoctorRequest request) {
         try {
-            return ResponseEntity.ok(authService.login(request, Medico.class));
+            AuthResponseRegister<Medico> response = authService.<Medico, LoginDoctorRequest>login(request, Medico.class);
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -43,11 +44,7 @@ public class AuthController {
 
     @PostMapping("/register/patient")
     public ResponseEntity<AuthResponse> register(@RequestBody @Valid RegisterPatientRequest request) {
-        try {
-            return ResponseEntity.ok(authService.createPatient(request));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
-        }
+        return ResponseEntity.ok(authService.createPatient(request));
     }
 
     @PostMapping("/register/doctor")
