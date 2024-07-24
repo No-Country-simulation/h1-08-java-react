@@ -1,5 +1,6 @@
 package io.hackathon.justina.patient.controllers.v1;
 
+import io.hackathon.justina.patient.helper.PatientMapper;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.patient.model.dto.PatientRequest;
 import io.hackathon.justina.patient.services.PatientServicesImp;
@@ -38,7 +39,7 @@ public class PatientController {
 
     @PutMapping
     public ResponseEntity<PatientDTO> update(@RequestBody PatientRequest patient) {
-        return null;
+        return ResponseEntity.ok(patientControllerService.update(PatientMapper.toPatient(patient)));
     }
 
     @PatchMapping
@@ -46,8 +47,9 @@ public class PatientController {
         return null;
     }
 
-    @DeleteMapping
-    public ResponseEntity<PatientDTO> delete(@RequestBody PatientDTO patientDTO) {
-        return null;
+    @DeleteMapping("/{id}")
+    public ResponseEntity<PatientDTO> delete(@PathVariable Long id) {
+        patientControllerService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
