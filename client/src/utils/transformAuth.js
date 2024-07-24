@@ -1,7 +1,24 @@
 
+import roles from "../data/roles";
+
+export function transformLogin(data) {
+    let validation;
+    if (data.role === roles[0].value) {
+        validation = {
+            dni: data.document_id,
+            password: data.password
+        }
+    } else if (data.role === roles[1].value) {
+        validation = {
+            doctor: data.doctorValidation,
+            password: data.password
+        }
+    }
+    return validation
+}
 
 
-export function transformRegisterPatient(obj) {
+export function transformRegisterPatient(data) {
     const {
         name: nombre,
         lastName: apellido,
@@ -10,7 +27,7 @@ export function transformRegisterPatient(obj) {
         birthdate: fechaNacimiento,
         phone: telefono,
         password
-    } = obj;
+    } = data;
 
     return {
         nombre, apellido, dni, email, fechaNacimiento, telefono, password
@@ -18,8 +35,19 @@ export function transformRegisterPatient(obj) {
 
 }
 
+export function transformRegister(data) {
+    let validation;
+    if (data.role === roles[0].value) {
+        validation = transformRegisterPatient(data)
+    } else if (data.role === roles[1].value) {
 
-/* 
+    }
+    return validation
+}
+
+
+
+/*  CAMPO ESPERADO PARA REGISTRO DE PACIENTE
         "nombre": "KfI'fFItgb'ya C uqJE",
         "apellido": "uHyDcL'wxAA'zKhIwGSb",
         "dni": "stringst",

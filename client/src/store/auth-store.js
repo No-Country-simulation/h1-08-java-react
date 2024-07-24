@@ -6,20 +6,28 @@ const useAuthStore = createWithEqualityFn()(
     persist(
         (set, get) => ({
             isLogged: false,
+            user: null,
+            token: null,
 
 
+            login: (data) => {
 
-
-            login: () => {
-               
                 if (!get().isLogged) {
-                    set(() => ({ isLogged: true }))
+                    set(() => ({
+                        isLogged: true,
+                        user: data?.user,
+                        token: data?.token
+                    }))
                 }
 
             },
             logout: () => {
                 if (get().isLogged) {
-                    set(() => ({ isLogged: false }))
+                    set(() => ({
+                        isLogged: false,
+                        user: null,
+                        token: null
+                    }))
                 }
             }
         }),
