@@ -2,13 +2,17 @@ import { useForm } from "react-hook-form"
 import LoginForm from "../molecules/LoginForm"
 import { Link } from "wouter"
 import useAuthStore from "../../store/auth-store"
+// import { fetchData } from "../../data/fetchData"
+// import { transformLogin } from "../../utils/transformAuth"
 
 const Login = () => {
-  const { register, handleSubmit, formState: { errors, } } = useForm()
+  const { register, handleSubmit, watch, formState: { errors, } } = useForm()
   const login = useAuthStore(state => state.login)
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data);
+    // const validation = transformLogin(data)
+    // const response = await fetchData(`auth/login/${data.role}`, "POST", validation)
     login()
   })
 
@@ -18,6 +22,7 @@ const Login = () => {
       <div className="flex flex-col w-96 gap-3 rounded-xl p-5 my-5">
 
         <LoginForm
+          watch={watch}
           register={register}
           errors={errors}
           onSubmit={onSubmit}

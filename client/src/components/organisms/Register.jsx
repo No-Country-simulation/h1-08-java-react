@@ -1,12 +1,20 @@
 import RegisterForm from '../molecules/RegisterForm'
 import { Link } from "wouter"
 import { useForm } from "react-hook-form"
+// import { transformRegister } from '../../utils/transformAuth'
+// import { fetchData } from '../../data/fetchData'
+// import useAuthStore from '../../store/auth-store'
 
 const Register = () => {
   const { register, handleSubmit, watch, formState: { errors, } } = useForm()
+  // const login = useAuthStore(state => state.login)
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data);
+    // const validation = transformRegister(data)
+    // const response = await fetchData(`auth/register/${data.role}`, "POST", validation)
+    // console.log(response); 
+    // login(response)
   })
 
   return (
