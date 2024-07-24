@@ -1,10 +1,17 @@
+import CardDose from "../../../components/molecules/CardDose";
+import CardMedication from "../../../components/molecules/CardMedication"
 import fake_medications from "../../../data/fake_medications"
 
 
-const MedicationDetail = ({ medication }) => {
+const MedicationDetail = ({ mid }) => {
+    const medication = fake_medications.find((medication) => medication.name == mid)
+
     return (
-        <section className="flex flex-col gap-5 items-center mt-5 mb-20 py-5 px-2">
-            <h1 className="capitalize text-2xl font-bold mb-4">mis medicamentos: {medication}</h1>
+        <section className="flex flex-wrap justify-evenly items-center gap-10 items-center my-12 py-5 px-2">
+
+            <CardMedication medication={medication} />
+            <CardDose totalAmount={medication.amount} frequency={8} />
+
         </section>
 
     )

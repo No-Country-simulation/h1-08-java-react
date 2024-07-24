@@ -28,8 +28,8 @@ const PatientRoutes = () => {
 
     <ProtectedRoute path="/mis-medicamentos" component={Medications} />
 
-    <ProtectedRoute path="/mis-medicamentos/:id">
-      {(params) => <MedicationDetail medication={params.id} />}
+    <ProtectedRoute path="/mis-medicamentos/:mid">
+      {(params) => <MedicationDetail mid={params.mid} />}
     </ProtectedRoute>
 
     <ProtectedRoute path="/mi-perfil" component={Profile} />
