@@ -1,7 +1,6 @@
 package io.hackathon.justina.user.model;
 
 import io.hackathon.justina.address.models.Address;
-import io.hackathon.justina.healthPlan.models.HealthPlan;
 import io.hackathon.justina.utils.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,19 +27,22 @@ public class Usuario implements UserDetails {
     private Long id;
 
     @Column(nullable = false)
-    private String nombre;
+    private String name;
 
     @Column(nullable = false)
-    private String apellido;
+    private String lastName;
 
     @Column(nullable = false, unique = true)
     private String dni;
 
+    @Column(nullable = false)
+    private int age;
+
     @Column
-    private LocalDate fechaNacimiento;
+    private LocalDate birthdate;
 
     @Column(nullable = false)
-    private String telefono;
+    private String phoneNumber;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -50,10 +52,6 @@ public class Usuario implements UserDetails {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Address address;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "health_plan_id")
-    private HealthPlan healthPlan;
 
     @Enumerated(EnumType.STRING)
     private Role role;

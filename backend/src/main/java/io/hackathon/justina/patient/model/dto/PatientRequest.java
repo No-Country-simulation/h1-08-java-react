@@ -1,5 +1,6 @@
 package io.hackathon.justina.patient.model.dto;
 
+import io.hackathon.justina.auth.models.dto.request.RegisterPatientRequest;
 import io.hackathon.justina.healthPlan.models.dto.HealthPlanDTO;
 import io.hackathon.justina.utils.Genders;
 import jakarta.persistence.Column;
@@ -10,7 +11,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class PatientRequest {
+public class PatientRequest extends RegisterPatientRequest {
 
     @Size(max = 3, message = "El tipo de sangre no puede tener más de 3 caracteres")
     @Pattern(regexp = "^[aboABO][+-]$")

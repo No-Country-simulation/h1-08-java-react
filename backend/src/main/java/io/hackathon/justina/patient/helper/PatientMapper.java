@@ -8,18 +8,20 @@ import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.utils.Role;
 import io.hackathon.justina.utils.modelMapper.Mapper;
 
+import java.util.Optional;
+
 public class PatientMapper {
     private final static Mapper mapper = Mapper.getInstance();
 
     public static Patient toPatient(RegisterPatientRequest request) {
         return Patient.builder()
-                .nombre(request.getNombre().trim())
-                .apellido(request.getApellido().trim())
+                .name(request.getName().trim())
+                .lastName(request.getLastName().trim())
                 .dni(request.getDni().trim())
                 .email(request.getEmail().trim())
                 .address(mapper.map(request.getAddress(), Address.class).orElseGet(Address::new))
-                .telefono(request.getTelefono().trim())
-                .fechaNacimiento(request.getFechaNacimiento())
+                .phoneNumber(request.getPhoneNumber().trim())
+                .birthdate(request.getBirthdate())
                 .role(Role.PATIENT)
                 .password(request.getPassword().trim())
                 .build();
@@ -29,16 +31,18 @@ public class PatientMapper {
     public static PatientDTO toPatientDTO(Patient patient) {
         return PatientDTO.builder()
                 .id(patient.getId())
-                .dni(patient.getDni().trim())
-                .nombre(patient.getNombre().trim())
-                .apellido(patient.getApellido().trim())
+                .age(patient.getAge())
+                .dni(Optional.ofNullable(patient.getDni()).map(String::trim).orElse(null))
+                .name(Optional.ofNullable(patient.getName()).map(String::trim).orElse(null))
+                .lastName(Optional.ofNullable(patient.getLastName()).map(String::trim).orElse(null))
                 .gender(patient.getGender())
-                .bloodType(patient.getBloodType().trim())
-                .height(patient.getHeight().trim())
-                .weight(patient.getWeight())
-                .address(mapper.map(patient.getAddress(), AddressDTO.class).orElseGet(AddressDTO::new))
-                .email(patient.getEmail().trim())
-                .telefono(patient.getTelefono().trim())
+                .bloodType(Optional.ofNullable(patient.getBloodType()).map(String::trim).orElse(null))
+                .height(Optional.ofNullable(patient.getHeight()).map(String::trim).orElse(null))
+                .weight(Optional.of(patient.getWeight()).orElse(0.0))
+                .address(mapper.map(Optional.ofNullable(patient.getAddress()), AddressDTO.class).orElseGet(AddressDTO::new))
+                .email(Optional.ofNullable(patient.getEmail()).map(String::trim).orElse(null))
+                .phoneNumber(Optional.ofNullable(patient.getPhoneNumber()).map(String::trim).orElse(null))
+                .birthDate(patient.getBirthdate())
                 .role(patient.getRole())
                 .build();
     }

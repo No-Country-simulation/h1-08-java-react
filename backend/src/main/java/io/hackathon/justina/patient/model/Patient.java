@@ -1,6 +1,7 @@
 package io.hackathon.justina.patient.model;
 
 import io.hackathon.justina.doctor.models.Medico;
+import io.hackathon.justina.healthPlan.models.HealthPlan;
 import io.hackathon.justina.user.model.Usuario;
 import io.hackathon.justina.utils.Genders;
 import jakarta.persistence.*;
@@ -20,6 +21,10 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Patient extends Usuario {
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "health_plan_id")
+    private HealthPlan healthPlan;
 
     @Column()
     private String bloodType;
