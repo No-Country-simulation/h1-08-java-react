@@ -22,18 +22,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
-@Valid
 public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login/patient")
-    public ResponseEntity<?> login(@RequestBody @Valid LoginRequest request) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
         AuthResponseRegister<Patient> response = authService.<Patient, LoginRequest>login(request, Patient.class);
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("/login/doctor")
-    public ResponseEntity<?> loginDoctor(@RequestBody @Valid LoginDoctorRequest request) {
+    public ResponseEntity<?> loginDoctor(@Valid @RequestBody LoginDoctorRequest request) {
         try {
             AuthResponseRegister<Medico> response = authService.<Medico, LoginDoctorRequest>login(request, Medico.class);
             return ResponseEntity.ok(response);
@@ -43,12 +42,12 @@ public class AuthController {
     }
 
     @PostMapping("/register/patient")
-    public ResponseEntity<AuthResponse> register(@RequestBody @Valid RegisterPatientRequest request) {
+    public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterPatientRequest request) {
         return ResponseEntity.ok(authService.createPatient(request));
     }
 
     @PostMapping("/register/doctor")
-    public ResponseEntity<AuthResponse> registerDoctor(@RequestBody @Valid RegisterDoctorRequest request) {
+    public ResponseEntity<AuthResponse> registerDoctor(@Valid @RequestBody RegisterDoctorRequest request) {
         try {
             return ResponseEntity.ok(authService.createDoctor(request));
         } catch (IllegalArgumentException e) {

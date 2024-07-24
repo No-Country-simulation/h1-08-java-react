@@ -5,10 +5,10 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ErrorResponse {
+public class ErrorValidationResponse {
     private List<ValidationError> errors;
 
-    public ErrorResponse(List<ValidationError> errors) {
+    public ErrorValidationResponse(List<ValidationError> errors) {
         this.errors = errors;
     }
 }
