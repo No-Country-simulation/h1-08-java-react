@@ -101,7 +101,7 @@ export const namesValidation = Object.freeze({
       message: "Debe contener al menos 3 caracteres."
    },
    pattern: {
-      value: /^[a-zA-ZñÑ´¨' -]*$/,
+      value: /^[a-zA-ZÀ-žñÑ´¨' -]*$/,
       message: "Solo se permiten letras, espacios y los siguientes caracteres especiales: ´¨' - ñ Ñ."
    }
 })
