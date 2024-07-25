@@ -1,4 +1,3 @@
-
 import roles from "../data/roles";
 
 export function transformLogin(data) {
@@ -10,37 +9,57 @@ export function transformLogin(data) {
         }
     } else if (data.role === roles[1].value) {
         validation = {
-            doctor: data.doctorValidation,
+            licenseNumber: data.doctorValidation,
             password: data.password
         }
     }
     return validation
 }
 
-
-export function transformRegisterPatient(data) {
+// ACTUALIZADO POR ULTIMA VERSION DE BACKEND - PROXIMAMENTE PODRIAMOS NO NECESITAR ESTA FUNCION
+export function transformDefaultFieldsRegister(data) {
     const {
-        name: nombre,
-        lastName: apellido,
+        name,
+        lastName,
         document_id: dni,
         email,
-        birthdate: fechaNacimiento,
-        phone: telefono,
+        birthdate,
+        phone: phoneNumber,
         password
     } = data;
 
     return {
-        nombre, apellido, dni, email, fechaNacimiento, telefono, password
+        name, lastName, dni, email, birthdate, phoneNumber, password,
+        address: {
+            "country": "sin especificar",
+            "province": "sin especificar",
+            "city": "sin especificar",
+            "street": "sin especificar",
+        }
     }
-
 }
 
-export function transformRegister(data) {
-    let validation;
-    if (data.role === roles[0].value) {
-        validation = transformRegisterPatient(data)
-    } else if (data.role === roles[1].value) {
+export function transformDoctorFieldsRegister(data) {
+    const { doctorValidation, speciality: idSpeciality } = data
+    return {
+        doctor: {
+            speciality: {
+                id: idSpeciality
+            },
+            licenceNumber: doctorValidation
+        }
+    }
+}
 
+
+export function transformRegister(data) {
+    let validation = transformDefaultFieldsRegister(data)
+
+    if (data.role === roles[1].value) {
+        validation = {
+            ...validation,
+            ...transformDoctorFieldsRegister(data)
+        }
     }
     return validation
 }

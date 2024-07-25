@@ -7,7 +7,7 @@ import Select from '../atoms/Select';
 import roles from '../../data/roles';
 import Input from '../atoms/Input';
 
-const LoginForm = ({ register, watch, onSubmit, errors }) => {
+const LoginForm = ({ register, watch, messageErrors, onSubmit, errors }) => {
     return (<>
         <form className="flex flex-col gap-3">
             <div className="bg-[#AA80C9] bg-opacity-20 p-5 rounded-2xl login-shadow my-5">
@@ -46,6 +46,19 @@ const LoginForm = ({ register, watch, onSubmit, errors }) => {
                         ¿Has olvidado tu contraseña?
                     </Link>
                 </div>
+
+                {
+                    messageErrors.length > 0 &&
+                    <ul className="list-decimal text-md w-fit px-2 mx-auto text-center my-2">
+                        {
+                            messageErrors.map((error, index) => (
+                                <li key={index} className="text-error p-1 font-semibold">
+                                    {error.message}.
+                                </li>
+                            ))
+                        }
+                    </ul>
+                }
             </div>
             <SubmitButton
                 onClick={onSubmit}>

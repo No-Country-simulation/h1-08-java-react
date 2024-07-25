@@ -23,7 +23,7 @@ const RegisterForm = ({ register, onSubmit, watch, errors }) => {
             />
             {
                 watch("role") == "doctor" && [<Input
-                    register={register("specialty", defaultRequireValidation)}
+                    register={register("speciality", defaultRequireValidation)}
                     error={errors.specialty}
                     label={"Especialidad"}
                     placeholder={"Especialidad"}
