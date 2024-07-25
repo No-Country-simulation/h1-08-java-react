@@ -27,12 +27,12 @@ export const documentIDValidation = Object.freeze({
 export const phoneValidation = Object.freeze({
    ...defaultRequireValidation,
    minLength: {
-      value: 8,
-      message: "Debe contener al menos 8 caracteres."
+      value: 10,
+      message: "Debe contener al menos 10 dígitos."
    },
    maxLength: {
-      value: 14,
-      message: "Debe contener como máximo 14 caracteres."
+      value: 15,
+      message: "Debe contener como máximo 15 dígitos."
    },
 })
 
@@ -101,7 +101,7 @@ export const namesValidation = Object.freeze({
       message: "Debe contener al menos 3 caracteres."
    },
    pattern: {
-      value: /^[a-zA-ZñÑ´¨' -]*$/,
+      value: /^[a-zA-ZÀ-žñÑ´¨' -]*$/,
       message: "Solo se permiten letras, espacios y los siguientes caracteres especiales: ´¨' - ñ Ñ."
    }
 })

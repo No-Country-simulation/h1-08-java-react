@@ -3,6 +3,7 @@ import useAuthStore from '../../store/auth-store'
 import { shallow } from 'zustand/shallow'
 import LanguageSwitcher from './LanguageSwitcher'
 import useLanguage from '../../hooks/useLanguage'
+import LogoutModal from './LogoutModal'
 
 const UserNav = ({ navigation }) => {
     const currentLanguage = useLanguage()
@@ -39,9 +40,10 @@ const UserNav = ({ navigation }) => {
 
                     <div className="divider my-1"></div>
 
-                    <button role="button" onClick={logout} className="btn btn-sm btn-outline btn-error capitalize">
-                        {currentLanguage === "es" ? "cerrar sesión" : "logout"}
-                    </button >
+                    <LogoutModal
+                        currentLanguage={currentLanguage}
+                        logout={logout}
+                    />
                 </ul>
             </div>
 

@@ -1,7 +1,8 @@
 
-const Select = ({ options, label, register, children }) => {
+const Select = ({ options, label, register, children, column }) => {
     return (
-        <div className={`flex justify-between gap-${children ? 1 : 5} items-center col-span-full w-full`}>
+        <div className={`flex justify-between gap-${children ? 1 : !column && 5} 
+        ${column ? "flex-col" : "items-center col-span-full"} w-full`}>
             {label &&
                 <label className="label text-lg">
                     {label}
@@ -15,11 +16,11 @@ const Select = ({ options, label, register, children }) => {
                         border-x-0 border-t-0  border-magenta
                         rounded-b-none focus-within:bg-fullWhite 
                         hover:bg-fullWhite bg-gray shadow-sm shadow-magenta
-                        backdrop-blur-sm w-full text-lg ${children ? "pe-8" : ""}
+                        backdrop-blur-sm w-${!column ? "full" : "[310px]"} text-lg ${children ? "pe-8" : ""}
                         `}
                     {...register}>
                     {options && options.map((item, i) => (
-                        <option key={i} value={item.value}>{item.name ?? item.value}</option>
+                        <option key={i} selected={item.isDefaultChecked ?? false} disabled={item.isDefaultChecked ?? false} value={item.value}>{item.name ?? item.value}</option>
                     ))}
                 </select>
             </div>

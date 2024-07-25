@@ -12,6 +12,7 @@ import PasswordInput from "../atoms/PasswordInput";
 import SubmitButton from '../atoms/SubmitButton';
 import IDfields from './IDFields';
 import roles from '../../data/roles';
+import RegisterDoctorFields from './RegisterDoctorFields';
 
 const RegisterForm = ({ register, onSubmit, watch, errors }) => {
     return (
@@ -22,22 +23,13 @@ const RegisterForm = ({ register, onSubmit, watch, errors }) => {
                 options={roles}
             />
             {
-                watch("role") == "doctor" && [<Input
-                    register={register("specialty", defaultRequireValidation)}
-                    error={errors.specialty}
-                    label={"Especialidad"}
-                    placeholder={"Especialidad"}
-                    key={"speciality-form"}
-                />,
-                <Input
-                    register={register("doctorValidation", defaultRequireValidation)}
-                    error={errors.doctorValidation}
-                    label={"N° de matricula*"}
-                    placeholder={"N° de matricula"}
-                    key={"doctorValidation-form"}
-                />]
+                watch("role") == "doctor" &&
+                <RegisterDoctorFields
+                    errorSpeciality={errors.speciality}
+                    errorsDoctorValidation={errors.doctorValidation}
+                    register={register}
+                />
             }
-
 
             <Input
                 register={register("name", namesValidation)}
@@ -120,7 +112,7 @@ const RegisterForm = ({ register, onSubmit, watch, errors }) => {
                 </SubmitButton>
             </div>
 
-        </form>
+        </form >
     )
 }
 

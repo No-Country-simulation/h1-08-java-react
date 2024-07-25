@@ -2,18 +2,29 @@ import { useForm } from "react-hook-form"
 import LoginForm from "../molecules/LoginForm"
 import { Link } from "wouter"
 import useAuthStore from "../../store/auth-store"
-// import { fetchData } from "../../data/fetchData"
-// import { transformLogin } from "../../utils/transformAuth"
+import { useState } from "react"
+import { fetchData } from "../../data/fetchData"
+import { transformLogin } from "../../utils/transformAuth"
 
 const Login = () => {
+  const [messageErrors, setMessageErrors] = useState([])
+
   const { register, handleSubmit, watch, formState: { errors, } } = useForm()
   const login = useAuthStore(state => state.login)
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
-    // const validation = transformLogin(data)
-    // const response = await fetchData(`auth/login/${data.role}`, "POST", validation)
-    login()
+    const validation = transformLogin(data)
+    const response = await fetchData(`auth/login/${data.role}`, "POST", validation)
+
+    if (!response.errors && !response.error) {
+      console.log("TODO SALIO BIEN...");
+      return login(response)
+    } else if (response.errors) {
+      setMessageErrors(response.errors)
+    } else if (response.error) {
+      setMessageErrors([response])
+    }
+    console.log(response);
   })
 
   return (
@@ -25,6 +36,7 @@ const Login = () => {
           watch={watch}
           register={register}
           errors={errors}
+          messageErrors={messageErrors}
           onSubmit={onSubmit}
         />
 
