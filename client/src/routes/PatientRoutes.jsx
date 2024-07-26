@@ -8,7 +8,8 @@ import {
   Vaccines,
   ReportsAndResults,
   MedicalHistoryDetails,
-  MedicationDetail
+  MedicationDetail,
+  TreatmentsMenu
 } from "../pages/patient"
 
 const PatientRoutes = () => {
@@ -25,6 +26,8 @@ const PatientRoutes = () => {
     <ProtectedRoute path="/informes-y-resultados" component={ReportsAndResults} />
 
     <ProtectedRoute path="/historia-clinica/:specialty" component={MedicalHistoryDetails} />
+
+    <ProtectedRoute path="/mis-tratamientos" component={TreatmentsMenu} />
 
     <ProtectedRoute path="/mis-medicamentos" component={Medications} />
 

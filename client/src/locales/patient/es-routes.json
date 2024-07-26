@@ -4,8 +4,27 @@
         "name": "vacunas"
     },
     {
-        "path": "/mis-medicamentos",
-        "name": "medicamentos"
+        "path": "/mis-tratamientos",
+        "name": "tratamientos",
+        "sub_menu": true,
+        "sub_items": [
+            {
+                "path": "/mis-medicamentos",
+                "name": "medicamentos"
+            },
+            {
+                "path": "/dieta-y-nutricion",
+                "name": "dieta y nutrición"
+            },
+            {
+                "path": "/actividad-fisica",
+                "name": "actividad fisica"
+            },
+            {
+                "path": "/visitas-psicologicas",
+                "name": "visitas psicológicas"
+            }
+        ]
     },
     {
         "path": "/historial-clinico",

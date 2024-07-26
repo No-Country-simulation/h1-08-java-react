@@ -16,9 +16,21 @@ import gotaDeSangre from "./icons/gota-de-sangre.png"
 import search from "./icons/search.svg";
 import arrowFilter from "./icons/arrow-filter.svg";
 import launch from "./icons/launch.svg";
-
+import testTube from "./icons/test-tube.svg";
+import personal_id from "./icons/personal-id.svg";
+import microscope_pink from "./icons/microscope-pink.svg";
+// MORE PINK
+import capuse_pink from "./icons/pink/capsule.svg"
+import electrocardiogram_pink from "./icons/pink/electrocardiogram.svg"
+import folder_pink from "./icons/pink/folder.svg"
 
 export {
+    capuse_pink,
+    electrocardiogram_pink,
+    folder_pink,
+    microscope_pink,
+    testTube,
+    personal_id,
     launch,
     image1,
     image2,
