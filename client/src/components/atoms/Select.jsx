@@ -11,7 +11,7 @@ const Select = ({ options, label, register, children, column }) => {
 
             <div className="form-control">
                 <select
-                    className={`
+                    className={`mx-auto
                         select select-secondary 
                         border-x-0 border-t-0  border-magenta
                         rounded-b-none focus-within:bg-fullWhite 
@@ -25,7 +25,11 @@ const Select = ({ options, label, register, children, column }) => {
                 </select>
             </div>
 
-            {children && children}
+            {children &&
+                <div className="w-[calc(100%-100px)]">
+                    {children}
+                </div>
+            }
         </div>
     )
 }

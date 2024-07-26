@@ -7,7 +7,7 @@ import useLanguage from '../../hooks/useLanguage'
 const RegisterDoctorFields = ({ register, errorSpeciality, errorsDoctorValidation }) => {
     const currentLanguage = useLanguage()
     return (
-        <div className='flex w-full col-span-full items-center'>
+        <>
             <Select
                 register={register("speciality", defaultRequireValidation)}
                 error={errorSpeciality}
@@ -22,8 +22,8 @@ const RegisterDoctorFields = ({ register, errorSpeciality, errorsDoctorValidatio
                 label={"N° de matricula*"}
                 placeholder={"N° de matricula"}
                 key={"doctorValidation-form"}
-            />
-        </div>
+        />
+        </>
     )
 }
 
