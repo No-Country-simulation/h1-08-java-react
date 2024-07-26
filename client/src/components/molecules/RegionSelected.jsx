@@ -2,7 +2,7 @@ import { CountryDropdown, RegionDropdown, } from 'react-country-region-selector'
 
 
 
-const RegionSelected = ({ register, watch, setValue }) => {
+const RegionSelected = ({ register, watch, setValue, isDisabled }) => {
     const selectedCountry = watch("country", "Argentina");
     const selectedRegion = watch("region", "");
 
@@ -15,8 +15,9 @@ const RegionSelected = ({ register, watch, setValue }) => {
                 </span>
             </label>
 
-            <div className="max-w-[310px] mx-auto">
+            <div className="w-[310px] mx-auto">
                 <CountryDropdown
+                    disabled={isDisabled ?? false}
                     classes="select select-secondary 
                         border-x-0 border-t-0  border-magenta
                         rounded-b-none focus-within:bg-fullWhite 
@@ -28,7 +29,7 @@ const RegionSelected = ({ register, watch, setValue }) => {
                 />
             </div>
 
-            <input type="hidden" {...register("country")} value={selectedCountry} />
+            <input type="hidden" disabled={isDisabled ?? false} {...register("country")} value={selectedCountry} />
         </div>
 
         <div className="form-control">
@@ -39,8 +40,9 @@ const RegionSelected = ({ register, watch, setValue }) => {
                 </span>
             </label>
 
-            <div className="max-w-[310px] mx-auto">
+            <div className="w-[310px] mx-auto">
                 <RegionDropdown
+                    disabled={isDisabled ?? false}
                     classes="select select-secondary 
                         border-x-0 border-t-0  border-magenta
                         rounded-b-none focus-within:bg-fullWhite 
@@ -53,7 +55,7 @@ const RegionSelected = ({ register, watch, setValue }) => {
                 />
             </div>
 
-            <input type="hidden"  {...register("region")} value={selectedRegion} />
+            <input type="hidden" disabled={isDisabled ?? false} {...register("region")} value={selectedRegion} />
         </div>
     </>)
 }
