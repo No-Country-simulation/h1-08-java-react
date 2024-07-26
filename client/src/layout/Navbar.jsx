@@ -11,7 +11,7 @@ const Navbar = () => {
     if (location.endsWith("/auth/iniciar-sesion") || location.endsWith("/auth/recuperar-cuenta")) return
 
     return (
-        <div className="navbar bg-gray shadow-lg h-10 rounded-b-2xl">
+        <div className="navbar bg-gray shadow shadow-orange h-10 rounded-b-2xl">
             <div className="navbar-start mr-10">
                 <Link href="/" className="pl-2 text-xl">
                     <img src="/logo.webp" alt="Logo" className="h-7" />

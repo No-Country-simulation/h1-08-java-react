@@ -14,11 +14,11 @@ const MobileNav = () => {
 
     const onClickNavigateTo = (to) => setLocation(to)
 
-    const isActive = (path) => location === path ? " bg-orange" : ""
+    const isActive = (path) => "transition duration-200 ease rounded-t-2xl " + (location === path ? "bg-orange font-semibold" : "hover:bg-hoverOrange")
 
 
     if (isLogged) return (
-        <div className="btm-nav bg-lightOrange h-[68px] md:hidden z-10">
+        <div className="btm-nav rounded-t-2xl bg-lightOrange h-[68px] md:hidden z-10">
 
             <button className={isActive("/")} type="button" onClick={() => onClickNavigateTo("/")}>
                 <img src={home} alt="home" className="w-7 h-7" />

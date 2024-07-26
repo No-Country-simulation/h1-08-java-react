@@ -13,18 +13,19 @@ const Login = () => {
   const login = useAuthStore(state => state.login)
 
   const onSubmit = handleSubmit(async (data) => {
-    const validation = transformLogin(data)
-    const response = await fetchData(`auth/login/${data.role}`, "POST", validation)
+    login()
+    // const validation = transformLogin(data)
+    // const response = await fetchData(`auth/login/${data.role}`, "POST", validation)
 
-    if (!response.errors && !response.error) {
-      console.log("TODO SALIO BIEN...");
-      return login(response)
-    } else if (response.errors) {
-      setMessageErrors(response.errors)
-    } else if (response.error) {
-      setMessageErrors([response])
-    }
-    console.log(response);
+    // if (!response.errors && !response.error) {
+    //   console.log("TODO SALIO BIEN...");
+    //   return login(response)
+    // } else if (response.errors) {
+    //   setMessageErrors(response.errors)
+    // } else if (response.error) {
+    //   setMessageErrors([response])
+    // }
+    // console.log(response);
   })
 
   return (

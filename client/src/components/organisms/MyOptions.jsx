@@ -8,10 +8,10 @@ const MyOptions = () => {
         Mi carpeta de salud
       </h1>
       <div className="grid grid-cols-2 gap-4 py-5">
-        <CardButton title="Vacunas" image={electrocardiogram} link="/mis-vacunas" />
-        <CardButton title="Medicamentos" image={capsule} link="/mis-medicamentos" />
-        <CardButton title="Historial Clínico" image={stethoscope} link="/historial-clinico" />
+        <CardButton title="Mis Vacunas" image={electrocardiogram} link="/mis-vacunas" />
+        <CardButton title="Mis Tratamientos" image={capsule} link="/mis-tratamientos" />
         <CardButton title="Mis Citas" image={doctor} link="#" />
+        <CardButton title="Mi Historial Clínico" image={stethoscope} link="/historial-clinico" />
       </div>
     </div>
   );

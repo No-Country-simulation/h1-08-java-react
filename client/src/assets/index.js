@@ -15,9 +15,11 @@ import health from "./icons/health-icon.png";
 import gotaDeSangre from "./icons/gota-de-sangre.png"
 import search from "./icons/search.svg";
 import arrowFilter from "./icons/arrow-filter.svg";
+import launch from "./icons/launch.svg";
 
 
 export {
+    launch,
     image1,
     image2,
     image3,
