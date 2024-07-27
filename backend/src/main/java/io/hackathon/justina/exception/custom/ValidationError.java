@@ -8,7 +8,7 @@ public class ValidationError extends RuntimeException {
     private String message;
 
     public ValidationError(String fieldName, String message) {
-        super(message);
+
         this.fieldName = fieldName;
         this.message = message;
     }

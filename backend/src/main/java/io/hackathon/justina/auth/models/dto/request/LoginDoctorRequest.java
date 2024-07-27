@@ -1,20 +1,20 @@
 package io.hackathon.justina.auth.models.dto.request;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-public class LoginRequest {
+@NoArgsConstructor
+public class LoginDoctorRequest {
 
-    @NotBlank(message = "El dni es obligatorio")
-    @Size(min = 8, max = 8, message = "El dni debe tener 8 dígitos")
-    private String dni;
+    @NotBlank(message = "la matricula es obligatoria")
+    private Integer licenseNumber;
 
-    @NotBlank(message = "La contraseña es obligatoria")
+    @NotBlank(message = "la contrasenya es obligatoria")
     @Size(min = 8, max = 100, message = "La contraseña debe tener entre 8 y 100 dígitos")
     private String password;
 }

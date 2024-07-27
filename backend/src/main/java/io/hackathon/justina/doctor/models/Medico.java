@@ -1,11 +1,16 @@
 package io.hackathon.justina.doctor.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.user.model.Usuario;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+
+import java.util.Set;
 
 @Data
 @SuperBuilder
@@ -17,9 +22,13 @@ import lombok.experimental.SuperBuilder;
 public class Medico extends Usuario {
 
     @ManyToOne
-    @JoinColumn(name = "id_especialidad", referencedColumnName = "id")
-    private Especialidad especialidad;
+    @JoinColumn(name = "id_speciality", referencedColumnName = "id")
+    private Especialidad speciality;
 
-    @Column(name = "numerolicencia")
-    private Integer numeroLicencia;
+    @Column(name = "licenseNumber")
+    private Integer licenseNumber;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "doctors", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Patient> patients;
 }
