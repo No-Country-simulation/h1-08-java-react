@@ -1,4 +1,5 @@
-# ![Justina.io Logo](https://raw.githubusercontent.com/No-Country-simulation/h1-08-java-react/dev-maidana/client/public/logo.webp) h1-08-java-react
+# h1-08-java-react
+![Justina.io Logo](https://raw.githubusercontent.com/No-Country-simulation/h1-08-java-react/dev-maidana/client/public/logo.webp)
 
 ### Deploy
 - ### <img src="https://img.icons8.com/ios-filled/50/000000/server.png" height="18px"/> Backend: [justina-io.onrender.com](https://justina-io.onrender.com/)
@@ -12,16 +13,19 @@ Justina.io es una aplicación diseñada para facilitar la gestión de informaci�
 ### Participantes
 
 - **UX-UI:** 
-    - [German Ravarotto]
-    - [Yanira Martínez]
+    - German Ravarotto
+    - Yanira Martínez
 
 - **Frontend:** 
     - [Franco Maidana](https://github.com/Maidana0/) 
     - [Gabriela Patiño](https://github.com/Gabyp05/) 
 
 - **Backend:** 
-    - [Miguel Angel Chavez]
-    - [Casani]
+    - Miguel Angel Chavez
+    - Javier Casani
+
+- **QA:** 
+    - Maria Bebion
 
 ## Tecnologías Utilizadas
 
