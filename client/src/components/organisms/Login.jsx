@@ -7,6 +7,8 @@ import { fetchData } from "../../data/fetchData"
 import { transformLogin } from "../../utils/transformAuth"
 
 const Login = () => {
+  const MODE = import.meta.env.VITE_MODE
+
   const [messageErrors, setMessageErrors] = useState([])
 
   const { register, handleSubmit, watch, formState: { errors, } } = useForm()
@@ -14,17 +16,20 @@ const Login = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     const validation = transformLogin(data)
-    const response = await fetchData(`auth/login/${data.role}`, "POST", validation)
 
-    if (!response.errors && !response.error) {
-      console.log("TODO SALIO BIEN...");
-      return login(response)
-    } else if (response.errors) {
-      setMessageErrors(response.errors)
-    } else if (response.error) {
-      setMessageErrors([response])
+    if (MODE != "only-front") {
+      const response = await fetchData(`auth/login/${data.role}`, "POST", validation)
+      if (!response.errors && !response.error) {
+        console.log("TODO SALIO BIEN...");
+        return login(response)
+      }
+
+      else if (response.errors) { setMessageErrors(response.errors) }
+      else if(response.error.toString().includes("Bad credentials")){setMessageErrors([{message:"Usuario y/o contraseña incorrectos."}])}
+      else if (response.error) { setMessageErrors([response]) }
+      console.log(response);
     }
-    console.log(response);
+
   })
 
   return (
