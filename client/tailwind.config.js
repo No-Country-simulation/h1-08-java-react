@@ -19,7 +19,8 @@ export default {
         fullWhite: "#fff",
         lightYellow: "#F4F1DD",
         darkYellow: "#F5E2AF",
-        lightOrange: "#fdf9f0"
+        lightOrange: "#fdf9f0",
+        hoverOrange: "#f6cc6a85",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
@@ -45,7 +46,6 @@ export default {
       {
         "custom-theme": {
           "primary": "#570df8",
-          "secondary": "#f000b8",
           "accent": "#37cdbe",
           "neutral": "#3d4451",
           "base-100": "#ffffff",
@@ -54,6 +54,8 @@ export default {
           "warning": "#fbbd23",
           "error": "#f87272",
           "secondary": "#7030A0",
+          "fucsia": "#D22A89",
+          "orange": "#F6CC6A",
         }
       }
     ]
