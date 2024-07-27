@@ -6,6 +6,7 @@ import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.services.PatientServicesImp;
 import io.hackathon.justina.user.model.Usuario;
 import io.hackathon.justina.utils.modelMapper.Mapper;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class UserServicesImp {
             if (username == null || username.isEmpty()) {
                 throw new UsernameNotFoundException("El dni no puede ser vacio");
             }
+            System.out.println(username);
 
             if (username.contains(Patient.class.getSimpleName() + ":")) {
                 return getPatientUser(username);
@@ -30,7 +32,10 @@ public class UserServicesImp {
             }
 
             return null;
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
+            if (e instanceof UsernameNotFoundException) {
+                throw new EntityNotFoundException(e.getMessage());
+            }
             throw new RuntimeException(e);
         }
     }
@@ -45,12 +50,12 @@ public class UserServicesImp {
     }
 
     private Usuario getDoctorUser(String username) {
-        String dni = username.replace(Medico.class.getSimpleName() + ":", "");
-        Medico doctor = doctorServices.findByDni(dni);
+        String licence = username.replace(Medico.class.getSimpleName() + ":", "");
+        Medico doctor = doctorServices.findByLicenseNumber(Integer.parseInt(licence));
         if (doctor != null) {
             return mapper.map(doctor, Usuario.class).orElse(null);
         }
-        throw new UsernameNotFoundException("No se encontro el medico con el dni: " + dni);
+        throw new UsernameNotFoundException("No se encontro el medico con la licencia: " + licence);
     }
 
 }

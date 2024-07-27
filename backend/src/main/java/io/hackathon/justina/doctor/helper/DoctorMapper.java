@@ -5,10 +5,8 @@ import io.hackathon.justina.address.models.dto.AddressDTO;
 import io.hackathon.justina.auth.models.dto.request.RegisterDoctorRequest;
 import io.hackathon.justina.doctor.models.Especialidad;
 import io.hackathon.justina.doctor.models.Medico;
-import io.hackathon.justina.doctor.models.dto.DoctorDto;
-import io.hackathon.justina.healthPlan.models.HealthPlan;
-import io.hackathon.justina.healthPlan.models.dto.HealthPlanDTO;
-import io.hackathon.justina.utils.Role;
+import io.hackathon.justina.doctor.models.dto.DoctorDTO;
+import io.hackathon.justina.utils.Enums.Role;
 import io.hackathon.justina.utils.modelMapper.Mapper;
 
 public class DoctorMapper {
@@ -20,32 +18,31 @@ public class DoctorMapper {
 
     public static Medico toMedico(RegisterDoctorRequest medico) {
         return Medico.builder()
-                .nombre(medico.getNombre().trim())
-                .apellido(medico.getApellido().trim())
+                .name(medico.getName().trim())
+                .lastName(medico.getLastName().trim())
                 .dni(medico.getDni().trim())
                 .email(medico.getEmail().trim())
                 .address(mapper.map(medico.getAddress(), Address.class).orElseGet(Address::new))
-                .fechaNacimiento(medico.getFechaNacimiento())
+                .birthdate(medico.getBirthdate())
                 .password(medico.getPassword().trim())
-                .telefono(medico.getTelefono().trim())
-                .healthPlan(mapper.map(medico.getHealthPlan(), HealthPlan.class).orElseGet(HealthPlan::new))
-                .especialidad(mapper.map(medico.getDoctor().getEspecialidad(), Especialidad.class).orElseGet(Especialidad::new))
-                .numeroLicencia(medico.getDoctor().getNumeroLicencia())
+                .phoneNumber(medico.getPhoneNumber().trim())
+                .speciality(mapper.map(medico.getDoctor().getSpeciality(), Especialidad.class).orElseGet(Especialidad::new))
+                .licenseNumber(medico.getDoctor().getLicenseNumber())
                 .role(Role.DOCTOR)
                 .build();
     }
 
-    public static DoctorDto toMedicoDto(Medico medico) {
-        return DoctorDto.builder()
+    public static DoctorDTO toMedicoDto(Medico medico) {
+        return DoctorDTO.builder()
                 .id(medico.getId())
                 .dni(medico.getDni())
-                .nombre(medico.getNombre())
-                .apellido(medico.getApellido())
+                .name(medico.getName())
+                .lastName(medico.getLastName())
                 .address(mapper.map(medico.getAddress(), AddressDTO.class).orElseGet(AddressDTO::new))
                 .email(medico.getEmail())
-                .telefono(medico.getTelefono())
-                .healthPlan(mapper.map(medico.getHealthPlan(), HealthPlanDTO.class).orElseGet(HealthPlanDTO::new))
-                .especialidad(medico.getEspecialidad())
+                .phoneNumber(medico.getPhoneNumber())
+                .speciality(medico.getSpeciality())
+                .licenseNumber(medico.getLicenseNumber())
                 .role(medico.getRole())
                 .build();
     }

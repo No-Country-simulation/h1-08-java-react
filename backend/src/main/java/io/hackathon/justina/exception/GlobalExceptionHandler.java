@@ -1,23 +1,26 @@
 package io.hackathon.justina.exception;
 
 import io.hackathon.justina.exception.custom.ErrorResponse;
+import io.hackathon.justina.exception.custom.ErrorValidationResponse;
 import io.hackathon.justina.exception.custom.ValidationError;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponse> customValidationErrorHandling(MethodArgumentNotValidException exception) {
+    public ResponseEntity<ErrorValidationResponse> customValidationErrorHandling(MethodArgumentNotValidException exception) {
         List<ValidationError> errors = new ArrayList<>();
 
         exception.getBindingResult().getAllErrors().forEach(error -> {
@@ -26,29 +29,38 @@ public class GlobalExceptionHandler {
             errors.add(new ValidationError(fieldName, errorMessage));
         });
 
-        ErrorResponse errorResponse = new ErrorResponse(errors);
+        ErrorValidationResponse errorResponse = new ErrorValidationResponse(errors);
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
-
-    @ExceptionHandler(ValidationError.class)
-    public ResponseEntity<ErrorResponse> customValidationErrorHandling(ValidationError e) {
-        List<ValidationError> errors = List.of(new ValidationError(e.getMessage(), e.getFieldName()));
-        ErrorResponse errorResponse = new ErrorResponse(errors);
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-    }
-
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<String> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
-        if (e.getCause() instanceof org.hibernate.exception.ConstraintViolationException) {
-            return new ResponseEntity<>("El nombre de usuario ya existe", HttpStatus.CONFLICT);
+    public ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+        String message = e.getCause().getMessage();
+
+        if (message.contains("could not execute statement [Cannot add or update a child row")) {
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Se intento utilizar un id inexistente"), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>("Error en la integridad de datos", HttpStatus.BAD_REQUEST);
+
+        if (message.contains("Duplicate entry")) {
+            System.out.println(message);
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.CONFLICT, "El registro ya existe: "), HttpStatus.CONFLICT);
+        }
+
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Error en la integridad de los datos"), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({Exception.class})
-    public ResponseEntity<String> handleException(Exception e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ErrorResponse> handleBadCredentialsException(BadCredentialsException e) {
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.UNAUTHORIZED, "Contraseña incorrectas"), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler({Exception.class, RuntimeException.class})
+    public ResponseEntity<ErrorResponse> handleException(Exception e) {
+        System.out.println(e);
+        if (e instanceof AuthenticationCredentialsNotFoundException) {
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.UNAUTHORIZED, e.getMessage()), HttpStatus.UNAUTHORIZED);
+        }
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

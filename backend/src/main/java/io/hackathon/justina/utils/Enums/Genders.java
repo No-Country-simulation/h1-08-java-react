@@ -1,4 +1,4 @@
-package io.hackathon.justina.utils;
+package io.hackathon.justina.utils.Enums;
 
 public enum Genders {
     FEMALE,

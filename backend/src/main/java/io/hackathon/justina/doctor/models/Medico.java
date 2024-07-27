@@ -22,13 +22,12 @@ import java.util.Set;
 public class Medico extends Usuario {
 
     @ManyToOne
-    @JoinColumn(name = "id_especialidad", referencedColumnName = "id")
-    private Especialidad especialidad;
+    @JoinColumn(name = "id_speciality", referencedColumnName = "id")
+    private Especialidad speciality;
 
-    @Column(name = "numerolicencia")
-    private Integer numeroLicencia;
+    @Column(name = "license_number")
+    private Integer licenseNumber;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "doctors", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Patient> patients;
 }
