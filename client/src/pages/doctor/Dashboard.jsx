@@ -4,7 +4,7 @@ import AgendaSection from "../../components/molecules/AgendaSection";
 
 const Dashboard = () => {
   return (
-    <section className="container mx-auto flex flex-col items-center gap-y-11">
+    <section className="container mx-auto flex flex-col items-center gap-y-11 py-6">
       <div className="flex flex-row gap-5">
         <WelcomeCard />
 
@@ -16,6 +16,7 @@ const Dashboard = () => {
         />
       </div>
       <AgendaSection />
+      
     </section>
   );
 };
