@@ -3,12 +3,9 @@ import { Route, Switch } from "wouter";
 import Navbar from './layout/Navbar';
 import Footer from './layout/Footer';
 import NotFound from './pages/NotFound';
-import Home from './pages/Home';
 import Auth from "./pages/Auth";
-import ShareInfo from "./pages/ShareInfo";
 import MobileNav from "./layout/MobileNav";
 import PatientRoutes from "./routes/PatientRoutes";
-import ProtectedRoute from "./routes/ProtectedRoute";
 import DoctorRoutes from "./routes/DoctorRoutes";
 
 
@@ -24,10 +21,8 @@ function App() {
             {(params) => <Auth page={params.page} />}
           </Route>
 
-          <ProtectedRoute path="/" component={Home} />
-          <ProtectedRoute path="/mi-informacion" component={ShareInfo} />
-
           {...PatientRoutes()}
+          {/* SI TUVIERAMOS LOS DATOS DEL USUARIO, ACÁ REALIZARIAMOS LA VALIDACION DE ROLES */}
           {...DoctorRoutes()}
 
           {/* DEFAULT */}

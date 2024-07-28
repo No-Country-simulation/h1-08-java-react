@@ -1,12 +1,12 @@
-import CardHistory from "../../components/molecules/CardHistory";
-import useNavigation from "../../hooks/useNavigation"
+import CardHistory from "../../../components/molecules/CardHistory";
+import useNavigation from "../../../hooks/useNavigation"
 import {
     arrow,
     doctor,
     capuse_pink,
     electrocardiogram_pink,
     folder_pink,
-} from "../../assets";
+} from "../../../assets";
 
 
 function selectIcon(name) {

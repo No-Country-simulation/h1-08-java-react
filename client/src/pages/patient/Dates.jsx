@@ -35,11 +35,11 @@ const Dates = () => {
 
             <SectionCard
                 sectionIcon={doctor}
-                altIcon={"my-dates-icon"}
+                altIcon={"schedule-section-icon"}
                 sectionName={
                     currentLanguage == "es"
-                        ? "Mis Citas"
-                        : "My Dates"
+                        ? "Mi Agenda"
+                        : "My Schedule"
                 }
                 description={
                     currentLanguage == "es"
