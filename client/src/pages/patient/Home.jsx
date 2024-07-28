@@ -1,6 +1,6 @@
-import CardWelcome from "../components/molecules/CardWelcome";
-import Carrousel from "../components/organisms/Carousel";
-import MyOptions from "../components/organisms/MyOptions";
+import CardWelcome from "../../components/molecules/CardWelcome";
+import Carrousel from "../../components/organisms/Carousel";
+import MyOptions from "../../components/organisms/MyOptions";
 
 const Home = () => {
   return (

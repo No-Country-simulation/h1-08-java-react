@@ -1,7 +1,7 @@
 import { useState } from "react";
-import LabResultCard from "../../components/molecules/LabResultCard";
-import MedicalHistoryCard from "../../components/molecules/MedicalHistoryCard";
-import { search, arrowFilter } from "../../assets";
+import LabResultCard from "../../../../components/molecules/LabResultCard";
+import MedicalHistoryCard from "../../../../components/molecules/MedicalHistoryCard";
+import { search, arrowFilter } from "../../../../assets";
 
 const ReportsAndResults = () => {
   const medicalInfo = [

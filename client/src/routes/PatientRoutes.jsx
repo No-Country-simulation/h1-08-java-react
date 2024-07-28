@@ -1,7 +1,7 @@
 import ProtectedRoute from './ProtectedRoute'
 import {
   HealthData,
-  MedicalHistory,
+  MedicalHistoryMenu,
   Medications,
   Patologies,
   Profile,
@@ -10,15 +10,21 @@ import {
   MedicalHistoryDetails,
   MedicationDetail,
   TreatmentsMenu,
-  Dates
+  Dates,
+  Home,
+  ShareInfo
 } from "../pages/patient"
 
 const PatientRoutes = () => {
 
   return [
+    <ProtectedRoute path="/" component={Home} />,
+
+    <ProtectedRoute path="/mi-informacion" component={ShareInfo} />,
+
     <ProtectedRoute path="/mis-vacunas" component={Vaccines} />,
 
-    <ProtectedRoute path="/historial-clinico" component={MedicalHistory} />,
+    <ProtectedRoute path="/historial-clinico" component={MedicalHistoryMenu} />,
 
     <ProtectedRoute path="/mis-patologias" component={Patologies} />,
 
@@ -36,7 +42,7 @@ const PatientRoutes = () => {
       {(params) => <MedicationDetail mid={params.mid} />}
     </ProtectedRoute>,
 
-    <ProtectedRoute path="/mis-citas" component={Dates} />,
+    <ProtectedRoute path="/agenda" component={Dates} />,
 
     <ProtectedRoute path="/mi-perfil" component={Profile} />
 

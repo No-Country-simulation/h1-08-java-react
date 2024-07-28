@@ -36,6 +36,7 @@ Justina.io es una aplicación diseñada para facilitar la gestión de informaci�
   - [Tailwind CSS](https://tailwindcss.com/) (3.4.4)
   - [DaisyUI](https://daisyui.com/) (4.12.10)
   - [React DayPicker](https://daypicker.dev/) (9.0.4)
+  - [Date fns](https://date-fns.org/) (3.6.0)
   - [React Country Region Selector](https://github.com/country-regions/react-country-region-selector/) (3.6.1)
   - [Vite](https://vitejs.dev/) (5.3.1) - Herramienta de construcción rápida.
   - [ESLint](https://eslint.org/) (8.57.0) - Linter para JavaScript.
@@ -44,7 +45,8 @@ Justina.io es una aplicación diseñada para facilitar la gestión de informaci�
   - [Java](https://www.java.com/) (17.0.9) 
   - [Spring Boot](https://spring.io/projects/spring-boot) (3.2.1) 
   - [Spring Security](https://spring.io/projects/spring-security) (6.3.2) 
-  - [Spring Data JPA](https://spring.io/projects/spring-data-jpa) (3.2.1) 
+  - [Spring Data JPA](https://spring.io/projects/spring-data-jpa) (3.2.1)
+  - [JWT](https://jwt.io/)
   - [MySQL](https://www.mysql.com/) (8.0.35) 
   - [Maven](https://maven.apache.org/) (4.0.0)
 
