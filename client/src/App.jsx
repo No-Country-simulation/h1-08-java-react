@@ -9,6 +9,7 @@ import ShareInfo from "./pages/ShareInfo";
 import MobileNav from "./layout/MobileNav";
 import PatientRoutes from "./routes/PatientRoutes";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import DoctorRoutes from "./routes/DoctorRoutes";
 
 
 const queryClient = new QueryClient()
@@ -27,6 +28,7 @@ function App() {
           <ProtectedRoute path="/mi-informacion" component={ShareInfo} />
 
           {...PatientRoutes()}
+          {...DoctorRoutes()}
 
           {/* DEFAULT */}
           <Route path="*" component={NotFound} />
