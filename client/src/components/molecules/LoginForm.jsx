@@ -49,7 +49,7 @@ const LoginForm = ({ register, watch, messageErrors, onSubmit, errors }) => {
 
                 {
                     messageErrors.length > 0 &&
-                    <ul className="list-decimal text-md w-fit px-2 mx-auto text-center my-2">
+                    <ul className={`${messageErrors.length > 1 ? "list-decimal" : ""} text-md w-fit px-2 mx-auto text-center my-2`}>
                         {
                             messageErrors.map((error, index) => (
                                 <li key={index} className="text-error p-1 font-semibold">

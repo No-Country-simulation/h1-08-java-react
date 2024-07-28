@@ -30,8 +30,8 @@ export default class Navigation {
             name: "perfil"
         },
         {
-            path: "/",
-            name: "configuraciones"
+            path: "#",
+            name: "ayuda"
         },
     ])
 
@@ -59,8 +59,8 @@ export default class Navigation {
             name: "profile"
         },
         {
-            path: "/",
-            name: "settings"
+            path: "#",
+            name: "help"
         },
     ])
 

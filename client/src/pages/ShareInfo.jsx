@@ -1,22 +1,23 @@
 import SectionCard from "../components/molecules/SectionCard"
-import infoIcon from "../assets/icons/info.svg"
+import { launch } from "../assets"
 import qrCode from "../assets/fake-qr.png"
 const ShareInfo = () => {
     return (
         <section className="flex flex-col items-center my-5">
             <SectionCard
                 sectionName="Compartir"
-                sectionIcon={infoIcon}
-                altIcon={"info-icon"}
-                description={"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur blanditiis libero adipisci obcaecati unde provident quis"}
+                sectionIcon={launch}
+                altIcon={"share-icon"}
+                sizesIcon={{ width: 32, height: 32 }}
+                description={"Aquí podrás compartir y enlazar tus datos de salud con tu médico de cabecera de confianza."}
             />
 
             <SectionCard
-                sectionName="Código QR"
-                description="Escanea el siguiente código para compartir tus datos médicos:">
+                sectionName="QR"
+                description="Comparte tu QR o token con tu médico de confianza.">
                 <div className="text-center">
-                    <img src={qrCode} alt="qr-code" className="inline my-5" />
-                    <p>CÓDIGO QR...</p>
+                    <img src={qrCode} alt="qr-code" className="inline my-5 w-52 h-52 rounded-2xl" />
+                    <p className="text-lg">1234-5678-90123</p>
                 </div>
             </SectionCard>
         </section>

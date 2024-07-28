@@ -4,7 +4,7 @@ import { Link } from 'wouter'
 
 const NotFound = () => {
     return (
-        <div className="w-fit mx-auto">
+        <div className="w-fit m-auto">
             <SectionCard
                 sectionName={"404 Not Found"}
                 description={"This page could not be found."}

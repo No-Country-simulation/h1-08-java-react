@@ -19,7 +19,8 @@ export default {
         fullWhite: "#fff",
         lightYellow: "#F4F1DD",
         darkYellow: "#F5E2AF",
-        lightOrange: "#fdf9f0"
+        lightOrange: "#fdf9f0",
+        hoverOrange: "#f6cc6a85",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
@@ -53,6 +54,8 @@ export default {
           "warning": "#fbbd23",
           "error": "#f87272",
           "secondary": "#7030A0",
+          "fucsia": "#D22A89",
+          "orange": "#F6CC6A",
         }
       }
     ]

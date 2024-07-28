@@ -2,7 +2,7 @@ import SubmitButton from "../../components/atoms/SubmitButton"
 
 const LogoutModal = ({ currentLanguage, logout }) => {
     return (<>
-        < button className="btn btn-sm btn-outline btn-error capitalize"
+        < button className="btn btn-sm btn-outline btn-error capitalize h-12"
             onClick={() => document.getElementById('my_modal_5').showModal()}
         >
             {currentLanguage === "es" ? "salir" : "exit"}

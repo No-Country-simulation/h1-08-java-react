@@ -1,5 +1,5 @@
 
-const Input = ({ label, placeholder, password, register, error, width, viewPassword, passwordType, typeInput }) => {
+const Input = ({ label, placeholder, password, register, error, width, viewPassword, passwordType, typeInput, isDisabled, value }) => {
   return (
     <div className="form-control">
       {
@@ -20,6 +20,8 @@ const Input = ({ label, placeholder, password, register, error, width, viewPassw
       `}
       >
         <input
+          disabled={isDisabled}
+          defaultValue={value}
           autoComplete="off"
           type={password ? passwordType : typeInput ?? "text"}
           {...register}
