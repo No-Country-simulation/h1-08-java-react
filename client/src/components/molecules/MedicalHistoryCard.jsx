@@ -6,7 +6,7 @@ const MedicalHistoryCard = ({ specialty, location, date, link }) => {
   const [page, setPage] = useLocation()
 
   return (
-    <div className="flex flex-col gap-2 p-4 rounded-2xl min-w-[300px] h-auto bg-light border border-orange cursor-pointer" onClick={() => setPage(link)}>
+    <div className="flex flex-col gap-2 p-4 rounded-2xl min-w-[300px] h-auto bg-light border border-orange cursor-pointer transition duration-200 ease hover:border-fucsia hover:bg-white" onClick={() => setPage(link)}>
       <div className="flex flex-col">
         <p className="font-roboto font-normal text-black/50 text-xl">Especialidad:</p>
         <h1 className="font-roboto font-normal text-black text-2xl">{specialty}</h1>

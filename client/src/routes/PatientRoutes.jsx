@@ -9,7 +9,8 @@ import {
   ReportsAndResults,
   MedicalHistoryDetails,
   MedicationDetail,
-  TreatmentsMenu
+  TreatmentsMenu,
+  Dates
 } from "../pages/patient"
 
 const PatientRoutes = () => {
@@ -34,6 +35,8 @@ const PatientRoutes = () => {
     <ProtectedRoute path="/mis-medicamentos/:mid">
       {(params) => <MedicationDetail mid={params.mid} />}
     </ProtectedRoute>,
+
+    <ProtectedRoute path="/mis-citas" component={Dates} />,
 
     <ProtectedRoute path="/mi-perfil" component={Profile} />
 
