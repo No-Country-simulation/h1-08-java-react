@@ -43,7 +43,7 @@
                 "name": "my-health data"
             },
             {
-                "in_dev": "/",
+                "in_dev": "/credenciales-y-carnets",
                 "path": "#",
                 "name": "credentials and cards"
             },
@@ -54,7 +54,7 @@
         ]
     },
     {
-        "path": "/mis-citas",
-        "name": "my-dates"
+        "path": "/agenda",
+        "name": "schedule"
     }
 ]

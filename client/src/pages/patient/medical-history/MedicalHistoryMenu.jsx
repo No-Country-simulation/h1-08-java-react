@@ -1,12 +1,12 @@
-import CardHistory from "../../components/molecules/CardHistory";
+import CardHistory from "../../../components/molecules/CardHistory";
 import {
   arrow,
   medicine,
   microscope_pink,
   testTube,
   personal_id,
-} from "../../assets";
-import useNavigation from "../../hooks/useNavigation"
+} from "../../../assets";
+import useNavigation from "../../../hooks/useNavigation"
 
 function selectIcon(name) {
   switch (name) {
@@ -33,7 +33,7 @@ const MedicalHistory = () => {
           medicalHistoryRoutes.map((item, index) => (
             <CardHistory
               addClassName={item.path == "#" && "is-disabled"}
-              key={`treatments-${item.name}-${index}`}
+              key={`medical-history-${item.name}-${index}`}
               title={item.name}
               image={selectIcon(item.in_dev ?? item.path)}
               icon={arrow}

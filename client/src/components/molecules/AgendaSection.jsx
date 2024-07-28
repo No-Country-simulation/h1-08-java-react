@@ -1,12 +1,13 @@
-import { format } from "@formkit/tempo";
 import { search, arrowFilter } from "../../assets";
-import AppointmentCard from "../../components/molecules/AppointmentCard";
 import { useState } from "react";
+import useLanguage from "../../hooks/useLanguage"
+import formatDate from "../../utils/formatDate";
+import AppointmentCard from "../../components/molecules/AppointmentCard";
 
 const AgendaSection = () => {
-  const lang = "es";
+  const lang = useLanguage();
   const date = new Date();
-  const formattedDate = format(date, "dddd DD/MM/YYYY", lang);
+  const formattedDate = formatDate(date, lang)
 
   const [selectedFilter, setSelectedFilter] = useState("Todo");
   const filterOptions = ["Todo", "En espera", "Atendido", "Cancelado"];

@@ -1,7 +1,7 @@
-import SectionCard from "../../../components/molecules/SectionCard"
-import { capsule, lupaIcon } from "../../../assets"
-import CardLink from "../../../components/atoms/CardLink";
-import fake_medications from "../../../data/fake_medications"
+import SectionCard from "../../../../components/molecules/SectionCard"
+import { capsule, lupaIcon } from "../../../../assets"
+import CardLink from "../../../../components/atoms/CardLink";
+import fake_medications from "../../../../data/fake_medications"
 
 const Medications = () => {
   return (
