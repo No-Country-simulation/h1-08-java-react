@@ -16,9 +16,10 @@ const Login = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     const validation = transformLogin(data)
-
     if (MODE != "only-front") {
+      setMessageErrors([{ message: "Cargando..." }])
       const response = await fetchData(`auth/login/${data.role}`, "POST", validation)
+      setMessageErrors([])
       if (!response.errors && !response.error) {
         console.log("TODO SALIO BIEN...");
         return login(response)
