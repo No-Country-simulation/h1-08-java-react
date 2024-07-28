@@ -21,6 +21,9 @@ export default {
         darkYellow: "#F5E2AF",
         lightOrange: "#fdf9f0",
         hoverOrange: "#f6cc6a85",
+        success: "#36d399",
+        warning: "#fbbd23",
+        error: "#f87272",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
