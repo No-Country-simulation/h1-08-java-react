@@ -22,7 +22,6 @@ Justina.io es una aplicación diseñada para facilitar la gestión de informaci�
 
 - **Backend:** 
     - Miguel Angel Chavez
-    - Javier Casani
 
 - **QA:** 
     - Maria Bebion
