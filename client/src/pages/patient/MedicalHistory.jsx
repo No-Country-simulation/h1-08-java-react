@@ -32,9 +32,10 @@ const MedicalHistory = () => {
         {
           medicalHistoryRoutes.map((item, index) => (
             <CardHistory
+              addClassName={item.path == "#" && "is-disabled"}
               key={`treatments-${item.name}-${index}`}
               title={item.name}
-              image={selectIcon(item.path)}
+              image={selectIcon(item.in_dev ?? item.path)}
               icon={arrow}
               link={`${item.path}`}
             />

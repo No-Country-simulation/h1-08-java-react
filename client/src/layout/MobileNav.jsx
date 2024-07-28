@@ -18,7 +18,7 @@ const MobileNav = () => {
 
 
     if (isLogged) return (
-        <div className="btm-nav rounded-t-2xl bg-lightOrange h-[68px] md:hidden z-10">
+        <div className="btm-nav rounded-t-2xl bg-lightOrange h-[68px] md:hidden z-[9]">
 
             <button className={isActive("/")} type="button" onClick={() => onClickNavigateTo("/")}>
                 <img src={home} alt="home" className="w-7 h-7" />

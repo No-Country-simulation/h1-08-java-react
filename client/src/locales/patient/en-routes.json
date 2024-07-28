@@ -13,15 +13,18 @@
                 "name": "medications"
             },
             {
-                "path": "/dieta-y-nutricion",
+                "in_dev": "/dieta-y-nutricion",
+                "path": "#",
                 "name": "diet and nutrition"
             },
             {
-                "path": "/actividad-fisica",
+                "in_dev": "/actividad-fisica",
+                "path": "#",
                 "name": "physical activity"
             },
             {
-                "path": "/visitas-psicologicas",
+                "in_dev": "/visitas-psicologicas",
+                "path": "#",
                 "name": "psychological visits"
             }
         ]
@@ -40,7 +43,8 @@
                 "name": "my-health data"
             },
             {
-                "path": "/",
+                "in_dev": "/",
+                "path": "#",
                 "name": "credentials and cards"
             },
             {
@@ -50,7 +54,7 @@
         ]
     },
     {
-        "path": "/",
-        "name": "dates"
+        "path": "/mis-citas",
+        "name": "my-dates"
     }
 ]

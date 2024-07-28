@@ -25,9 +25,11 @@ const Login = () => {
       }
 
       else if (response.errors) { setMessageErrors(response.errors) }
-      else if(response.error.toString().includes("Bad credentials")){setMessageErrors([{message:"Usuario y/o contraseña incorrectos."}])}
+      else if (response.error.toString().includes("Bad credentials")) { setMessageErrors([{ message: "Usuario y/o contraseña incorrectos." }]) }
       else if (response.error) { setMessageErrors([response]) }
       console.log(response);
+    } else {
+      login()
     }
 
   })

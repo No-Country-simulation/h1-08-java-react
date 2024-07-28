@@ -13,15 +13,18 @@
                 "name": "medicamentos"
             },
             {
-                "path": "/dieta-y-nutricion",
+                "in_dev": "/dieta-y-nutricion",
+                "path": "#",
                 "name": "dieta y nutrición"
             },
             {
-                "path": "/actividad-fisica",
+                "in_dev": "/actividad-fisica",
+                "path": "#",
                 "name": "actividad fisica"
             },
             {
-                "path": "/visitas-psicologicas",
+                "in_dev": "/visitas-psicologicas",
+                "path": "#",
                 "name": "visitas psicológicas"
             }
         ]
@@ -40,7 +43,8 @@
                 "name": "mis datos de salud"
             },
             {
-                "path": "/",
+                "in_dev": "/",
+                "path": "#",
                 "name": "credenciales y carnets"
             },
             {
@@ -50,7 +54,7 @@
         ]
     },
     {
-        "path": "/",
-        "name": "fechas"
+        "path": "/mis-citas",
+        "name": "mis citas"
     }
 ]

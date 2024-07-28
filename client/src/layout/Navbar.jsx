@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'wouter'
-import UserNav from "./components/UserNav";
 import DesktopNav from "./components/DesktopNav";
 import useNavigation from '../hooks/useNavigation';
+import Drawer from './components/Drawer';
 
 const Navbar = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -22,9 +22,11 @@ const Navbar = () => {
                 navigation={navigation}
             />
 
-            <UserNav
-                navigation={navigation}
-            />
+            <div className="navbar-end">
+                <Drawer
+                    navigation={navigation}
+                />
+            </div>
 
         </div>
     );

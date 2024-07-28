@@ -23,8 +23,21 @@ import microscope_pink from "./icons/microscope-pink.svg";
 import capuse_pink from "./icons/pink/capsule.svg"
 import electrocardiogram_pink from "./icons/pink/electrocardiogram.svg"
 import folder_pink from "./icons/pink/folder.svg"
+import person_pink from "./icons/pink/person.svg"
+import help from "./icons/pink/help.svg"
+//
+import injectionIcon from "./icons/injection.svg"
+// HAMBURGER
+import hamburger from "./navigation/hamburger/hamburger.svg"
+import close from "./navigation/hamburger/close-outline.svg"
+
 
 export {
+    help,
+    person_pink,
+    injectionIcon,
+    hamburger,
+    close,
     capuse_pink,
     electrocardiogram_pink,
     folder_pink,
