@@ -1,14 +1,15 @@
-import { format } from "@formkit/tempo";
 import { search, arrowFilter } from "../../assets";
-import { useState } from 'react';
+import { useState } from "react";
+import useLanguage from "../../hooks/useLanguage"
+import formatDate from "../../utils/formatDate";
 
 const AgendaSection = () => {
-  const lang = "es";
+  const lang = useLanguage();
   const date = new Date();
-  const formattedDate = format(date, "dddd DD/MM/YYYY", lang);
+  const formattedDate = formatDate(date, lang)
 
-  const [selectedFilter, setSelectedFilter] = useState('Todo');
-  const filterOptions = ['Todo', 'En espera', 'Atentido', 'Cancelado'];
+  const [selectedFilter, setSelectedFilter] = useState("Todo");
+  const filterOptions = ["Todo", "En espera", "Atentido", "Cancelado"];
 
   return (
     <section className="flex flex-col items-center mx-auto w-[1064px] gap-6 p-6 rounded-2xl bg-light backdrop-blur-sm shadowCard border border-orange">
@@ -17,7 +18,7 @@ const AgendaSection = () => {
           Agenda Diaria
         </h1>
         <span className="text-black text-[26px] font-poppins capitalize">
-          Hoy, {formattedDate}
+          {formattedDate}
         </span>
       </div>
       <hr className="mx-auto border-2 border-black w-4/5 min-w-[800px]" />
@@ -38,28 +39,28 @@ const AgendaSection = () => {
           </button>
         </div>
         <div className="flex flex-row gap-16 justify-between items-center">
-      <h1 className="font-poppins font-normal text-black text-2xl">
-        Filtrar por
-      </h1>
-      <div className="relative w-[109px] h-10 border border-magenta rounded-lg">
-        <select
-          value={selectedFilter}
-          onChange={(e) => setSelectedFilter(e.target.value)}
-          className="w-full h-full appearance-none bg-transparent pl-4 pr-10 text-2xl text-magenta"
-        >
-          {filterOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <img
-          src={arrowFilter}
-          alt="arrow icon"
-          className="absolute top-0 right-0 m-2"
-        />
-      </div>
-    </div>
+          <h1 className="font-poppins font-normal text-black text-2xl">
+            Filtrar por
+          </h1>
+          <div className="relative w-[109px] h-10 border border-magenta rounded-lg">
+            <select
+              value={selectedFilter}
+              onChange={(e) => setSelectedFilter(e.target.value)}
+              className="w-full h-full appearance-none bg-transparent pl-4 pr-10 text-2xl text-magenta"
+            >
+              {filterOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <img
+              src={arrowFilter}
+              alt="arrow icon"
+              className="absolute top-0 right-0 m-2"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -9,6 +9,8 @@ import ReportsAndResults from "./ReportsAndResults"
 import MedicalHistoryDetails from "./MedicalHistoryDetails"
 import TreatmentsMenu from "./TreatmentsMenu"
 import Dates from "./Dates"
+import Home from "./Home"
+import ShareInfo from "./ShareInfo"
 
 export {
     TreatmentsMenu,
@@ -21,5 +23,7 @@ export {
     Vaccines,
     ReportsAndResults,
     MedicalHistoryDetails,
-    Dates
+    Dates,
+    Home,
+    ShareInfo,
 }
