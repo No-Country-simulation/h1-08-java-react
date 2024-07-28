@@ -45,6 +45,7 @@ La estructura del proyecto sigue la metodología de diseño atómico (Atomic Des
   - [Zustand](https://zustand-demo.pmnd.rs/) (4.5.4)
   - [Tailwind CSS](https://tailwindcss.com/) (3.4.4)
   - [DaisyUI](https://daisyui.com/) (4.12.10)
+  - [React DayPicker](https://daypicker.dev/) (9.0.4)
   - [React Country Region Selector](https://github.com/country-regions/react-country-region-selector/) (3.6.1)
 
 - **Otros:**
