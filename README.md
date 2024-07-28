@@ -44,7 +44,8 @@ Justina.io es una aplicación diseñada para facilitar la gestión de informaci�
   - [Java](https://www.java.com/) (17.0.9) 
   - [Spring Boot](https://spring.io/projects/spring-boot) (3.2.1) 
   - [Spring Security](https://spring.io/projects/spring-security) (6.3.2) 
-  - [Spring Data JPA](https://spring.io/projects/spring-data-jpa) (3.2.1) 
+  - [Spring Data JPA](https://spring.io/projects/spring-data-jpa) (3.2.1)
+  - [JWT](https://jwt.io/)
   - [MySQL](https://www.mysql.com/) (8.0.35) 
   - [Maven](https://maven.apache.org/) (4.0.0)
 
