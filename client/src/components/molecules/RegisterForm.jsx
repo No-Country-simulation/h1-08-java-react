@@ -67,7 +67,7 @@ const RegisterForm = ({ register, onSubmit, watch, errors }) => {
             <Input
                 register={register("phone", phoneValidation)}
                 error={errors.phone}
-                label={"Teléfono / Celular"}
+                label={"Teléfono / Celular*"}
                 placeholder={"Teléfono"}
             />
 
