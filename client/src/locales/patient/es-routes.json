@@ -43,7 +43,7 @@
                 "name": "mis datos de salud"
             },
             {
-                "in_dev": "/",
+                "in_dev": "/credenciales-y-carnets",
                 "path": "#",
                 "name": "credenciales y carnets"
             },
@@ -54,7 +54,7 @@
         ]
     },
     {
-        "path": "/mis-citas",
-        "name": "mis citas"
+        "path": "/agenda",
+        "name": "agenda"
     }
 ]

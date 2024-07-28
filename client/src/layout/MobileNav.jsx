@@ -26,7 +26,7 @@ const MobileNav = () => {
             </button>
 
 
-            <button className={isActive("/mis-citas")} type="button" onClick={() => onClickNavigateTo("/mis-citas")}>
+            <button className={isActive("/agenda")} type="button" onClick={() => onClickNavigateTo("/agenda")}>
                 <img src={medical} alt="medical-icon" className="w-7 h-7" />
                 <span className="btm-nav-label">Agenda</span>
             </button>

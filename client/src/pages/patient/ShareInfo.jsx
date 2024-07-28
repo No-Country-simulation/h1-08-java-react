@@ -1,6 +1,6 @@
-import SectionCard from "../components/molecules/SectionCard"
-import { launch } from "../assets"
-import qrCode from "../assets/fake-qr.png"
+import SectionCard from "../../components/molecules/SectionCard"
+import { launch } from "../../assets"
+import qrCode from "../../assets/fake-qr.png"
 const ShareInfo = () => {
     return (
         <section className="flex flex-col items-center my-5">

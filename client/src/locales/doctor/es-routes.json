@@ -1,14 +1,16 @@
 [
     {
-        "path": "/turnos",
-        "name": "turnos"
+        "path": "/pacientes",
+        "name": "pacientes"
     },
     {
-        "path": "/calendario",
+        "in_dev": "/calendario",
+        "path": "#",
         "name": "calendario"
     },
     {
-        "path": "/pacientes",
-        "name": "pacientes"
+        "in_dev": "/codigo-qr",
+        "path": "#",
+        "name": "qr"
     }
 ]

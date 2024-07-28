@@ -1,14 +1,16 @@
 [
     {
-        "path": "/appointments",
-        "name": "appointments"
+        "path": "/patients",
+        "name": "patients"
     },
     {
-        "path": "/calendar",
+        "in_dev": "/calendario",
+        "path": "#",
         "name": "calendar"
     },
     {
-        "path": "/patients",
-        "name": "patients"
+        "in_dev": "/qr-code",
+        "path": "#",
+        "name": "qr"
     }
 ]
