@@ -23,6 +23,7 @@ body {
 
 .card-shadow {
     box-shadow: 4px 4px 4px 0px #F5C046;
+    transition-duration: 200ms;
 }
 
 .card-shadow:hover {
