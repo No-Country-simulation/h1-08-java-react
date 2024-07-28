@@ -18,7 +18,7 @@ public class UserServicesImp {
     private final PatientServicesImp patientServices;
     private final Mapper mapper = Mapper.getInstance();
 
-    public Usuario getUserByUsername(String username) {
+    public Usuario getUserByUsername(String username)  {
         try {
             if (username == null || username.isEmpty()) {
                 throw new UsernameNotFoundException("El dni no puede ser vacio");

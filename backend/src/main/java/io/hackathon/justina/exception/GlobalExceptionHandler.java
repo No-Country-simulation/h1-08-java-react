@@ -42,21 +42,21 @@ public class GlobalExceptionHandler {
         }
 
         if (message.contains("Duplicate entry")) {
-            System.out.println(message);
-            return new ResponseEntity<>(new ErrorResponse(HttpStatus.CONFLICT, "El registro ya existe: "), HttpStatus.CONFLICT);
+            String split = message.split(" ")[6];
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.CONFLICT, "El registro ya existe: " + split), HttpStatus.CONFLICT);
         }
 
-        return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Error en la integridad de los datos"), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Error en la integridad de los datos", e.getCause().getMessage()), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(BadCredentialsException.class)
+    @ExceptionHandler({BadCredentialsException.class})
     public ResponseEntity<ErrorResponse> handleBadCredentialsException(BadCredentialsException e) {
         return new ResponseEntity<>(new ErrorResponse(HttpStatus.UNAUTHORIZED, "Contraseña incorrectas"), HttpStatus.UNAUTHORIZED);
     }
 
+
     @ExceptionHandler({Exception.class, RuntimeException.class})
     public ResponseEntity<ErrorResponse> handleException(Exception e) {
-        System.out.println(e);
         if (e instanceof AuthenticationCredentialsNotFoundException) {
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.UNAUTHORIZED, e.getMessage()), HttpStatus.UNAUTHORIZED);
         }

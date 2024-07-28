@@ -56,7 +56,7 @@ public class Usuario implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Column
+    @Column(nullable = false, columnDefinition = "boolean default true")
     private Boolean enabled = true;
 
     @Override
