@@ -15,7 +15,7 @@ export const fetchData = async (path, method, body, token) => {
         return await res.json()
     } catch (error) {
         console.error(error);
-        return { message: "Ocurrio un error interno. Intentelo más tarde", error }
+        return { message: "Ocurrio un error. Verifique sus datos", error }
 
     }
 }

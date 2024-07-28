@@ -8,33 +8,39 @@ import {
   Vaccines,
   ReportsAndResults,
   MedicalHistoryDetails,
-  MedicationDetail
+  MedicationDetail,
+  TreatmentsMenu,
+  Dates
 } from "../pages/patient"
 
 const PatientRoutes = () => {
 
-  return (<>
-    <ProtectedRoute path="/mis-vacunas" component={Vaccines} />
+  return [
+    <ProtectedRoute path="/mis-vacunas" component={Vaccines} />,
 
-    <ProtectedRoute path="/historial-clinico" component={MedicalHistory} />
+    <ProtectedRoute path="/historial-clinico" component={MedicalHistory} />,
 
-    <ProtectedRoute path="/mis-patologias" component={Patologies} />
+    <ProtectedRoute path="/mis-patologias" component={Patologies} />,
 
-    <ProtectedRoute path="/mis-datos-de-salud" component={HealthData} />
+    <ProtectedRoute path="/mis-datos-de-salud" component={HealthData} />,
 
-    <ProtectedRoute path="/informes-y-resultados" component={ReportsAndResults} />
+    <ProtectedRoute path="/informes-y-resultados" component={ReportsAndResults} />,
 
-    <ProtectedRoute path="/historia-clinica/:specialty" component={MedicalHistoryDetails} />
+    <ProtectedRoute path="/historia-clinica/:specialty" component={MedicalHistoryDetails} />,
 
-    <ProtectedRoute path="/mis-medicamentos" component={Medications} />
+    <ProtectedRoute path="/mis-tratamientos" component={TreatmentsMenu} />,
+
+    <ProtectedRoute path="/mis-medicamentos" component={Medications} />,
 
     <ProtectedRoute path="/mis-medicamentos/:mid">
       {(params) => <MedicationDetail mid={params.mid} />}
-    </ProtectedRoute>
+    </ProtectedRoute>,
+
+    <ProtectedRoute path="/mis-citas" component={Dates} />,
 
     <ProtectedRoute path="/mi-perfil" component={Profile} />
 
-  </>)
+  ]
 }
 
 export default PatientRoutes

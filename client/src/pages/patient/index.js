@@ -7,9 +7,11 @@ import Profile from "./Profile"
 import Vaccines from "./Vaccines"
 import ReportsAndResults from "./ReportsAndResults"
 import MedicalHistoryDetails from "./MedicalHistoryDetails"
-
+import TreatmentsMenu from "./TreatmentsMenu"
+import Dates from "./Dates"
 
 export {
+    TreatmentsMenu,
     HealthData,
     MedicalHistory,
     Medications,
@@ -18,5 +20,6 @@ export {
     Profile,
     Vaccines,
     ReportsAndResults,
-    MedicalHistoryDetails
+    MedicalHistoryDetails,
+    Dates
 }

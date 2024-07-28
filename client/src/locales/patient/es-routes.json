@@ -4,8 +4,30 @@
         "name": "vacunas"
     },
     {
-        "path": "/mis-medicamentos",
-        "name": "medicamentos"
+        "path": "/mis-tratamientos",
+        "name": "tratamientos",
+        "sub_menu": true,
+        "sub_items": [
+            {
+                "path": "/mis-medicamentos",
+                "name": "medicamentos"
+            },
+            {
+                "in_dev": "/dieta-y-nutricion",
+                "path": "#",
+                "name": "dieta y nutrición"
+            },
+            {
+                "in_dev": "/actividad-fisica",
+                "path": "#",
+                "name": "actividad fisica"
+            },
+            {
+                "in_dev": "/visitas-psicologicas",
+                "path": "#",
+                "name": "visitas psicológicas"
+            }
+        ]
     },
     {
         "path": "/historial-clinico",
@@ -21,7 +43,8 @@
                 "name": "mis datos de salud"
             },
             {
-                "path": "/",
+                "in_dev": "/",
+                "path": "#",
                 "name": "credenciales y carnets"
             },
             {
@@ -31,7 +54,7 @@
         ]
     },
     {
-        "path": "/",
-        "name": "fechas"
+        "path": "/mis-citas",
+        "name": "mis citas"
     }
 ]

@@ -33,7 +33,7 @@ const Vaccines = () => {
                 sectionName="Vacunas"
                 sectionIcon={injectionIcon}
                 altIcon="injection-icon"
-                description={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae nam fugit quae neque blanditiis"}
+                description={"Aquí podrás ver las vacunas que te has aplicado hasta el momento, asimismo, saber si llevas una o varias dosis según la vacuna."}
             />
             {
                 vaccinesList.map(({ title, items }, index) => (

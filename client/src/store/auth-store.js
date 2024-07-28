@@ -28,6 +28,7 @@ const useAuthStore = createWithEqualityFn()(
                         user: null,
                         token: null
                     }))
+                    window.location.replace("/auth/iniciar-sesion")
                 }
             }
         }),

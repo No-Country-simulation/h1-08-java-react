@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-#root{
+#root {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -12,24 +12,31 @@
     background-color: #FAF0D7;
 }
 
-body{
+body {
     background: linear-gradient(180deg, rgba(247, 236, 211, 0.432) 0%, rgba(251, 238, 208, 0.528865) 17.75%, rgba(247, 237, 212, 0.6) 47.67%, rgba(251, 238, 208, 0.544058) 84.18%, rgba(247, 237, 212, 0.432) 100%);
 
 }
 
-.login-shadow{
+.login-shadow {
     box-shadow: 4px 4px 4px 0px #7030A0;
 }
 
-.card-shadow{
+.card-shadow {
     box-shadow: 4px 4px 4px 0px #F5C046;
+    transition-duration: 200ms;
 }
 
-.card-shadow:hover{
+.card-shadow:hover {
     box-shadow: 4px 4px 4px 0px #D22A89;
 }
 
 .cardDetails,
 .shadowCard{
     box-shadow: 4px 4px 4px 0px #F5C046;
+}
+
+.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: lightgrey;
 }

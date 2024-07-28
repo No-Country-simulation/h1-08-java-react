@@ -26,8 +26,7 @@ function App() {
           <ProtectedRoute path="/" component={Home} />
           <ProtectedRoute path="/mi-informacion" component={ShareInfo} />
 
-          <PatientRoutes />
-        
+          {...PatientRoutes()}
 
           {/* DEFAULT */}
           <Route path="*" component={NotFound} />

@@ -23,7 +23,10 @@ const DesktopNav = ({ navigation }) => {
                                             <summary>{item.name}</summary>
                                             <ul className="p-2">
                                                 {item.sub_items.map((subItem, j) => (
-                                                    <li key={`${i}-${j}-${subItem.name}`}>
+                                                    <li
+                                                        key={`${i}-${j}-${subItem.name}`}
+                                                        className={`${subItem.path == "#" ? "disabled" : ""}`}
+                                                    >
                                                         <Link href={subItem.path}>
                                                             {subItem.name}
                                                         </Link>
