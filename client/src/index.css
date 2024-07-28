@@ -29,6 +29,7 @@ body{
     box-shadow: 4px 4px 4px 0px #D22A89;
 }
 
-.cardDetails{
+.cardDetails,
+.shadowCard{
     box-shadow: 4px 4px 4px 0px #F5C046;
 }
