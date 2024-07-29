@@ -1,16 +1,37 @@
-import { Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider, } from "@tanstack/react-query"
+import { Route, Switch } from "wouter";
+import Navbar from './layout/Navbar';
+import Footer from './layout/Footer';
 import NotFound from './pages/NotFound';
-import Home from './pages/Home';
+import Auth from "./pages/Auth";
+import MobileNav from "./layout/MobileNav";
+import patientRoutes from "./routes/PatientRoutes";
+import doctorRoutes from "./routes/DoctorRoutes";
 
+
+const queryClient = new QueryClient()
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <Navbar />
+      <main className="mb-[70px] md:mb-0">
+        <Switch>
+          <Route path="/auth/:page">
+            {(params) => <Auth page={params.page} />}
+          </Route>
+
+          {...patientRoutes()}
+          {/* SI TUVIERAMOS LOS DATOS DEL USUARIO, ACÁ REALIZARIAMOS LA VALIDACION DE ROLES */}
+          {...doctorRoutes("/doctor")}
+
+          {/* DEFAULT */}
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </main>
+      <Footer />
+      <MobileNav />
+    </QueryClientProvider>
   );
 }
 

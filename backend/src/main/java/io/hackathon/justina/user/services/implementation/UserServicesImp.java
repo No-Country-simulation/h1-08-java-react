@@ -6,6 +6,7 @@ import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.services.PatientServicesImp;
 import io.hackathon.justina.user.model.Usuario;
 import io.hackathon.justina.utils.modelMapper.Mapper;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class UserServicesImp {
     private final PatientServicesImp patientServices;
     private final Mapper mapper = Mapper.getInstance();
 
-    public Usuario getUserByUsername(String username) {
+    public Usuario getUserByUsername(String username)  {
         try {
             if (username == null || username.isEmpty()) {
                 throw new UsernameNotFoundException("El dni no puede ser vacio");
@@ -31,7 +32,10 @@ public class UserServicesImp {
             }
 
             return null;
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
+            if (e instanceof UsernameNotFoundException) {
+                throw new EntityNotFoundException(e.getMessage());
+            }
             throw new RuntimeException(e);
         }
     }
@@ -51,7 +55,7 @@ public class UserServicesImp {
         if (doctor != null) {
             return mapper.map(doctor, Usuario.class).orElse(null);
         }
-        throw new UsernameNotFoundException("No se encontro el medico con el dni: " + licence);
+        throw new UsernameNotFoundException("No se encontro el medico con la licencia: " + licence);
     }
 
 }

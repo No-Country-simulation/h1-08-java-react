@@ -1,6 +1,6 @@
 package io.hackathon.justina.healthPlan.models;
 
-import io.hackathon.justina.utils.TypeHealth;
+import io.hackathon.justina.utils.Enums.TypeHealth;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

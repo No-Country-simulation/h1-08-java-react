@@ -1,7 +1,7 @@
 package io.hackathon.justina.user.model;
 
 import io.hackathon.justina.address.models.Address;
-import io.hackathon.justina.utils.Role;
+import io.hackathon.justina.utils.Enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -56,7 +56,7 @@ public class Usuario implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Column
+    @Column(nullable = false, columnDefinition = "boolean default true")
     private Boolean enabled = true;
 
     @Override

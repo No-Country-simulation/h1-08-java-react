@@ -5,8 +5,8 @@ import io.hackathon.justina.address.models.dto.AddressDTO;
 import io.hackathon.justina.auth.models.dto.request.RegisterDoctorRequest;
 import io.hackathon.justina.doctor.models.Especialidad;
 import io.hackathon.justina.doctor.models.Medico;
-import io.hackathon.justina.doctor.models.dto.DoctorDto;
-import io.hackathon.justina.utils.Role;
+import io.hackathon.justina.doctor.models.dto.DoctorDTO;
+import io.hackathon.justina.utils.Enums.Role;
 import io.hackathon.justina.utils.modelMapper.Mapper;
 
 public class DoctorMapper {
@@ -32,8 +32,8 @@ public class DoctorMapper {
                 .build();
     }
 
-    public static DoctorDto toMedicoDto(Medico medico) {
-        return DoctorDto.builder()
+    public static DoctorDTO toMedicoDto(Medico medico) {
+        return DoctorDTO.builder()
                 .id(medico.getId())
                 .dni(medico.getDni())
                 .name(medico.getName())

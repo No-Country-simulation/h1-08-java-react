@@ -4,7 +4,8 @@ import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.patient.repository.PatientRepository;
 import io.hackathon.justina.utils.Age;
-import io.hackathon.justina.utils.Role;
+import io.hackathon.justina.utils.Enums.Role;
+import io.hackathon.justina.utils.IMC;
 import io.hackathon.justina.utils.genInterface.IBaseCRUDServices;
 import io.hackathon.justina.utils.modelMapper.Mapper;
 import lombok.RequiredArgsConstructor;
@@ -61,6 +62,7 @@ public class PatientServicesImp implements IBaseCRUDServices<PatientDTO, Patient
 
     @Override
     public PatientDTO update(Patient entity) {
+        entity.setImc(IMC.calculateBMI(entity.getWeight(), entity.getHeight()));
         return null;
     }
 

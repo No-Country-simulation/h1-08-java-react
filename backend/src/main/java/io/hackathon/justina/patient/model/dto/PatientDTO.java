@@ -1,8 +1,8 @@
 package io.hackathon.justina.patient.model.dto;
 
 import io.hackathon.justina.address.models.dto.AddressDTO;
-import io.hackathon.justina.utils.Genders;
-import io.hackathon.justina.utils.Role;
+import io.hackathon.justina.utils.Enums.Genders;
+import io.hackathon.justina.utils.Enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +23,7 @@ public class PatientDTO {
 
     private String lastName;
 
-    private Number age;
+    private Integer age;
 
     private LocalDate birthDate;
 
@@ -31,7 +31,7 @@ public class PatientDTO {
 
     private String bloodType;
 
-    private String height;
+    private double height;
 
     private double weight;
 

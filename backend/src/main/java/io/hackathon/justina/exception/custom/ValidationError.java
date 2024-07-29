@@ -1,20 +1,15 @@
 package io.hackathon.justina.exception.custom;
 
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
-public class ValidationError extends RuntimeException {
+@Data
+public class ValidationError {
     private String fieldName;
     private String message;
 
     public ValidationError(String fieldName, String message) {
-
         this.fieldName = fieldName;
         this.message = message;
     }
 
-    @Override
-    public synchronized Throwable fillInStackTrace() {
-        return this;
-    }
 }

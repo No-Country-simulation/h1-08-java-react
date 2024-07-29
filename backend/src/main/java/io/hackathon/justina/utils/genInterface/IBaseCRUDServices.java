@@ -1,6 +1,5 @@
 package io.hackathon.justina.utils.genInterface;
 
-import io.hackathon.justina.doctor.models.dto.DoctorDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
