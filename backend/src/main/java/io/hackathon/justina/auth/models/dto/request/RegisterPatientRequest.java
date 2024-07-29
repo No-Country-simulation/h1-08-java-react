@@ -46,11 +46,13 @@ public class RegisterPatientRequest {
     private LocalDate birthdate;
 
     @NotBlank(message = "El teléfono es obligatorio")
-    @Size(min = 10, max = 15, message = "El teléfono debe tener entre 10 y 15 dígitos")
+    @Size(min = 8, max = 14, message = "El teléfono debe tener entre 8 y 14 dígitos")
+    @Pattern(regexp = "[0-9]+", message = "El telfoon solo debe contener dígitos")
     private String phoneNumber;
 
     @NotBlank(message = "La contraseña es obligatoria")
     @Size(min = 8, max = 100, message = "La contraseña debe tener entre 8 y 100 dígitos")
+    @Pattern(regexp = "^(?!.*(.)\\1{2})[a-zA-Z0-9!@#$%^&*()_+\\-={};':\"\\\\|,.<>\\/?]{8,}$", message = "la contraseña no puede tener 3 dígitos iguales consecutivos")
     private String password;
 
 }

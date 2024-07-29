@@ -1,8 +1,6 @@
 package io.hackathon.justina.auth.models.dto.request;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-import lombok.Data;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoginDoctorRequest {
 
-    @NotBlank(message = "la matricula es obligatoria")
+    @NotNull(message = "la matricula es obligatoria")
+    @Min(value = 1000, message = "La matricula debe de tener al menos 4 dígitos")
+    @Max(value = 999999, message = "La matricula puede tener hasta 6 dígitos")
     private Integer licenseNumber;
 
     @NotBlank(message = "la contrasenya es obligatoria")

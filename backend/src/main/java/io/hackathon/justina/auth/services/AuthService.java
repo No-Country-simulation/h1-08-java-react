@@ -16,7 +16,6 @@ import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.patient.services.PatientServicesImp;
 import io.hackathon.justina.utils.Enums.Role;
-import io.hackathon.justina.utils.Role;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.dao.DataIntegrityViolationException;
