@@ -1,11 +1,13 @@
+import { Dashboard, Patients } from "../pages/doctor";
 import ProtectedRoute from "./ProtectedRoute";
-import { Dashboard } from "../pages/doctor";
 
-const DoctorRoutes = () => {
+const doctorRoutes = (prefix) => {
+  const customPath = (path) => `${prefix}${path}`
 
   return [
-    <ProtectedRoute path="/Dashboard" component={Dashboard} />,
+    <ProtectedRoute path={customPath("/")} component={Dashboard} />,
+    <ProtectedRoute path={customPath("/pacientes")} component={Patients} />,
   ]
 }
 
-export default DoctorRoutes;
+export default doctorRoutes;

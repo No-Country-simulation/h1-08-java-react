@@ -18,31 +18,32 @@ const MobileNav = () => {
 
 
     if (isLogged) return (
-        <div className="btm-nav rounded-t-2xl bg-lightOrange h-[68px] md:hidden z-[9]">
+        <>  <span className="md:hidden"></span>
+            <div className="btm-nav rounded-t-2xl bg-lightOrange h-[68px] md:hidden z-[9]">
 
-            <button className={isActive("/")} type="button" onClick={() => onClickNavigateTo("/")}>
-                <img src={home} alt="home" className="w-7 h-7" />
-                <span className="btm-nav-label">Inicio</span>
-            </button>
-
-
-            <button className={isActive("/agenda")} type="button" onClick={() => onClickNavigateTo("/agenda")}>
-                <img src={medical} alt="medical-icon" className="w-7 h-7" />
-                <span className="btm-nav-label">Agenda</span>
-            </button>
+                <button className={isActive("/")} type="button" onClick={() => onClickNavigateTo("/")}>
+                    <img src={home} alt="home" className="w-7 h-7" />
+                    <span className="btm-nav-label">Inicio</span>
+                </button>
 
 
-            <button className={isActive("/mi-perfil")} type="button" onClick={() => onClickNavigateTo("/mi-perfil")}>
-                <img src={user} alt="user-icon" className="w-7 h-7" />
-                <span className="btm-nav-label">Usuario</span>
-            </button>
+                <button className={isActive("/agenda")} type="button" onClick={() => onClickNavigateTo("/agenda")}>
+                    <img src={medical} alt="medical-icon" className="w-7 h-7" />
+                    <span className="btm-nav-label">Agenda</span>
+                </button>
 
 
-            <button className={isActive("/mi-informacion")} type="button" onClick={() => onClickNavigateTo("/mi-informacion")}>
-                <img src={qr_code} alt="qr-code-icon" className="w-7 h-7" />
-                <span className="btm-nav-label">QR</span>
-            </button>
-        </div>)
+                <button className={isActive("/mi-perfil")} type="button" onClick={() => onClickNavigateTo("/mi-perfil")}>
+                    <img src={user} alt="user-icon" className="w-7 h-7" />
+                    <span className="btm-nav-label">Usuario</span>
+                </button>
+
+
+                <button className={isActive("/mi-informacion")} type="button" onClick={() => onClickNavigateTo("/mi-informacion")}>
+                    <img src={qr_code} alt="qr-code-icon" className="w-7 h-7" />
+                    <span className="btm-nav-label">QR</span>
+                </button>
+            </div></>)
 }
 
 export default MobileNav
