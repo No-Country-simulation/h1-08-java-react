@@ -1,10 +1,12 @@
 package io.hackathon.justina.utils;
 
 import java.time.LocalDate;
-import java.util.Calendar;
+import java.time.Period;
 
 public class Age {
-    public static int calculateAge(LocalDate birthdate) {
-        return Calendar.getInstance().get(Calendar.YEAR) - birthdate.getYear();
+    private Age() {
+    }
+    public static int calculateAge(LocalDate birthDate) {
+        return Period.between(birthDate, LocalDate.now()).getYears();
     }
 }

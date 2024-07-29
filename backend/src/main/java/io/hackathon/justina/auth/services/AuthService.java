@@ -1,6 +1,7 @@
 package io.hackathon.justina.auth.services;
 
 import io.hackathon.justina.auth.JWT.Services.JwtService;
+import io.hackathon.justina.auth.models.AuthResponse;
 import io.hackathon.justina.auth.models.dto.auth.AuthResponseRegister;
 import io.hackathon.justina.auth.models.dto.request.LoginDoctorRequest;
 import io.hackathon.justina.auth.models.dto.request.LoginRequest;
@@ -15,6 +16,7 @@ import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.patient.services.PatientServicesImp;
 import io.hackathon.justina.utils.Enums.Role;
+import io.hackathon.justina.utils.Role;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -59,6 +61,7 @@ public class AuthService {
         T data = getUserData(credentials, clazz);
 
         return new AuthResponseRegister<>(token, data);
+
     }
 
     private <T> T getUserData(String credentials, Class<?> clazz) {

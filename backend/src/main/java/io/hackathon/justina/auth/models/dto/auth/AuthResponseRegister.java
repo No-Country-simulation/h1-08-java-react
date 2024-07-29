@@ -1,15 +1,19 @@
 package io.hackathon.justina.auth.models.dto.auth;
 
+import io.hackathon.justina.auth.models.AuthResponse;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class AuthResponseRegister<T> {
+@AllArgsConstructor
+@NoArgsConstructor
+public class AuthResponseRegister<T> extends AuthResponse {
 
-    private String token;
     private T data;
 
     public AuthResponseRegister(String token, T data) {
-        this.token = token;
+        super(token);
         this.data = data;
     }
 }

@@ -41,7 +41,6 @@ public class RegisterPatientRequest {
     @NotNull(message = "La dirección es obligatoria")
     private AddressRequest address;
 
-    @NotBlank(message = "La fecha de nacimiento es obligatoria")
     @NotNull(message = "La fecha de nacimiento no puede ser nula")
     @Past(message = "La fecha de nacimiento debe ser una fecha pasada")
     private LocalDate birthdate;

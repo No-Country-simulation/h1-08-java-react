@@ -22,6 +22,10 @@ import java.util.Set;
 @NoArgsConstructor
 public class Patient extends Usuario {
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "health_plan_id")
+    private HealthPlan healthPlan;
+
     @Column()
     private String bloodType;
 

@@ -1,8 +1,8 @@
 package io.hackathon.justina.exception.custom;
 
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 public class ValidationError {
     private String fieldName;
     private String message;
