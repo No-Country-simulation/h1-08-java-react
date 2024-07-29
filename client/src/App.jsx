@@ -5,8 +5,8 @@ import Footer from './layout/Footer';
 import NotFound from './pages/NotFound';
 import Auth from "./pages/Auth";
 import MobileNav from "./layout/MobileNav";
-import PatientRoutes from "./routes/PatientRoutes";
-import DoctorRoutes from "./routes/DoctorRoutes";
+import patientRoutes from "./routes/PatientRoutes";
+import doctorRoutes from "./routes/DoctorRoutes";
 
 
 const queryClient = new QueryClient()
@@ -21,9 +21,9 @@ function App() {
             {(params) => <Auth page={params.page} />}
           </Route>
 
-          {...PatientRoutes()}
+          {...patientRoutes()}
           {/* SI TUVIERAMOS LOS DATOS DEL USUARIO, ACÁ REALIZARIAMOS LA VALIDACION DE ROLES */}
-          {...DoctorRoutes()}
+          {...doctorRoutes("/doctor")}
 
           {/* DEFAULT */}
           <Route path="*" component={NotFound} />

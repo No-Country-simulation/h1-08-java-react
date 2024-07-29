@@ -26,6 +26,10 @@ body {
     transition-duration: 200ms;
 }
 
+.card-shadow-static {
+    box-shadow: 4px 4px 4px 0px #F5C046;
+}
+
 .card-shadow:hover {
     box-shadow: 4px 4px 4px 0px #D22A89;
 }
