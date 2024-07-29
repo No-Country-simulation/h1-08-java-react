@@ -15,7 +15,7 @@ import {
   ShareInfo
 } from "../pages/patient"
 
-const PatientRoutes = () => {
+const patientRoutes = () => {
 
   return [
     <ProtectedRoute path="/" component={Home} />,
@@ -49,4 +49,4 @@ const PatientRoutes = () => {
   ]
 }
 
-export default PatientRoutes
+export default patientRoutes
