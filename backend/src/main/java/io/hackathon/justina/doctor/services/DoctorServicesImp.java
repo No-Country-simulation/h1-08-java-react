@@ -52,7 +52,7 @@ public class DoctorServicesImp implements IBaseCRUDServices<DoctorDTO, Medico> {
             entity.setId(null);
             entity.setRole(Role.DOCTOR);
             entity.setAge(Age.calculateAge(entity.getBirthdate()));
-
+            entity.setEnabled(true);
             return mapper.map(doctorRepository.save(entity), DoctorDTO.class).orElseThrow(() -> new RuntimeException("Error al crear el medico."));
         } catch (Exception e) {
             throw new RuntimeException(e);

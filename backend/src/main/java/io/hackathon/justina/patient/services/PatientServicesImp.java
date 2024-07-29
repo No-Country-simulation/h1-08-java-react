@@ -54,6 +54,7 @@ public class PatientServicesImp implements IBaseCRUDServices<PatientDTO, Patient
             entity.setId(null);
             entity.setRole(Role.PATIENT);
             entity.setAge(Age.calculateAge(entity.getBirthdate()));
+            entity.setEnabled(true);
             return mapper.map(patientRepository.save(entity), PatientDTO.class).orElseThrow(() -> new RuntimeException("Error al crear el paciente."));
         } catch (Exception e) {
             throw new RuntimeException(e);
