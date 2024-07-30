@@ -6,7 +6,7 @@ const Dashboard = () => {
   return (
     <section className="container mx-auto flex flex-col items-center gap-y-11 py-6">
       <div className="flex flex-col md:flex-row items-center justify-between gap-5 w-full">
-        <WelcomeCard genre={"f"} name={"Yanira andrea martinez Garcia"} role={"doctor"} />
+        <WelcomeCard />
 
         <ActionBtnCard
           title="Nuevo Paciente"
