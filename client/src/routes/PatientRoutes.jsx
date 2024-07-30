@@ -42,7 +42,7 @@ const patientRoutes = () => {
       {(params) => <MedicationDetail mid={params.mid} />}
     </ProtectedRoute>,
 
-    <ProtectedRoute path="/agenda" component={Dates} />,
+    <ProtectedRoute path="/mis-citas" component={Dates} />,
 
     <ProtectedRoute path="/mi-perfil" component={Profile} />
 

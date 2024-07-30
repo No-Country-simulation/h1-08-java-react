@@ -4,11 +4,6 @@ import { search, arrowFilter } from "../../../assets";
 import PatientCard from '../../../components/molecules/PatientCard';
 import useLanguage from '../../../hooks/useLanguage';
 
-const fakeDoctor = {
-  name: "Yanira andrea martinez Garcia",
-  role: "doctor",
-  genre: "f",
-}
 
 const fakePatients = [
   {
@@ -32,7 +27,7 @@ const Patients = () => {
     <section className="w-11/12 min-w-[350px] mx-auto mt-5 mb-20">
 
       <div className="flex flex-col md:flex-row items-center justify-between gap-5 w-full">
-        <WelcomeCard genre={fakeDoctor.genre} name={fakeDoctor.name} role={fakeDoctor.role} />
+        <WelcomeCard />
 
         <ActionBtnCard
           title={lang === "es" ? "Nuevo Paciente" : "New Patient"}

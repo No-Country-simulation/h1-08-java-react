@@ -13,7 +13,7 @@ const useLanguageStore = createWithEqualityFn()(
         }),
         {
             name: "language",
-            storage: createJSONStorage(() => sessionStorage),
+            storage: createJSONStorage(() => localStorage),
         },
     ),
 )
