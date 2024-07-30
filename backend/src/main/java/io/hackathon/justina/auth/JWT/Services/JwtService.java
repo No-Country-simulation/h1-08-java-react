@@ -1,12 +1,11 @@
 package io.hackathon.justina.auth.JWT.Services;
 
 import io.github.cdimascio.dotenv.Dotenv;
-import io.hackathon.justina.config.DotenvConfig;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -17,18 +16,21 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-
 public class JwtService {
 
-    private  final String SECRET_KEY;
+    private final String SECRET_KEY;
 
     public JwtService() {
         Dotenv dotenv = Dotenv.configure().ignoreIfMalformed().ignoreIfMissing().load();
-        SECRET_KEY = dotenv.get("JWT_KEY_SECRET","S5fIdOyuMKiUq9dXxeqharYauUeMj1yPbMKRlbxp");
+        SECRET_KEY = dotenv.get("JWT_KEY_SECRET", "S5fIdOyuMKiUq9dXxeqharYauUeMj1yPbMKRlbxp");
     }
 
     public String getToken(UserDetails userDetails) {
-       return getToken(new HashMap<>() , userDetails);
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority).toList());
+
+        return getToken(claims, userDetails);
     }
 
     private String getToken(Map<String, Object> claims, UserDetails user) {
@@ -37,12 +39,15 @@ public class JwtService {
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(
                         System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-                .signWith(getKey(), io.jsonwebtoken.SignatureAlgorithm.HS256).compact();
+                .signWith(getKey(), io.jsonwebtoken.SignatureAlgorithm.HS256)
+                .compact();
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {
-        final String email = getEmailFromJwtToken(token);
-        return (email.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        final String credential = getCredentialFromJwtToken(token);
+        System.out.println("Credential from token: " + credential);
+        System.out.println("Username from UserDetails: " + userDetails.getUsername());
+        return (credential.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
     private Key getKey() {
@@ -50,7 +55,7 @@ public class JwtService {
         return Keys.hmacShaKeyFor(byteKey);
     }
 
-    public String getEmailFromJwtToken(String token) {
+    public String getCredentialFromJwtToken(String token) {
         return getClaim(token, Claims::getSubject);
     }
 
@@ -59,7 +64,7 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    private Claims getAllClaims(String token) {
+    public Claims getAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getKey())
                 .build()

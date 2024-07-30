@@ -1,5 +1,6 @@
 package io.hackathon.justina.patient.services;
 
+import io.hackathon.justina.patient.helper.PatientMapper;
 import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.patient.repository.PatientRepository;
@@ -22,12 +23,12 @@ public class PatientServicesImp implements IBaseCRUDServices<PatientDTO, Patient
 
     @Override
     public Page<PatientDTO> findAll(Pageable pageable) {
-        return null;
+        return patientRepository.findAll(pageable).map(PatientMapper::toPatientDTO);
     }
 
     @Override
     public PatientDTO findById(Long id) {
-        return null;
+        return PatientMapper.toPatientDTO(patientRepository.findById(id).orElse(new Patient()));
     }
 
     public Patient findByEmail(String email) {

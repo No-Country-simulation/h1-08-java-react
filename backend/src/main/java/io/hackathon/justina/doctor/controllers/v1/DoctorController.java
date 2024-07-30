@@ -22,11 +22,10 @@ public class DoctorController {
     @GetMapping()
     public ResponseEntity<PagedModel<DoctorDTO>> getAll(@PageableDefault(page = 0, size = 10, sort = "id") Pageable pageable) {
         try {
-            return ResponseEntity.ok(new PagedModel<>( doctorService.findAll(pageable)));
-        }catch (DataAccessException e){
+            return ResponseEntity.ok(new PagedModel<>(doctorService.findAll(pageable)));
+        } catch (DataAccessException e) {
             return ResponseEntity.notFound().build();
         }
     }
-
 
 }

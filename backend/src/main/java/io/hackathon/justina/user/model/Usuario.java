@@ -35,6 +35,9 @@ public class Usuario implements UserDetails {
     @Column(nullable = false, unique = true)
     private String dni;
 
+    @Transient
+    private Integer licenseNumber;
+
     @Column(nullable = false)
     private int age;
 
@@ -61,11 +64,15 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.getAuthority()));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role.getAuthority()));
     }
 
     @Override
     public String getUsername() {
-        return this.email;
+        return switch (role) {
+            case PATIENT -> this.dni;
+            case DOCTOR -> this.licenseNumber.toString();
+            default -> throw new IllegalStateException("Unexpected value: " + role);
+        };
     }
 }

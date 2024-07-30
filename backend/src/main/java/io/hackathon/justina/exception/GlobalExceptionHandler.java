@@ -54,11 +54,19 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ErrorResponse(HttpStatus.UNAUTHORIZED, "Contraseña incorrectas"), HttpStatus.UNAUTHORIZED);
     }
 
-
     @ExceptionHandler({Exception.class, RuntimeException.class})
     public ResponseEntity<ErrorResponse> handleException(Exception e) {
+
         if (e instanceof AuthenticationCredentialsNotFoundException) {
-            return new ResponseEntity<>(new ErrorResponse(HttpStatus.UNAUTHORIZED, e.getMessage()), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.UNAUTHORIZED, e.getMessage(), e.getCause().getMessage()), HttpStatus.UNAUTHORIZED);
+        }
+
+        if (e.getMessage().contains("Access Denied")) {
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN, "Acceso denegado, no posees los permisos necesarios.", e.getMessage()), HttpStatus.FORBIDDEN);
+        }
+
+        if (e.getCause() != null) {
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e.getCause().getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
