@@ -17,6 +17,7 @@ const Medications = () => {
         {
           fake_medications.map((medication, i) => (
             <CardLink
+              key={i + medication.name}
               title={medication.name}
               icon={lupaIcon}
               href={`/mis-medicamentos/${medication.name}`}
