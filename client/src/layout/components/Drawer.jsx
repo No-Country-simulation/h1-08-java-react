@@ -6,7 +6,8 @@ import {
     injectionIcon,
     folder_pink,
     person_pink,
-    help
+    help,
+    home_pink
 } from "../../assets"
 
 import { Link } from 'wouter'
@@ -36,13 +37,13 @@ function selectIcon(name) {
 
 const Drawer = ({ navigation }) => {
     const currentLanguage = useLanguage()
-    const role = "patient"
+    const role = useAuthStore(state => state.user?.role) ?? false
 
     const { isLogged, logout } = useAuthStore((state => ({
         isLogged: state.isLogged, logout: state.logout
     })), shallow)
 
-    if (!isLogged) return null
+    if (!isLogged || !role) return null
 
     return (
         <div className="drawer w-fit drawer-end">
@@ -68,9 +69,16 @@ const Drawer = ({ navigation }) => {
                             src={close} alt="hamburger-close" />
                     </label>
 
+                    <li className="md:hidden">
+                        <Link href={"/"} className={`card-shadow border border-orange hover:border-fucsia hover:bg-white`}>
+                            <img src={home_pink} alt={`home-icon`} width={30} height={30} />
+                            inicio
+                        </Link>
+                    </li>
+
                     {navigation.getNavigation(role).map((item, i) => (
                         <li key={`${i}-${item.name}`} className="md:hidden">
-                            <Link href={item.path} className={"card-shadow border border-orange hover:border-fucsia hover:bg-white"}>
+                            <Link href={item.path} className={`card-shadow border border-orange hover:border-fucsia hover:bg-white ${item.path == "#" && "is-disabled"}`}>
                                 <img src={selectIcon(item.path)} alt={`${item.name}-icon`} width={35} height={35} />
                                 {item.name}
                             </Link>

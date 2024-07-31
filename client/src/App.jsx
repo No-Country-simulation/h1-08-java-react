@@ -1,17 +1,22 @@
 import { QueryClient, QueryClientProvider, } from "@tanstack/react-query"
-import { Route, Switch } from "wouter";
+import { Redirect, Route, Switch } from "wouter";
 import Navbar from './layout/Navbar';
 import Footer from './layout/Footer';
 import NotFound from './pages/NotFound';
 import Auth from "./pages/Auth";
 import MobileNav from "./layout/MobileNav";
-import patientRoutes from "./routes/PatientRoutes";
-import doctorRoutes from "./routes/DoctorRoutes";
+import PatientRoutes from "./routes/PatientRoutes";
+import DoctorRoutes from "./routes/DoctorRoutes";
+import useAuthStore from "./store/auth-store";
 
 
 const queryClient = new QueryClient()
 
 function App() {
+  const patientRoutes = PatientRoutes()
+  const doctorRoutes = DoctorRoutes()
+  const isLogged = useAuthStore(state => state.isLogged)
+
   return (
     <QueryClientProvider client={queryClient}>
       <Navbar />
@@ -21,11 +26,10 @@ function App() {
             {(params) => <Auth page={params.page} />}
           </Route>
 
-          {...patientRoutes()}
-          {/* SI TUVIERAMOS LOS DATOS DEL USUARIO, ACÁ REALIZARIAMOS LA VALIDACION DE ROLES */}
-          {...doctorRoutes("/doctor")}
+          {doctorRoutes ? <>{...doctorRoutes}</> : patientRoutes && <>{...patientRoutes}</>}
 
-          {/* DEFAULT */}
+          {!isLogged && <Route><Redirect to={"/auth/iniciar-sesion"} /></Route>}
+
           <Route path="*" component={NotFound} />
         </Switch>
       </main>
