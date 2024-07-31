@@ -24,6 +24,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -77,7 +78,7 @@ public class AuthService {
         throw new RuntimeException("Usuario no encontrado o no puede asignar datos de usuario");
 
     }
-
+    @Transactional
     public AuthResponseRegister<PatientDTO> createPatient(RegisterPatientRequest request) {
         try {
             Patient patient = PatientMapper.toPatient(request);
@@ -88,7 +89,7 @@ public class AuthService {
             throw new DataIntegrityViolationException(e.getMessage(), e.getCause());
         }
     }
-
+    @Transactional
     public AuthResponseRegister<DoctorDTO> createDoctor(RegisterDoctorRequest request) {
         try {
             Medico medico = DoctorMapper.toMedico(request);

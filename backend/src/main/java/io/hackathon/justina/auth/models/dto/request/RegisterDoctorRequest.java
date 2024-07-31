@@ -38,7 +38,7 @@ public class RegisterDoctorRequest {
     @Email(message = "El email debe ser válido")
     private String email;
 
-    @NotNull(message = "La dirección es obligatoria")
+    //@NotNull(message = "La dirección es obligatoria")
     private AddressRequest address;
 
     @NotNull(message = "La fecha de nacimiento no puede ser nula")
@@ -54,6 +54,11 @@ public class RegisterDoctorRequest {
     @Size(min = 8, max = 100, message = "La contraseña debe tener entre 8 y 100 dígitos")
     @Pattern(regexp = "^(?!.*(.)\\1{2})[a-zA-Z0-9!@#$%^&*()_+\\-={};':\"\\\\|,.<>/?]{8,}$" , message = "la contraseña no puede tener 3 dígitos iguales consecutivos")
     private String password;
+
+    @NotNull(message = "la matricula es obligatoria")
+    @Min(value = 1000, message = "La matricula debe de tener al menos 4 dígitos")
+    @Max(value = 999999, message = "La matricula puede tener hasta 6 dígitos")
+    private Integer licenseNumber;
 
     @NotNull(message = "El doctor es obligatorio")
     private DoctorRequest doctor;

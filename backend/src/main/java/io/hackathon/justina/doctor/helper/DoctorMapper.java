@@ -23,12 +23,12 @@ public class DoctorMapper {
                 .lastName(medico.getLastName().trim())
                 .dni(medico.getDni().trim())
                 .email(medico.getEmail().trim())
-                .address(mapper.map(medico.getAddress(), Address.class).orElseGet(Address::new))
+                .address(new Address())
                 .birthdate(medico.getBirthdate())
                 .password(medico.getPassword().trim())
                 .phoneNumber(medico.getPhoneNumber().trim())
                 .speciality(mapper.map(medico.getDoctor().getSpeciality(), Especialidad.class).orElseGet(Especialidad::new))
-                .licenseNumber(medico.getDoctor().getLicenseNumber())
+                .licenseNumber(medico.getLicenseNumber())
                 .role(Role.DOCTOR)
                 .build();
     }
