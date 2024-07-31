@@ -35,7 +35,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
-        String message = e.getCause().getMessage();
+        Throwable cause = e.getCause();
+        String message = cause.getMessage();
 
         if (message.contains("could not execute statement [Cannot add or update a child row")) {
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Se intento utilizar un id inexistente"), HttpStatus.BAD_REQUEST);

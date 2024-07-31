@@ -1,7 +1,6 @@
 package io.hackathon.justina.auth.services;
 
 import io.hackathon.justina.auth.JWT.Services.JwtService;
-import io.hackathon.justina.auth.models.AuthResponse;
 import io.hackathon.justina.auth.models.dto.auth.AuthResponseRegister;
 import io.hackathon.justina.auth.models.dto.request.LoginDoctorRequest;
 import io.hackathon.justina.auth.models.dto.request.LoginRequest;

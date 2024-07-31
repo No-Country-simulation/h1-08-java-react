@@ -29,4 +29,9 @@ public class Medico extends Usuario {
 
     @OneToMany(mappedBy = "doctors", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Patient> patients;
+
+    @Override
+    public String getUsername() {
+        return this.licenseNumber.toString();
+    }
 }
