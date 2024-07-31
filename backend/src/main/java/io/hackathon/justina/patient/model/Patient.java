@@ -47,4 +47,8 @@ public class Patient extends Usuario {
             inverseJoinColumns = @JoinColumn(name = "doctor_id"))
     private Set<Medico> doctors;
 
+    @Override
+    public String getUsername() {
+        return this.getDni();
+    }
 }

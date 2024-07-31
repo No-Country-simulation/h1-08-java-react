@@ -35,7 +35,7 @@ public class Usuario implements UserDetails {
     @Column(nullable = false, unique = true)
     private String dni;
 
-    @Transient
+    @Column(name = "license_number", unique = true)
     private Integer licenseNumber;
 
     @Column(nullable = false)

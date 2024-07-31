@@ -29,7 +29,6 @@ public class JwtService {
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority).toList());
-
         return getToken(claims, userDetails);
     }
 
