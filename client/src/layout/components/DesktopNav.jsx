@@ -3,15 +3,14 @@ import useAuthStore from '../../store/auth-store'
 import { shallow } from 'zustand/shallow'
 
 const DesktopNav = ({ navigation }) => {
-    const { isLogged } = useAuthStore(state => ({
-        isLogged: state.isLogged
+    const { isLogged, role } = useAuthStore(state => ({
+        isLogged: state.isLogged,
+        role: state.user.role
     }), shallow)
-
-    const role = "patient";
 
     if (isLogged) return (
         < div className="navbar-center items-center hidden md:flex" >
-            <ul className="menu menu-horizontal px-1 capitalize text-base">
+            <ul className="menu menu-horizontal px-1 capitalize text-base gap-8">
                 {
                     navigation.getNavigation(role).map((item, i) => (
                         <li key={`${i}-${item.name}`}>
@@ -25,7 +24,7 @@ const DesktopNav = ({ navigation }) => {
                                                 {item.sub_items.map((subItem, j) => (
                                                     <li
                                                         key={`${i}-${j}-${subItem.name}`}
-                                                        className={`${subItem.path == "#" ? "disabled" : ""}`}
+                                                        className={`${subItem.path == "#" ? "is-disabled disabled" : ""}`}
                                                     >
                                                         <Link href={subItem.path}>
                                                             {subItem.name}
@@ -36,7 +35,7 @@ const DesktopNav = ({ navigation }) => {
                                         </details>
                                     )
                                     :
-                                    <Link href={item.path}>
+                                    <Link href={item.path} className={`${item.path == "#" ? "is-disabled" : ""}`}>
                                         {item.name}
                                     </Link>
                             }

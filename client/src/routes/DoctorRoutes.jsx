@@ -1,13 +1,17 @@
 import { Dashboard, Patients } from "../pages/doctor";
 import ProtectedRoute from "./ProtectedRoute";
+import useAuthStore from "../store/auth-store"
 
-const doctorRoutes = (prefix) => {
-  const customPath = (path) => `${prefix}${path}`
+const DoctorRoutes = () => {
+  // const prefix = "/doctor"
+  const role = useAuthStore(state => state.user?.role) ?? "off"
+  // const customPath = (path) => `${prefix}${path}`
+  if (role != "DOCTOR") return false;
 
   return [
-    <ProtectedRoute path={customPath("/")} component={Dashboard} />,
-    <ProtectedRoute path={customPath("/pacientes")} component={Patients} />,
+    <ProtectedRoute path={"/"} component={Dashboard} />,
+    <ProtectedRoute path={"/pacientes"} component={Patients} />,
   ]
 }
 
-export default doctorRoutes;
+export default DoctorRoutes;
