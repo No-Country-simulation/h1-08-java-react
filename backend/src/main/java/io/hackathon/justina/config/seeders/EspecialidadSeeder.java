@@ -5,7 +5,6 @@ import io.hackathon.justina.doctor.repository.EspecialidadRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestAttribute;
 
 @Component
 @RequiredArgsConstructor
@@ -16,7 +15,10 @@ public class EspecialidadSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // Crear un array de especialidades
-        Especialidad[] especialidades = new Especialidad[] {
+        if (especialidadRepository.count() > 0) {
+            return;
+        }
+        Especialidad[] especialidades = new Especialidad[]{
                 new Especialidad(1, "Cardiología"),
                 new Especialidad(2, "Neurología"),
                 new Especialidad(3, "Pediatría"),
@@ -32,7 +34,8 @@ public class EspecialidadSeeder implements CommandLineRunner {
                 new Especialidad(13, "Endocrinología"),
                 new Especialidad(14, "Reumatología")
         };
-        for (Especialidad especialidad: especialidades){
+        
+        for (Especialidad especialidad : especialidades) {
             especialidadRepository.save(especialidad);
         }
     }
