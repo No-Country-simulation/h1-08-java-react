@@ -6,33 +6,33 @@ import {
   testTube,
   personal_id,
 } from "../../../assets";
-import useNavigation from "../../../hooks/useNavigation"
+import useNavigation from "../../../hooks/useNavigation";
 
 function selectIcon(name) {
   switch (name) {
     case "/mis-patologias":
-      return medicine
+      return medicine;
     case "/mis-datos-de-salud":
-      return testTube
+      return testTube;
     case "/credenciales-y-carnets":
-      return personal_id
+      return personal_id;
     default:
       return microscope_pink;
   }
 }
 
 const MedicalHistory = () => {
-  const navigation = useNavigation()
-  const role = "patient"
-  const medicalHistoryRoutes = navigation.getNavigation(role)[2].sub_items
+  const navigation = useNavigation();
+  const role = "patient";
+  const medicalHistoryRoutes = navigation.getNavigation(role)?.[2]?.sub_items || [];
+
   return (
     <section className="flex flex-col gap-5 items-center mt-5 mb-20 py-5 px-2">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-5 md:gap-10 capitalize">
-
-        {
+        {medicalHistoryRoutes && medicalHistoryRoutes > 0 ? (
           medicalHistoryRoutes.map((item, index) => (
             <CardHistory
-              addClassName={item.path == "#" && "is-disabled"}
+              addClassName={item.path === "#" && "is-disabled"}
               key={`medical-history-${item.name}-${index}`}
               title={item.name}
               image={selectIcon(item.in_dev ?? item.path)}
@@ -40,11 +40,14 @@ const MedicalHistory = () => {
               link={`${item.path}`}
             />
           ))
-        }
-
+        ) : (
+          <div className="text-center">
+            No tienes historial clínico disponible.
+          </div>
+        )}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default MedicalHistory
+export default MedicalHistory;
