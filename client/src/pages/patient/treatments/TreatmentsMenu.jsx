@@ -23,13 +23,13 @@ function selectIcon(name) {
 
 const TreatmentsMenu = () => {
   const navigation = useNavigation();
-  const role = "patient";
-  const treatMentsRoutes = navigation.getNavigation(role)?.[1]?.sub_items || [];
+  const role = "PATIENT";
+  const treatMentsRoutes = navigation.getNavigation(role)[1].sub_items;
 
   return (
     <section className="flex flex-col gap-5 items-center mt-5 mb-20 py-5 px-2">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-5 md:gap-10 capitalize">
-        {treatMentsRoutes && treatMentsRoutes > 0 ? (
+        {
           treatMentsRoutes.map((item, index) => (
             <CardHistory
               addClassName={item.path == "#" && "is-disabled"}
@@ -40,9 +40,7 @@ const TreatmentsMenu = () => {
               link={`${item.path}`}
             />
           ))
-        ) : (
-          <div className="text-center">No tienes tratamientos disponibles.</div>
-        )}
+        }
       </div>
     </section>
   );
