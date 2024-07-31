@@ -35,19 +35,21 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
-        String message = e.getCause().getMessage();
+        Throwable cause = e.getCause();
+        String message = (cause != null && cause.getMessage() != null) ? cause.getMessage() : e.getMessage();
 
-        if (message.contains("could not execute statement [Cannot add or update a child row")) {
-            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Se intento utilizar un id inexistente"), HttpStatus.BAD_REQUEST);
+        if (message != null && message.contains("could not execute statement [Cannot add or update a child row")) {
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Se intentó utilizar un id inexistente"), HttpStatus.BAD_REQUEST);
         }
 
-        if (message.contains("Duplicate entry")) {
+        if (message != null && message.contains("Duplicate entry")) {
             String split = message.split(" ")[6];
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.CONFLICT, "El registro ya existe: " + split), HttpStatus.CONFLICT);
         }
 
-        return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Error en la integridad de los datos", e.getCause().getMessage()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Error en la integridad de los datos", message), HttpStatus.BAD_REQUEST);
     }
+
 
     @ExceptionHandler({BadCredentialsException.class})
     public ResponseEntity<ErrorResponse> handleBadCredentialsException(BadCredentialsException e) {
