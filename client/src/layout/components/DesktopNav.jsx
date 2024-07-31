@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link } from 'wouter'
 import useAuthStore from '../../store/auth-store'
 import { shallow } from 'zustand/shallow'
@@ -5,7 +6,7 @@ import { shallow } from 'zustand/shallow'
 const DesktopNav = ({ navigation }) => {
     const { isLogged, role } = useAuthStore(state => ({
         isLogged: state.isLogged,
-        role: state.user.role
+        role: state.user?.role
     }), shallow)
 
     if (isLogged) return (
