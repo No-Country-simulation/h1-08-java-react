@@ -24,18 +24,7 @@ public class Medico extends Usuario {
     @JoinColumn(name = "id_speciality", referencedColumnName = "id")
     private Especialidad speciality;
 
-
-    //private Integer licenseNumber;
-
     @OneToMany(mappedBy = "doctors", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Patient> patients;
 
-    @Override
-    public String getUsername() {
-        return switch (getRole()) {
-            case PATIENT -> getDni();
-            case DOCTOR -> getLicenseNumber().toString();
-            default -> throw new IllegalStateException("Unexpected value: " + getRole());
-        };
-    }
 }

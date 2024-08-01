@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestAttribute;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class EspecialidadSeeder implements CommandLineRunner {
@@ -15,8 +17,7 @@ public class EspecialidadSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Crear un array de especialidades
-        Especialidad[] especialidades = new Especialidad[] {
+        List.of(
                 new Especialidad(1, "Cardiología"),
                 new Especialidad(2, "Neurología"),
                 new Especialidad(3, "Pediatría"),
@@ -31,9 +32,6 @@ public class EspecialidadSeeder implements CommandLineRunner {
                 new Especialidad(12, "Neumología"),
                 new Especialidad(13, "Endocrinología"),
                 new Especialidad(14, "Reumatología")
-        };
-        for (Especialidad especialidad: especialidades){
-            especialidadRepository.save(especialidad);
-        }
+        ).forEach(especialidadRepository::save);
     }
 }
