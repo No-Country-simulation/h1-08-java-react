@@ -122,9 +122,9 @@ const ReportsAndResults = () => {
                 <input
                   type="text"
                   placeholder="Buscar"
-                  className="w-full min-w-[244px] max-w-xs h-[50px] rounded-2xl p-4 bg-transparent border border-magenta"
+                  className="w-full min-w-[244px] max-w-xs h-[50px] rounded-2xl p-4 bg-transparent border border-magenta disabled is-disabled"
                 />
-                <button className="w-[46px] h-auto p-1 bg-transparent border border-magenta rounded-2xl font-poppins font-normal text-2xl text-magenta text-center">
+                <button className="w-[46px] h-auto p-1 bg-transparent border border-magenta rounded-2xl font-poppins font-normal text-2xl text-magenta text-center disabled is-disabled">
                   <img src={search} alt="Search icon" />
                 </button>
               </div>
@@ -132,7 +132,7 @@ const ReportsAndResults = () => {
                 <h1 className="font-poppins font-normal text-black text-2xl">
                   Filtrar por
                 </h1>
-                <button className="w-[109px] h-10 p-2 border border-magenta rounded-lg font-poppins font-normal text-2xl text-magenta flex items-center justify-center">
+                <button className="w-[109px] h-10 p-2 border border-magenta rounded-lg font-poppins font-normal text-2xl text-magenta flex items-center justify-center disabled is-disabled">
                   <img src={arrowFilter} alt="arrow icon" />
                 </button>
               </div>
@@ -174,14 +174,14 @@ const ReportsAndResults = () => {
           className="tab-content bg-light backdrop-blur-sm border border-orange rounded-box p-3 min-w-[350px]"
         >
           <div className="flex flex-col gap-4">
-            <div className="flex flex-col items-stretch md:flex-row gap-4">
+          <div className="flex flex-col items-stretch md:flex-row gap-4">
               <div className="flex flex-row gap-2 justify-center">
                 <input
                   type="text"
                   placeholder="Buscar"
-                  className="w-full min-w-[244px] max-w-xs h-[50px] rounded-2xl p-4 bg-transparent border border-magenta"
+                  className="w-full min-w-[244px] max-w-xs h-[50px] rounded-2xl p-4 bg-transparent border border-magenta disabled is-disabled"
                 />
-                <button className="w-[46px] h-auto p-1 bg-transparent border border-magenta rounded-2xl font-poppins font-normal text-2xl text-magenta text-center">
+                <button className="w-[46px] h-auto p-1 bg-transparent border border-magenta rounded-2xl font-poppins font-normal text-2xl text-magenta text-center disabled is-disabled">
                   <img src={search} alt="Search icon" />
                 </button>
               </div>
@@ -189,7 +189,7 @@ const ReportsAndResults = () => {
                 <h1 className="font-poppins font-normal text-black text-2xl">
                   Filtrar por
                 </h1>
-                <button className="w-[109px] h-10 p-2 border border-magenta rounded-lg font-poppins font-normal text-2xl text-magenta flex items-center justify-center">
+                <button className="w-[109px] h-10 p-2 border border-magenta rounded-lg font-poppins font-normal text-2xl text-magenta flex items-center justify-center disabled is-disabled">
                   <img src={arrowFilter} alt="arrow icon" />
                 </button>
               </div>

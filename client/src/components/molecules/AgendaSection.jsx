@@ -35,7 +35,7 @@ const AgendaSection = () => {
           Agenda Diaria
         </h1>
         <span className="text-black text-[26px] font-poppins capitalize">
-          Hoy, {formattedDate}
+          {formattedDate}
         </span>
       </div>
 
