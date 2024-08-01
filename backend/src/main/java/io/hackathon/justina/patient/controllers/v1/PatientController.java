@@ -4,12 +4,14 @@ import io.hackathon.justina.patient.helper.PatientMapper;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.patient.model.dto.PatientRequest;
 import io.hackathon.justina.patient.services.PatientServicesImp;
+import io.hackathon.justina.patient.services.interfaces.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +20,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/patient")
 @RequiredArgsConstructor
 public class PatientController {
+
     private final PatientServicesImp patientControllerService;
+    private final PatientService patientService;
 
     @GetMapping()
     @PreAuthorize("hasRole('DOCTOR')")
@@ -36,7 +40,6 @@ public class PatientController {
     public ResponseEntity<PatientDTO> getById(@PathVariable Long id) {
         return ResponseEntity.ok(patientControllerService.findById(id));
     }
-
 
 
     @GetMapping("/dni/{dni}")
@@ -58,5 +61,13 @@ public class PatientController {
     public ResponseEntity<PatientDTO> delete(@PathVariable Long id) {
         patientControllerService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    //Endpoints nuevos
+    @PreAuthorize("hasRole('PATIENT')")
+    @GetMapping("/profile/{id}")
+    public ResponseEntity<PatientDTO> getInfoPatientById(@PathVariable Long id){
+        PatientDTO response = patientService.getInfoPatientById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

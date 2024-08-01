@@ -1,5 +1,6 @@
 package io.hackathon.justina.utils.genInterface;
 
+import io.hackathon.justina.patient.model.dto.PatientDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -16,4 +17,6 @@ public interface IBaseCRUDServices<T, S> {
     T update(S entity);
 
     void delete(Long id);
+
+
 }

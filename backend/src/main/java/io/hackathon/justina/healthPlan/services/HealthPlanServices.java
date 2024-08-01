@@ -2,6 +2,7 @@ package io.hackathon.justina.healthPlan.services;
 
 import io.hackathon.justina.healthPlan.models.HealthPlan;
 import io.hackathon.justina.healthPlan.models.dto.HealthPlanDTO;
+import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.utils.genInterface.IBaseCRUDServices;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,4 +39,5 @@ public class HealthPlanServices implements IBaseCRUDServices<HealthPlanDTO, Heal
     public void delete(Long id) {
 
     }
+
 }

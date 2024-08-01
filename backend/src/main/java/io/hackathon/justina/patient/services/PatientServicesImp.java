@@ -1,9 +1,11 @@
 package io.hackathon.justina.patient.services;
 
+import io.hackathon.justina.exception.PatientNotFoundException;
 import io.hackathon.justina.patient.helper.PatientMapper;
 import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.patient.repository.PatientRepository;
+import io.hackathon.justina.patient.services.interfaces.PatientService;
 import io.hackathon.justina.utils.Age;
 import io.hackathon.justina.utils.Enums.Role;
 import io.hackathon.justina.utils.IMC;
@@ -16,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class PatientServicesImp implements IBaseCRUDServices<PatientDTO, Patient> {
+public class PatientServicesImp implements IBaseCRUDServices<PatientDTO, Patient>, PatientService {
 
     private final PatientRepository patientRepository;
     private final Mapper mapper = Mapper.getInstance();
@@ -71,6 +73,15 @@ public class PatientServicesImp implements IBaseCRUDServices<PatientDTO, Patient
     @Override
     public void delete(Long id) {
 
+    }
+
+    @Override
+    public PatientDTO getInfoPatientById(Long id) {
+        Patient patient = patientRepository.findById(id).orElseThrow(
+                () -> new PatientNotFoundException("Paciente no encontrado con id: " + id)
+        );
+        PatientDTO response = PatientMapper.toPatientDTO(patient);
+        return response;
     }
 
 

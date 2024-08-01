@@ -3,15 +3,12 @@ package io.hackathon.justina.patient.helper;
 import io.hackathon.justina.address.models.Address;
 import io.hackathon.justina.address.models.dto.AddressDTO;
 import io.hackathon.justina.auth.models.dto.request.RegisterPatientRequest;
-import io.hackathon.justina.healthPlan.mapper.HealthPlanMapper;
 import io.hackathon.justina.healthPlan.models.HealthPlan;
-import io.hackathon.justina.healthPlan.models.dto.HealthPlanDTO;
 import io.hackathon.justina.healthPlan.models.dto.HealthPlanResponse;
 import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.utils.Enums.Role;
 import io.hackathon.justina.utils.modelMapper.Mapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

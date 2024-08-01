@@ -3,6 +3,7 @@ package io.hackathon.justina.doctor.services;
 import io.hackathon.justina.doctor.models.Medico;
 import io.hackathon.justina.doctor.models.dto.DoctorDTO;
 import io.hackathon.justina.doctor.repository.DoctorRepository;
+import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.utils.Age;
 import io.hackathon.justina.utils.Enums.Role;
 import io.hackathon.justina.utils.genInterface.IBaseCRUDServices;
@@ -68,4 +69,6 @@ public class DoctorServicesImp implements IBaseCRUDServices<DoctorDTO, Medico> {
     public void delete(Long id) {
 
     }
+
+
 }
