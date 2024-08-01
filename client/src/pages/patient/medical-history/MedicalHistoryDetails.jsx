@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "wouter";
+import useAuthStore from "../../../store/auth-store"
 
 const MedicalHistoryDetails = () => {
+  // datos del usuario logueado
+  const userData = useAuthStore((state) => state.user)
+
   // eslint-disable-next-line no-unused-vars
   const [detailedData, setDetailedData] = useState({});
   const { specialty } = useParams();
@@ -106,15 +110,15 @@ const MedicalHistoryDetails = () => {
 
           {medicalInfo.find((item) => item.specialty === specialty)
             ?.location && (
-            <div key="location">
-              <h1 className="font-poppins font-medium text-black text-[34px]">
-                {
-                  medicalInfo.find((item) => item.specialty === specialty)
-                    ?.location
-                }
-              </h1>
-            </div>
-          )}
+              <div key="location">
+                <h1 className="font-poppins font-medium text-black text-[34px]">
+                  {
+                    medicalInfo.find((item) => item.specialty === specialty)
+                      ?.location
+                  }
+                </h1>
+              </div>
+            )}
         </div>
         <hr className="mx-auto border-2 border-black w-4/6 min-w-[293px] my-1" />
 
@@ -130,7 +134,9 @@ const MedicalHistoryDetails = () => {
                   Nombre y Apellido:
                 </p>
                 <span className="font-roboto font-normal text-black text-2xl xl:text-xl">
-                  {detailedData?.datosGenerales?.nombreYApellido}
+                  {userData ? `${userData.name} ${userData.lastName}`
+                    : detailedData?.datosGenerales?.nombreYApellido
+                  }
                 </span>
               </div>
             )}
@@ -234,7 +240,7 @@ const MedicalHistoryDetails = () => {
             )}
           </div>
         </div>
-        <button className="mx-auto w-[268px] h-auto px-6 mt-8 border border-magenta rounded-lg font-poppins font-normal text-2xl text-magenta text-center">Descargar PDF</button>
+        <button className="mx-auto w-[268px] h-auto px-6 mt-8 border border-magenta rounded-lg font-poppins font-normal text-2xl text-magenta text-center py-2 is-disabled disabled">Descargar PDF</button>
       </div>
     </section>
   );

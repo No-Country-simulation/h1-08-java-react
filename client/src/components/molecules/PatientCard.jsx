@@ -15,12 +15,12 @@ const PatientCard = ({ patient }) => {
                 {patient.firstName} {patient.lastName}
             </h5>
 
-            <div className="flex gap-2 flex-wrap justify-end">
+            <div className="flex gap-2 md:gap-3.5 flex-wrap justify-end">
 
                 {
                     buttons.map((item, index) => (
                         <button key={`patient-btn-${index}`}
-                            className={`bg-light text-magenta border-magenta hover:text-accent hover:border-accent capitalize transition ease duration-200 border-2 py-2 w-[190px] rounded-xl text-xl font-medium font-poppins`}
+                            className={`bg-light text-magenta border-magenta hover:text-accent hover:border-accent capitalize transition ease duration-200 border-2 py-2 w-[160px] md:w-[190px] rounded-xl text-xl font-medium font-poppins`}
                         >
                             {item}
                         </button>

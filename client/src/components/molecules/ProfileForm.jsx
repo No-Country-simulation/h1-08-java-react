@@ -5,28 +5,33 @@ import SubmitButton from "../atoms/SubmitButton"
 import RegionSelected from "./RegionSelected"
 import Select from "../atoms/Select"
 
-
-const type_plan = Object.freeze([
+const type_plan = [
   { name: "Tipo de cobertura médica", value: 0, isDefaultChecked: true },
-  { name: "Prepaga", value: 1 },
-  { name: "Obra Social", value: 2 },
-  { name: "Sin cobertura", value: 3 },
-])
+  { name: "Prepaga", value: "PREPAGA", },
+  { name: "Obra Social", value: "OBRASOCIAL", },
+  { name: "Sin cobertura", value: "NINGUNO", },
+]
 
-const planFields = Object.freeze([
-  { label: "Nombre", placeholder: "Nombre de su cobertura", name: "plan_name", value: "Osde" },
-  { label: "Número de afiliado", placeholder: "Número de afiliado", name: "plan_member_id", value: "1720087555237" },
-  { label: "Plan", placeholder: "Plan", name: "plan", value: "Oro" },
-])
+const updatedTypePlan = (type) => {
+  type_plan.map(plan => {
+    if (plan.value === type) return { ...plan, isDefaultChecked: true };
+    return { ...plan };
+  })
+};
 
-const ProfileForm = ({ isDisabled, onSubmitForm, handleState }) => {
+const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
   const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm()
 
-  const onSubmit = handleSubmit(data => {
-    console.log(data);
-    handleState()
-    onSubmitForm()
-  })
+  const onSubmit = handleSubmit(onSubmitForm)
+
+
+  const planFields = [
+    { label: "Nombre", placeholder: "Nombre de su cobertura", name: "plan_name", value: userData?.healthPlan?.name ?? "Osde" },
+    { label: "Número de afiliado", placeholder: "Número de afiliado", name: "plan_member_id", value: userData?.healthPlan?.numAffiliate ?? "1720087555237" },
+    { label: "Plan", placeholder: "Plan", name: "plan", value: userData?.healthPlan?.plan ?? "Oro" },
+  ]
+  const typePlanOptions = userData?.healthPlan?.typeHealth
+    ? updatedTypePlan(userData.healthPlan.typeHealth) : type_plan
 
 
   return (
@@ -38,7 +43,7 @@ const ProfileForm = ({ isDisabled, onSubmitForm, handleState }) => {
           register={register("email", emailValidation)}
           error={errors.email}
           label={"Email"}
-          value={"justina.io@gmail.com"}
+          value={userData?.email ?? "justina.io@gmail.com"}
         />
 
         <Input
@@ -47,7 +52,7 @@ const ProfileForm = ({ isDisabled, onSubmitForm, handleState }) => {
           error={errors.phone}
           label={"Teléfono / Celular"}
           placeholder={"Teléfono"}
-          value={"11244545"}
+          value={userData?.phoneNumber ?? "11244545"}
         />
 
         <RegionSelected
@@ -62,7 +67,7 @@ const ProfileForm = ({ isDisabled, onSubmitForm, handleState }) => {
           register={register("locality")}
           error={errors.locality}
           label={"Localidad"}
-          value={"Limboriu"}
+          value={userData?.address?.city ?? "Limboriu"}
         />
 
         <Input
@@ -71,39 +76,41 @@ const ProfileForm = ({ isDisabled, onSubmitForm, handleState }) => {
           error={errors.address}
           label={"Dirección"}
           placeholder={"Dirección"}
-          value={"Calle F. 123"}
+          value={userData?.address?.street ?? "Calle F. 123"}
         />
       </>
 
+      {
+        userData?.role === "PATIENT" && (<>
+          <div className="divider my-2 col-span-full"></div>
+          <h2 className="text-2xl font-bold col-span-full">Tu Plan Médico</h2>
+          <>
+            <Select
+              column
+              isDisabled={isDisabled}
+              register={register("plan_type")}
+              error={errors.plan_type}
+              label={"Tipo de Plan"}
+              options={typePlanOptions}
+            />
 
-      <div className="divider my-2 col-span-full"></div>
-      <h2 className="text-2xl font-bold col-span-full">Tu Plan Médico</h2>
-      <>
-        <Select
-          column
-          isDisabled={isDisabled}
-          register={register("plan_type")}
-          error={errors.plan_type}
-          label={"Tipo de Plan"}
-          options={type_plan}
-        />
-
-        {planFields.map(({ label, placeholder, name, value }) => (
-          <Input
-            isDisabled={isDisabled}
-            key={name}
-            label={label}
-            value={value}
-            placeholder={placeholder ?? label}
-            register={register(name)}
-            error={errors[name]}
-          />
-        ))}
-      </>
-
+            {planFields.map(({ label, placeholder, name, value }) => (
+              <Input
+                isDisabled={isDisabled}
+                key={name}
+                label={label}
+                value={value}
+                placeholder={placeholder ?? label}
+                register={register(name)}
+                error={errors[name]}
+              />
+            ))}
+          </>
+        </>)
+      }
 
       <SubmitButton
-        addClassName={"col-span-full mt-5"}
+        addClassName={"col-span-full mt-5 is-disabled"}
         onClick={isDisabled ?
           (e) => {
             e.preventDefault()

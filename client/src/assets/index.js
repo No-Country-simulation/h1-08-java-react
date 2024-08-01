@@ -31,8 +31,11 @@ import injectionIcon from "./icons/injection.svg"
 import hamburger from "./navigation/hamburger/hamburger.svg"
 import close from "./navigation/hamburger/close-outline.svg"
 
+import home_pink from "./icons/pink/home.svg"
+
 
 export {
+    home_pink,
     help,
     person_pink,
     injectionIcon,

@@ -1,10 +1,9 @@
-import ProtectedRoute from './ProtectedRoute'
+import ProtectedRoute from "./ProtectedRoute"
 import {
   HealthData,
   MedicalHistoryMenu,
   Medications,
   Patologies,
-  Profile,
   Vaccines,
   ReportsAndResults,
   MedicalHistoryDetails,
@@ -14,11 +13,14 @@ import {
   Home,
   ShareInfo
 } from "../pages/patient"
+import useAuthStore from "../store/auth-store"
 
-const patientRoutes = () => {
+const PatientRoutes = () => {
+  const role = useAuthStore(state => state.user?.role) ?? "off"
+  if (role != "PATIENT") return false;
 
   return [
-    <ProtectedRoute path="/" component={Home} />,
+    < ProtectedRoute path="/" component={Home} />,
 
     <ProtectedRoute path="/mi-informacion" component={ShareInfo} />,
 
@@ -42,11 +44,9 @@ const patientRoutes = () => {
       {(params) => <MedicationDetail mid={params.mid} />}
     </ProtectedRoute>,
 
-    <ProtectedRoute path="/agenda" component={Dates} />,
-
-    <ProtectedRoute path="/mi-perfil" component={Profile} />
+    <ProtectedRoute path="/mis-citas" component={Dates} />,
 
   ]
 }
 
-export default patientRoutes
+export default PatientRoutes
