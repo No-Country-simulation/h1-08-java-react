@@ -9,8 +9,8 @@ const fakeUser = {
     birtDate: "2000-07-11",
     name: "Franco",
     lastName: "Maidana",
-    // role: "PATIENT",
-    role: "DOCTOR",
+    role: "PATIENT",
+    // role: "DOCTOR",
     gender: "MALE",
     email: "maidana@test.com",
 }
