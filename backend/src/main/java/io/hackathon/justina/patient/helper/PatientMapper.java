@@ -3,13 +3,19 @@ package io.hackathon.justina.patient.helper;
 import io.hackathon.justina.address.models.Address;
 import io.hackathon.justina.address.models.dto.AddressDTO;
 import io.hackathon.justina.auth.models.dto.request.RegisterPatientRequest;
+import io.hackathon.justina.healthPlan.mapper.HealthPlanMapper;
+import io.hackathon.justina.healthPlan.models.HealthPlan;
+import io.hackathon.justina.healthPlan.models.dto.HealthPlanDTO;
+import io.hackathon.justina.healthPlan.models.dto.HealthPlanResponse;
 import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.utils.Enums.Role;
 import io.hackathon.justina.utils.modelMapper.Mapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-
+@Component
 public class PatientMapper {
     private final static Mapper mapper = Mapper.getInstance();
 
@@ -24,6 +30,7 @@ public class PatientMapper {
                 .birthdate(request.getBirthdate())
                 .role(Role.PATIENT)
                 .password(request.getPassword().trim())
+                .healthPlan(new HealthPlan())
                 .build();
 
     }
@@ -44,6 +51,19 @@ public class PatientMapper {
                 .phoneNumber(Optional.ofNullable(patient.getPhoneNumber()).map(String::trim).orElse(null))
                 .birthDate(patient.getBirthdate())
                 .role(patient.getRole())
+                .healthPlanResponse(mapToHealhPlan(patient.getHealthPlan()))
                 .build();
     }
+
+    private static HealthPlanResponse mapToHealhPlan(HealthPlan healthPlan) {
+        return HealthPlanResponse.builder()
+                .id(healthPlan.getId())
+                .plan(healthPlan.getPlan())
+                .numAffiliate(healthPlan.getNumAffiliate())
+                .typeHealth(healthPlan.getTypeHealth())
+                .name(healthPlan.getName())
+                .build();
+    }
+
+
 }

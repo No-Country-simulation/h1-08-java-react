@@ -1,6 +1,7 @@
 package io.hackathon.justina.patient.model.dto;
 
 import io.hackathon.justina.address.models.dto.AddressDTO;
+import io.hackathon.justina.healthPlan.models.dto.HealthPlanResponse;
 import io.hackathon.justina.utils.Enums.Genders;
 import io.hackathon.justina.utils.Enums.Role;
 import lombok.AllArgsConstructor;
@@ -42,4 +43,6 @@ public class PatientDTO {
     private String phoneNumber;
 
     private Role role;
+
+    private HealthPlanResponse healthPlanResponse;
 }

@@ -37,6 +37,8 @@ public class PatientController {
         return ResponseEntity.ok(patientControllerService.findById(id));
     }
 
+
+
     @GetMapping("/dni/{dni}")
     public ResponseEntity<PatientDTO> getByDni(@RequestParam String dni) {
         return ResponseEntity.ok(patientControllerService.PatientDTOFindByDni(dni));
