@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form"
 import SubmitButton from "../atoms/SubmitButton"
 import RegionSelected from "./RegionSelected"
 import Select from "../atoms/Select"
+import LittleCardSelector from "../../components/atoms/LittleCardSelector";
+
 
 const type_plan = [
   { name: "Tipo de cobertura médica", value: 0, isDefaultChecked: true },
@@ -35,8 +37,23 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
 
 
   return (
-    <form className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-center w-fit mx-auto mt-5 mb-10 font-poppins">
-      <h2 className="text-2xl font-bold col-span-full">Tus datos de contacto</h2>
+    <form className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-center md:w-fit w-11/12 max-w-[640px] mx-auto mt-5 mb-10 font-poppins">
+      <h2 className="text-2xl font-bold col-span-full">Plan Médico</h2>
+
+      <div className="col-span-full">
+        <div className="flex flex-wrap gap-5 justify-between items-center">
+          <LittleCardSelector label={"Género"} />
+          <LittleCardSelector label={"Edad"} />
+          <LittleCardSelector label={"G. Sanguíneo"} />
+          <LittleCardSelector label={"Estatura"} />
+          <LittleCardSelector label={"IMC"} />
+          <LittleCardSelector label={"F. Nacimiento"} />
+        </div>
+      </div>
+
+      <div className="divider my-2 col-span-full"></div>
+
+      <h2 className="text-2xl font-bold col-span-full">Datos de contacto</h2>
       <>
         <Input
           isDisabled={isDisabled}
@@ -83,7 +100,7 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
       {
         userData?.role === "PATIENT" && (<>
           <div className="divider my-2 col-span-full"></div>
-          <h2 className="text-2xl font-bold col-span-full">Tu Plan Médico</h2>
+          <h2 className="text-2xl font-bold col-span-full">Plan Médico</h2>
           <>
             <Select
               column
