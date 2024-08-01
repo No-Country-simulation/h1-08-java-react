@@ -8,7 +8,8 @@ import MobileNav from "./layout/MobileNav";
 import PatientRoutes from "./routes/PatientRoutes";
 import DoctorRoutes from "./routes/DoctorRoutes";
 import useAuthStore from "./store/auth-store";
-
+import ProtectedRoute from "./routes/ProtectedRoute";
+import Profile from "./pages/Profile"
 
 const queryClient = new QueryClient()
 
@@ -26,9 +27,13 @@ function App() {
             {(params) => <Auth page={params.page} />}
           </Route>
 
+          <ProtectedRoute path="/mi-perfil" component={Profile} />
+
           {doctorRoutes ? <>{...doctorRoutes}</> : patientRoutes && <>{...patientRoutes}</>}
 
-          {!isLogged && <Route><Redirect to={"/auth/iniciar-sesion"} /></Route>}
+          {!isLogged && <Route>
+            <Redirect to={"/auth/iniciar-sesion"} />
+          </Route>}
 
           <Route path="*" component={NotFound} />
         </Switch>

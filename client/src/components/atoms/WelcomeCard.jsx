@@ -21,7 +21,7 @@ const WelcomeCard = () => {
         {role && ((role === "DOCTOR") && (gender === "f" ? "Doctora" : "Doctor"))}
       </h2>
 
-      <p className="text-black text-2xl md:text-3xl px-1 capitalize font-medium text-nowrap overflow-hidden text-ellipsis">
+      <p className="text-black text-2xl md:text-3xl pl-4 pr-1 capitalize font-medium text-nowrap overflow-hidden text-ellipsis">
         {name ?? "Usuario"}  {lastName ?? "Invitado"}
       </p>
 
