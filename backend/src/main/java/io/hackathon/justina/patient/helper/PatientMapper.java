@@ -5,7 +5,7 @@ import io.hackathon.justina.address.models.dto.AddressDTO;
 import io.hackathon.justina.auth.models.dto.request.RegisterPatientRequest;
 import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
-import io.hackathon.justina.utils.Role;
+import io.hackathon.justina.utils.Enums.Role;
 import io.hackathon.justina.utils.modelMapper.Mapper;
 
 import java.util.Optional;
@@ -37,7 +37,7 @@ public class PatientMapper {
                 .lastName(Optional.ofNullable(patient.getLastName()).map(String::trim).orElse(null))
                 .gender(patient.getGender())
                 .bloodType(Optional.ofNullable(patient.getBloodType()).map(String::trim).orElse(null))
-                .height(Optional.ofNullable(patient.getHeight()).map(String::trim).orElse(null))
+                .height(patient.getHeight())
                 .weight(Optional.of(patient.getWeight()).orElse(0.0))
                 .address(mapper.map(Optional.ofNullable(patient.getAddress()), AddressDTO.class).orElseGet(AddressDTO::new))
                 .email(Optional.ofNullable(patient.getEmail()).map(String::trim).orElse(null))

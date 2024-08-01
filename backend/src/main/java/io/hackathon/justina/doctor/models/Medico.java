@@ -1,6 +1,5 @@
 package io.hackathon.justina.doctor.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.user.model.Usuario;
 import jakarta.persistence.*;
@@ -25,10 +24,9 @@ public class Medico extends Usuario {
     @JoinColumn(name = "id_speciality", referencedColumnName = "id")
     private Especialidad speciality;
 
-    @Column(name = "licenseNumber")
+    @Column(name = "license_number", unique = true)
     private Integer licenseNumber;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "doctors", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Patient> patients;
 }

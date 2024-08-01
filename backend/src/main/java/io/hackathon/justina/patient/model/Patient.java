@@ -3,7 +3,7 @@ package io.hackathon.justina.patient.model;
 import io.hackathon.justina.doctor.models.Medico;
 import io.hackathon.justina.healthPlan.models.HealthPlan;
 import io.hackathon.justina.user.model.Usuario;
-import io.hackathon.justina.utils.Genders;
+import io.hackathon.justina.utils.Enums.Genders;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,7 +33,7 @@ public class Patient extends Usuario {
     private Genders gender;
 
     @Column()
-    private String height;
+    private double height;
 
     @Column()
     private double weight;
@@ -46,4 +46,5 @@ public class Patient extends Usuario {
             joinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "doctor_id"))
     private Set<Medico> doctors;
+
 }

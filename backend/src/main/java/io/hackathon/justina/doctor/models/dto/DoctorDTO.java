@@ -2,7 +2,7 @@ package io.hackathon.justina.doctor.models.dto;
 
 import io.hackathon.justina.address.models.dto.AddressDTO;
 import io.hackathon.justina.doctor.models.Especialidad;
-import io.hackathon.justina.utils.Role;
+import io.hackathon.justina.utils.Enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DoctorDto {
+public class DoctorDTO {
     private Long id;
 
     private String name;

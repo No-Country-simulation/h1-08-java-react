@@ -1,7 +1,7 @@
 package io.hackathon.justina.user.model;
 
 import io.hackathon.justina.address.models.Address;
-import io.hackathon.justina.utils.Role;
+import io.hackathon.justina.utils.Enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +35,9 @@ public class Usuario implements UserDetails {
     @Column(nullable = false, unique = true)
     private String dni;
 
+    @Transient
+    private Integer licenseNumber;
+
     @Column(nullable = false)
     private int age;
 
@@ -56,16 +59,20 @@ public class Usuario implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Column
+    @Column(nullable = false, columnDefinition = "boolean default true")
     private Boolean enabled = true;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.getAuthority()));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role.getAuthority()));
     }
 
     @Override
     public String getUsername() {
-        return this.email;
+        return switch (role) {
+            case PATIENT -> this.dni;
+            case DOCTOR -> this.licenseNumber.toString();
+            default -> throw new IllegalStateException("Unexpected value: " + role);
+        };
     }
 }

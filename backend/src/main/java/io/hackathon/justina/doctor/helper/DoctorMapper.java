@@ -5,8 +5,9 @@ import io.hackathon.justina.address.models.dto.AddressDTO;
 import io.hackathon.justina.auth.models.dto.request.RegisterDoctorRequest;
 import io.hackathon.justina.doctor.models.Especialidad;
 import io.hackathon.justina.doctor.models.Medico;
-import io.hackathon.justina.doctor.models.dto.DoctorDto;
-import io.hackathon.justina.utils.Role;
+import io.hackathon.justina.doctor.models.dto.DoctorDTO;
+import io.hackathon.justina.user.model.Usuario;
+import io.hackathon.justina.utils.Enums.Role;
 import io.hackathon.justina.utils.modelMapper.Mapper;
 
 public class DoctorMapper {
@@ -32,8 +33,8 @@ public class DoctorMapper {
                 .build();
     }
 
-    public static DoctorDto toMedicoDto(Medico medico) {
-        return DoctorDto.builder()
+    public static DoctorDTO toMedicoDto(Medico medico) {
+        return DoctorDTO.builder()
                 .id(medico.getId())
                 .dni(medico.getDni())
                 .name(medico.getName())
@@ -46,4 +47,20 @@ public class DoctorMapper {
                 .role(medico.getRole())
                 .build();
     }
+
+    public static Usuario toUsuario(Medico medico) {
+        return Usuario.builder()
+                .name(medico.getName().trim())
+                .lastName(medico.getLastName().trim())
+                .dni(medico.getDni().trim())
+                .licenseNumber(medico.getLicenseNumber())
+                .email(medico.getEmail().trim())
+                .address(mapper.map(medico.getAddress(), Address.class).orElseGet(Address::new))
+                .birthdate(medico.getBirthdate())
+                .password(medico.getPassword().trim())
+                .phoneNumber(medico.getPhoneNumber().trim())
+                .role(medico.getRole())
+                .build();
+    }
 }
+

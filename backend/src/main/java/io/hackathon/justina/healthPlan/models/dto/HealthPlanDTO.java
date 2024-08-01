@@ -1,6 +1,6 @@
 package io.hackathon.justina.healthPlan.models.dto;
 
-import io.hackathon.justina.utils.TypeHealth;
+import io.hackathon.justina.utils.Enums.TypeHealth;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

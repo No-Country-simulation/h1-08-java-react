@@ -9,13 +9,16 @@ import io.hackathon.justina.auth.models.dto.request.RegisterDoctorRequest;
 import io.hackathon.justina.auth.models.dto.request.RegisterPatientRequest;
 import io.hackathon.justina.doctor.helper.DoctorMapper;
 import io.hackathon.justina.doctor.models.Medico;
+import io.hackathon.justina.doctor.models.dto.DoctorDTO;
 import io.hackathon.justina.doctor.services.DoctorServicesImp;
 import io.hackathon.justina.patient.helper.PatientMapper;
 import io.hackathon.justina.patient.model.Patient;
+import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.patient.services.PatientServicesImp;
-import io.hackathon.justina.utils.Role;
+import io.hackathon.justina.utils.Enums.Role;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.User;
@@ -57,6 +60,7 @@ public class AuthService {
         T data = getUserData(credentials, clazz);
 
         return new AuthResponseRegister<>(token, data);
+
     }
 
     private <T> T getUserData(String credentials, Class<?> clazz) {
@@ -75,25 +79,25 @@ public class AuthService {
 
     }
 
-    public AuthResponse createPatient(RegisterPatientRequest request) {
+    public AuthResponseRegister<PatientDTO> createPatient(RegisterPatientRequest request) {
         try {
             Patient patient = PatientMapper.toPatient(request);
             patient.setPassword(passwordEncoder.encode(request.getPassword()));
-            patientServices.save(patient);
-            return AuthResponse.builder().token(jwtService.getToken(patient)).build();
+            PatientDTO patientDTO = patientServices.save(patient);
+            return new AuthResponseRegister<>(jwtService.getToken(patient), patientDTO);
         } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+            throw new DataIntegrityViolationException(e.getMessage(), e.getCause());
         }
     }
 
-    public AuthResponse createDoctor(RegisterDoctorRequest request) {
+    public AuthResponseRegister<DoctorDTO> createDoctor(RegisterDoctorRequest request) {
         try {
             Medico medico = DoctorMapper.toMedico(request);
             medico.setPassword(passwordEncoder.encode(request.getPassword()));
-            doctorServices.save(medico);
-            return AuthResponse.builder().token(jwtService.getToken(medico)).build();
+            DoctorDTO doctorDTO = doctorServices.save(medico);
+            return new AuthResponseRegister<>(jwtService.getToken(medico), doctorDTO);
         } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+            throw new DataIntegrityViolationException(e.getMessage(), e.getCause());
         }
     }
 }

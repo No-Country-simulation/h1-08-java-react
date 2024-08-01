@@ -16,10 +16,10 @@ public class Especialidad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String especialidad;
+    private String speciality;
 
     @OneToMany(mappedBy = "speciality")
     @JsonBackReference
     @ToString.Exclude
-    private List<Medico> medicos;
+    private List<Medico> doctors;
 }

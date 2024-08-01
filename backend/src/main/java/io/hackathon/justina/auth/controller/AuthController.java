@@ -1,6 +1,5 @@
 package io.hackathon.justina.auth.controller;
 
-import io.hackathon.justina.auth.models.AuthResponse;
 import io.hackathon.justina.auth.models.dto.auth.AuthResponseRegister;
 import io.hackathon.justina.auth.models.dto.request.LoginDoctorRequest;
 import io.hackathon.justina.auth.models.dto.request.LoginRequest;
@@ -8,7 +7,9 @@ import io.hackathon.justina.auth.models.dto.request.RegisterDoctorRequest;
 import io.hackathon.justina.auth.models.dto.request.RegisterPatientRequest;
 import io.hackathon.justina.auth.services.AuthService;
 import io.hackathon.justina.doctor.models.Medico;
+import io.hackathon.justina.doctor.models.dto.DoctorDTO;
 import io.hackathon.justina.patient.model.Patient;
+import io.hackathon.justina.patient.model.dto.PatientDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -42,12 +43,12 @@ public class AuthController {
     }
 
     @PostMapping("/register/patient")
-    public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterPatientRequest request) {
+    public ResponseEntity<AuthResponseRegister<PatientDTO>> register(@Valid @RequestBody RegisterPatientRequest request) {
         return ResponseEntity.ok(authService.createPatient(request));
     }
 
     @PostMapping("/register/doctor")
-    public ResponseEntity<AuthResponse> registerDoctor(@Valid @RequestBody RegisterDoctorRequest request) {
+    public ResponseEntity<AuthResponseRegister<DoctorDTO>> registerDoctor(@Valid @RequestBody RegisterDoctorRequest request) {
         try {
             return ResponseEntity.ok(authService.createDoctor(request));
         } catch (IllegalArgumentException e) {
