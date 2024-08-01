@@ -18,13 +18,17 @@ public class Laboratory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(nullable = false)
     private String name;
-
     @Column(nullable = false, unique = true)
     private String MedLabCode;
 
-    @OneToMany(mappedBy = "laboratory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "laboratory", fetch = FetchType.LAZY)
     private Set<Medicine> medicines;
+
+    public Laboratory(Long id, String medLabCode, String name) {
+        this.id = id;
+        this.MedLabCode = medLabCode;
+        this.name = name;
+    }
 }
