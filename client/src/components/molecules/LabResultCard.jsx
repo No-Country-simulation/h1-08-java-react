@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const LabResultCard = ({ examination, location, date }) => {
   return (
-    <div className="flex flex-col gap-2 p-4 rounded-2xl min-w-[300px] h-auto bg-light border border-orange">
+    <div className="flex flex-col gap-2 p-4 rounded-2xl min-w-[300px] h-auto bg-light border border-orange is-disabled">
       <div className="flex flex-col">
         <p className="font-roboto font-normal text-black/50 text-xl">Informe:</p>
         <h1 className="font-roboto font-normal text-black text-2xl">{examination}</h1>

@@ -1,7 +1,7 @@
 import { useState } from "react"
-import ProfileForm from "../../components/molecules/ProfileForm"
-import useAuthStore from "../../store/auth-store"
-import useLanguage from "../../hooks/useLanguage"
+import ProfileForm from "../components/molecules/ProfileForm"
+import useAuthStore from "../store/auth-store"
+import useLanguage from "../hooks/useLanguage"
 
 const Profile = () => {
     const lang = useLanguage()

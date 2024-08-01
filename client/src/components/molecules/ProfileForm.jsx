@@ -67,7 +67,7 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
           register={register("locality")}
           error={errors.locality}
           label={"Localidad"}
-          value={userData?.address.city ?? "Limboriu"}
+          value={userData?.address?.city ?? "Limboriu"}
         />
 
         <Input
@@ -76,36 +76,38 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
           error={errors.address}
           label={"Dirección"}
           placeholder={"Dirección"}
-          value={userData?.address.street ?? "Calle F. 123"}
+          value={userData?.address?.street ?? "Calle F. 123"}
         />
       </>
 
+      {
+        userData?.role === "PATIENT" && (<>
+          <div className="divider my-2 col-span-full"></div>
+          <h2 className="text-2xl font-bold col-span-full">Tu Plan Médico</h2>
+          <>
+            <Select
+              column
+              isDisabled={isDisabled}
+              register={register("plan_type")}
+              error={errors.plan_type}
+              label={"Tipo de Plan"}
+              options={typePlanOptions}
+            />
 
-      <div className="divider my-2 col-span-full"></div>
-      <h2 className="text-2xl font-bold col-span-full">Tu Plan Médico</h2>
-      <>
-        <Select
-          column
-          isDisabled={isDisabled}
-          register={register("plan_type")}
-          error={errors.plan_type}
-          label={"Tipo de Plan"}
-          options={typePlanOptions}
-        />
-
-        {planFields.map(({ label, placeholder, name, value }) => (
-          <Input
-            isDisabled={isDisabled}
-            key={name}
-            label={label}
-            value={value}
-            placeholder={placeholder ?? label}
-            register={register(name)}
-            error={errors[name]}
-          />
-        ))}
-      </>
-
+            {planFields.map(({ label, placeholder, name, value }) => (
+              <Input
+                isDisabled={isDisabled}
+                key={name}
+                label={label}
+                value={value}
+                placeholder={placeholder ?? label}
+                register={register(name)}
+                error={errors[name]}
+              />
+            ))}
+          </>
+        </>)
+      }
 
       <SubmitButton
         addClassName={"col-span-full mt-5 is-disabled"}

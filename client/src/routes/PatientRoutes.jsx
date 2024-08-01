@@ -4,7 +4,6 @@ import {
   MedicalHistoryMenu,
   Medications,
   Patologies,
-  Profile,
   Vaccines,
   ReportsAndResults,
   MedicalHistoryDetails,
@@ -47,7 +46,6 @@ const PatientRoutes = () => {
 
     <ProtectedRoute path="/mis-citas" component={Dates} />,
 
-    <ProtectedRoute path="/mi-perfil" component={Profile} />,
   ]
 }
 

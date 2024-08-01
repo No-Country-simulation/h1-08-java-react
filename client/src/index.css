@@ -35,8 +35,20 @@ body {
 }
 
 .cardDetails,
-.shadowCard{
+.shadowCard {
     box-shadow: 4px 4px 4px 0px #F5C046;
+}
+
+.shadow-color-success {
+    box-shadow: 4px 4px 4px 0px #36d399;
+}
+
+.shadow-color-warning {
+    box-shadow: 4px 4px 4px 0px #fbbd23;
+}
+
+.shadow-color-error {
+    box-shadow: 4px 4px 4px 0px #f87272;
 }
 
 .is-disabled {

@@ -26,24 +26,24 @@ const AgendaSection = () => {
       return appointments.filter((appointment) => appointment.status === selectedFilter);
     }
   };
-  
+
 
   return (
-    <section className="flex flex-col items-center mx-auto w-[1064px] gap-6 p-6 rounded-2xl bg-light backdrop-blur-sm shadowCard border border-orange">
-      <div className="flex flex-row gap-x-44 justify-between max-w-[850px]">
-        <h1 className="text-black text-4xl font-poppins capitalize font-medium">
+    <section className="flex flex-col items-center mx-auto w-full gap-10 py-10 px-6 rounded-2xl bg-light backdrop-blur-sm shadowCard border border-orange">
+      <div className="flex flex-col md:flex-row gap-x-44 gap-3 justify-between max-w-[850px]">
+        <h1 className="text-black text-4xl font-poppins capitalize font-medium text-center">
           Agenda Diaria
         </h1>
-        <span className="text-black text-[26px] font-poppins capitalize">
+        <span className="text-black text-[26px] font-poppins capitalize text-right">
           {formattedDate}
         </span>
       </div>
 
-      <hr className="mx-auto border-2 border-black w-4/5 min-w-[800px]" />
+      <hr className="mx-auto my-0 border-2 border-black w-4/5" />
 
-      <div className="flex items-center w-[848px] h-[86px] py-4 px-5 rounded-2xl shadowCard border border-orange">
-        <p className="text-black text-4xl font-poppins capitalize font-semibold">
-          para hoy tienes 6 citas agendadas.
+      <div className="flex items-center w-full p-6 min-h-[86px] rounded-2xl shadowCard border border-orange">
+        <p className="text-black text-3xl font-poppins font-semibold">
+          Para hoy tienes 6 citas agendadas.
         </p>
       </div>
 
@@ -52,9 +52,9 @@ const AgendaSection = () => {
           <input
             type="text"
             placeholder="Buscar"
-            className="w-full min-w-[244px] max-w-xs h-[50px] rounded-2xl p-4 bg-transparent border border-magenta"
+            className="w-full min-w-[244px] max-w-xs h-[50px] rounded-2xl p-4 bg-transparent border border-magenta is-disabled"
           />
-          <button className="w-[46px] h-auto p-1 bg-transparent border border-magenta rounded-2xl font-poppins font-normal text-2xl text-magenta text-center">
+          <button className="w-[46px] h-auto p-1 bg-transparent border border-magenta rounded-2xl font-poppins font-normal text-2xl text-magenta text-center is-disabled">
             <img src={search} alt="Search icon" />
           </button>
         </div>
@@ -83,8 +83,8 @@ const AgendaSection = () => {
         </div>
       </div>
 
-      <div className="h-[940px] overflow-y-scroll overscroll-y-auto">
-      {filteredAppointments(appointments, selectedFilter).map((appointment) => (
+      <div className="h-[940px] w-11/12 px-4 overflow-y-scroll overscroll-y-auto">
+        {filteredAppointments(appointments, selectedFilter).map((appointment) => (
           <AppointmentCard
             key={appointment.id} // Replace with unique identifier
             status={appointment.status}
@@ -92,8 +92,8 @@ const AgendaSection = () => {
             nombre={appointment.nombre}
             dni={appointment.dni}
             obraSocial={appointment.obraSocial}
-        />
-      ))}
+          />
+        ))}
       </div>
     </section>
   );

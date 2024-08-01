@@ -24,7 +24,7 @@ const Patients = () => {
   }
   const lang = useLanguage()
   return (
-    <section className="w-11/12 min-w-[350px] mx-auto mt-5 mb-20">
+    <section className="w-11/12 min-w-[350px] mx-auto mt-6 mb-12 py-6">
 
       <div className="flex flex-col md:flex-row items-center justify-between gap-5 w-full">
         <WelcomeCard />
@@ -41,7 +41,7 @@ const Patients = () => {
         {lang === "es" ? "PACIENTES" : "PATIENTS"}
       </h1>
 
-      <div className="flex flex-col md:flex-row justify-between my-10">
+      <div className="flex flex-col w-11/12 mx-auto md:flex-row justify-between my-10">
         <form className="flex md:w-5/12 gap-2" onSubmit={handleSubmitSearch}>
           <input
             type="text"
