@@ -24,9 +24,14 @@ public class Medico extends Usuario {
     @JoinColumn(name = "id_speciality", referencedColumnName = "id")
     private Especialidad speciality;
 
-    @Column(name = "license_number", unique = true)
+    @Column(name = "license_number", nullable = false, unique = true)
     private Integer licenseNumber;
 
     @OneToMany(mappedBy = "doctors", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Patient> patients;
+
+    @Override
+    public String getUsername() {
+        return this.licenseNumber.toString();
+    }
 }

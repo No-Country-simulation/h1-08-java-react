@@ -1,15 +1,16 @@
 package io.hackathon.justina.doctor.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
-import lombok.Data;
-import lombok.ToString;
 
-import java.util.List;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "Especialidad")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Especialidad {
 
     @Id
@@ -17,9 +18,11 @@ public class Especialidad {
     private Integer id;
 
     private String speciality;
-
+/*
     @OneToMany(mappedBy = "speciality")
     @JsonBackReference
     @ToString.Exclude
     private List<Medico> doctors;
+
+ */
 }

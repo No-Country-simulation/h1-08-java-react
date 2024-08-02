@@ -29,9 +29,6 @@ public class Patient extends Usuario {
     @Column()
     private String bloodType;
 
-    @Enumerated(EnumType.STRING)
-    private Genders gender;
-
     @Column()
     private double height;
 
@@ -47,4 +44,8 @@ public class Patient extends Usuario {
             inverseJoinColumns = @JoinColumn(name = "doctor_id"))
     private Set<Medico> doctors;
 
+    @Override
+    public String getUsername() {
+        return this.getDni();
+    }
 }
