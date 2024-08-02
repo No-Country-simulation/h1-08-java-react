@@ -32,6 +32,15 @@ body {
   transition-duration: 200ms;
 }
 
+.shadow-secondary {
+    transition-duration: 200ms;
+    box-shadow: 4px 4px 4px 0px #F5C046;
+}
+
+.shadow-secondary:hover {
+    box-shadow: 4px 4px 4px 0px #7030A0;
+}
+
 .card-shadow-static {
   box-shadow: 4px 4px 4px 0px #f5c046;
 }
@@ -58,9 +67,15 @@ body {
 }
 
 .is-disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background-color: lightgrey;
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: lightgrey;
+}
+
+.is-input-disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+    background-color: #F8E1AC !important;
 }
 
 .modal-bg {

@@ -1,6 +1,6 @@
 import WelcomeCard from "../../components/atoms/WelcomeCard";
 import ActionBtnCard from "../../components/molecules/ActionBtnCard";
-import AgendaSection from "../../components/molecules/AgendaSection";
+import AgendaSection from "../../components/organisms/AgendaSection";
 import useLanguage from "../../hooks/useLanguage";
 import TokenModal from "./TokenModal";
 

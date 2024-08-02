@@ -9,15 +9,16 @@ const Select = ({ options, label, register, children, column, isDisabled }) => {
                 </label>
             }
 
-            <div className="form-control">
+            <div className={`form-control`}>
                 <select
                     disabled={isDisabled ?? false}
                     className={`mx-auto
                         select select-secondary 
                         border-x-0 border-t-0  border-magenta
                         rounded-b-none focus-within:bg-fullWhite 
-                        hover:bg-fullWhite bg-gray shadow-sm shadow-magenta
+                        shadow-sm shadow-magenta
                         backdrop-blur-sm w-${!column ? "full" : "[310px]"} text-lg ${children ? "pe-8" : ""}
+                        ${isDisabled ? "is-input-disabled" : "hover:bg-fullWhite bg-gray"}
                         `}
                     {...register}
                     defaultValue={options?.find(option => option.isDefaultChecked)?.value || options[0].value}

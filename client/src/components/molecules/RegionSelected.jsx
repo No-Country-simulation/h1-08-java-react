@@ -2,9 +2,9 @@ import { CountryDropdown, RegionDropdown, } from 'react-country-region-selector'
 
 
 
-const RegionSelected = ({ register, watch, setValue, isDisabled }) => {
-    const selectedCountry = watch("country", "Argentina");
-    const selectedRegion = watch("region", "");
+const RegionSelected = ({ register, watch, setValue, isDisabled, values }) => {
+    const selectedCountry = watch("country", values?.country ?? "Argentina");
+    const selectedRegion = watch("province", values?.province ?? "");
 
     return (<>
         <div className="form-control">
@@ -18,11 +18,11 @@ const RegionSelected = ({ register, watch, setValue, isDisabled }) => {
             <div className="w-[310px] mx-auto">
                 <CountryDropdown
                     disabled={isDisabled ?? false}
-                    classes="select select-secondary 
+                    classes={`select select-secondary 
                         border-x-0 border-t-0  border-magenta
                         rounded-b-none focus-within:bg-fullWhite 
                         hover:bg-fullWhite bg-gray shadow-sm shadow-magenta
-                        backdrop-blur-sm w-full text-lg w-[310px] text-ellipsis overflow-hidden"
+                        backdrop-blur-sm w-full text-lg w-[310px] text-ellipsis overflow-hidden ${isDisabled && "is-input-disabled"}`}
                     showDefaultOption={false}
                     value={selectedCountry}
                     onChange={(val) => setValue("country", val)}
@@ -43,19 +43,19 @@ const RegionSelected = ({ register, watch, setValue, isDisabled }) => {
             <div className="w-[310px] mx-auto">
                 <RegionDropdown
                     disabled={isDisabled ?? false}
-                    classes="select select-secondary 
+                    classes={`select select-secondary 
                         border-x-0 border-t-0  border-magenta
                         rounded-b-none focus-within:bg-fullWhite 
                         hover:bg-fullWhite bg-gray shadow-sm shadow-magenta
-                        backdrop-blur-sm w-full text-lg w-[310px] text-ellipsis overflow-hidden"
+                        backdrop-blur-sm w-full text-lg w-[310px] text-ellipsis overflow-hidden ${isDisabled && "is-input-disabled"}`}
                     showDefaultOption={false}
                     country={selectedCountry}
                     value={selectedRegion}
-                    onChange={(val) => setValue("region", val)}
+                    onChange={(val) => setValue("province", val)}
                 />
             </div>
 
-            <input type="hidden" disabled={isDisabled ?? false} {...register("region")} value={selectedRegion} />
+            <input type="hidden" disabled={isDisabled ?? false} {...register("province")} value={selectedRegion} />
         </div>
     </>)
 }
