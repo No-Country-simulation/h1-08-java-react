@@ -3,6 +3,7 @@ import ActionBtnCard from "../../../components/molecules/ActionBtnCard";
 import { search, arrowFilter } from "../../../assets";
 import PatientCard from '../../../components/molecules/PatientCard';
 import useLanguage from '../../../hooks/useLanguage';
+import TokenModal from '../TokenModal';
 
 
 const fakePatients = [
@@ -34,7 +35,9 @@ const Patients = () => {
           buttonText={lang === "es" ? "Ingresar Código" : "Enter Code"}
           titleSize="text-2xl md:text-3xl text-nowrap"
           buttonClassName="w-10/12"
-        />
+          onClickOpen={() => document.getElementById("token_modal").showModal()}
+          />
+          <TokenModal/>
       </div>
 
       <h1 className="text-4xl font-poppins font-bold text-center my-10 p-3 border-b-4 ">
