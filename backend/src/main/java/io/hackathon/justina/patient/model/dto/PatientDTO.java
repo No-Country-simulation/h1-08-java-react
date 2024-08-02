@@ -31,6 +31,8 @@ public class PatientDTO {
 
     private String bloodType;
 
+    private double imc;
+
     private double height;
 
     private double weight;

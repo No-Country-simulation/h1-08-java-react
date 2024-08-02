@@ -6,9 +6,13 @@ import io.hackathon.justina.auth.models.dto.request.RegisterDoctorRequest;
 import io.hackathon.justina.doctor.models.Especialidad;
 import io.hackathon.justina.doctor.models.Medico;
 import io.hackathon.justina.doctor.models.dto.DoctorDTO;
+import io.hackathon.justina.doctor.models.dto.DoctorReqUpdate;
 import io.hackathon.justina.user.model.Usuario;
+import io.hackathon.justina.utils.Enums.Genders;
 import io.hackathon.justina.utils.Enums.Role;
 import io.hackathon.justina.utils.modelMapper.Mapper;
+
+import java.util.Optional;
 
 public class DoctorMapper {
 
@@ -23,7 +27,7 @@ public class DoctorMapper {
                 .lastName(medico.getLastName().trim())
                 .dni(medico.getDni().trim())
                 .email(medico.getEmail().trim())
-                .address(new Address())
+                .address(medico.getAddress() == null ? new Address() : mapper.map(medico.getAddress(), Address.class).get())
                 .birthdate(medico.getBirthdate())
                 .password(medico.getPassword().trim())
                 .phoneNumber(medico.getPhoneNumber().trim())
@@ -39,7 +43,7 @@ public class DoctorMapper {
                 .dni(medico.getDni())
                 .name(medico.getName())
                 .lastName(medico.getLastName())
-                .gender(medico.getGender())
+                .gender(Genders.ofString(medico.getGender().toString()))
                 .birthdate(medico.getBirthdate())
                 .address(mapper.map(medico.getAddress(), AddressDTO.class).orElseGet(AddressDTO::new))
                 .email(medico.getEmail())
@@ -76,6 +80,22 @@ public class DoctorMapper {
                 .phoneNumber(doctorDTO.getPhoneNumber().trim())
                 .speciality(mapper.map(doctorDTO.getSpeciality(), Especialidad.class).orElseGet(Especialidad::new))
                 .licenseNumber(doctorDTO.getLicenseNumber())
+                .role(Role.DOCTOR)
+                .build();
+    }
+
+    public static Medico toMedico(DoctorReqUpdate doctorRequest) {
+        return Medico.builder()
+                .name(Optional.ofNullable(doctorRequest.getName()).orElse("").trim())
+                .lastName(Optional.ofNullable(doctorRequest.getLastName()).orElse("").trim())
+                .dni(Optional.ofNullable(doctorRequest.getDni()).orElse("").trim())
+                .email(Optional.ofNullable(doctorRequest.getEmail()).orElse("").trim())
+                .gender(Genders.ofString(doctorRequest.getGender().toString()))
+                .address(mapper.map(doctorRequest.getAddress(), Address.class).orElseGet(Address::new))
+                .birthdate(doctorRequest.getBirthdate())
+                .phoneNumber(Optional.ofNullable(doctorRequest.getPhoneNumber()).orElse("").trim())
+                .speciality(mapper.map(doctorRequest.getSpeciality(), Especialidad.class).orElseGet(Especialidad::new))
+                .licenseNumber(doctorRequest.getLicenseNumber())
                 .role(Role.DOCTOR)
                 .build();
     }

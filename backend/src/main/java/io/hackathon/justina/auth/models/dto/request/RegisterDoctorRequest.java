@@ -17,7 +17,7 @@ public class RegisterDoctorRequest {
     @NotBlank(message = "El nombre es obligatorio")
     @Size(min = 3, max = 20, message = "El nombre no puede tener más de 20 caracteres")
     @Pattern(
-            regexp = "^[a-zA-Z ´¨'\\-ñÑ]+$",
+            regexp = "^[a-zA-Z ´¨'\\-ñÑüÜáéíóú]+$",
             message = "El nombre solo debe contener letras y los siguientes caracteres: ´ ≠'\\-ñÑ"
     )
     private String name;
@@ -25,7 +25,7 @@ public class RegisterDoctorRequest {
     @NotBlank(message = "El apellido es obligatorio")
     @Size(min = 3, max = 20, message = "El apellido no puede tener más de 20 caracteres")
     @Pattern(
-            regexp = "^[a-zA-Z ´¨'\\-ñÑ]+$",
+            regexp = "^[a-zA-Z ´¨'\\-ñÑüÜáéíóú]+$",
             message = "El apellido solo debe contener letras y los siguientes caracteres: ´ ≠'\\-ñÑ"
     )
     private String lastName;
@@ -38,7 +38,6 @@ public class RegisterDoctorRequest {
     @Email(message = "El email debe ser válido")
     private String email;
 
-    //@NotNull(message = "La dirección es obligatoria")
     private AddressRequest address;
 
     @NotNull(message = "La fecha de nacimiento no puede ser nula")
@@ -52,7 +51,7 @@ public class RegisterDoctorRequest {
 
     @NotBlank(message = "La contraseña es obligatoria")
     @Size(min = 8, max = 100, message = "La contraseña debe tener entre 8 y 100 dígitos")
-    @Pattern(regexp = "^(?!.*(.)\\1{2})[a-zA-Z0-9!@#$%^&*()_+\\-={};':\"\\\\|,.<>/?]{8,}$" , message = "la contraseña no puede tener 3 dígitos iguales consecutivos")
+    @Pattern(regexp = "^(?!.*(.)\\1{2})[a-zA-Z0-9!@#$%^&*()_+\\-={};':\"\\\\|,.<>/?]{8,}$", message = "la contraseña no puede tener 3 dígitos iguales consecutivos")
     private String password;
 
     @NotNull(message = "la matricula es obligatoria")
