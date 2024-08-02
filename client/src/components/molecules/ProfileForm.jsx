@@ -4,7 +4,17 @@ import { useForm } from "react-hook-form"
 import SubmitButton from "../atoms/SubmitButton"
 import RegionSelected from "./RegionSelected"
 import Select from "../atoms/Select"
+import LittleCardSelector from "../../components/atoms/LittleCardSelector";
+import getAge from "../../utils/getAge"
 
+const blood_types = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
+const genres = [
+  { name: "Masculino", value: "MALE" },
+  { name: "Femenino", value: "FEMALE" },
+  { name: "Transgénero", value: "TRANS_GENDER" },
+  { name: "No binario", value: "NOT_BINARY" },
+  { name: "Otro", value: "NOT_SPECIFIED" },
+]
 const type_plan = [
   { name: "Tipo de cobertura médica", value: 0, isDefaultChecked: true },
   { name: "Prepaga", value: "PREPAGA", },
@@ -33,10 +43,35 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
   const typePlanOptions = userData?.healthPlan?.typeHealth
     ? updatedTypePlan(userData.healthPlan.typeHealth) : type_plan
 
+  const userAge = watch("birthdate") ? getAge(watch("birthdate")) : "-"
+  const userIMC = watch("weight") && watch("height")
+    ? ((watch("weight") / (watch("height") * watch("height"))).toFixed(2) ?? 0)
+    : "-";
 
   return (
-    <form className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-center w-fit mx-auto mt-5 mb-10 font-poppins">
-      <h2 className="text-2xl font-bold col-span-full">Tus datos de contacto</h2>
+    <form className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-center md:w-fit w-11/12 max-w-[640px] mx-auto mt-5 mb-10 font-poppins">
+      <h2 className="text-2xl font-bold col-span-full">Datos Generales</h2>
+
+      <div className="col-span-full flex flex-wrap gap-y-5 justify-between items-center mb-5">
+        <LittleCardSelector register={register} watch={watch} originalValue={userData?.gender} inputName={"gender"} label={"Género"} isSelector={true} options={genres} isDisabled={isDisabled} />
+        <LittleCardSelector register={register} watch={watch} originalValue={userData?.age ?? userAge} inputName={"age"} label={"Edad"} isOnlyText={true} isDisabled={isDisabled} />
+
+        {
+          userData?.role === "PATIENT" && (<>
+            <LittleCardSelector register={register} watch={watch} originalValue={userData?.blood_type} inputName={"blood_type"} label={"G. Sanguíneo"} isSelector={true} options={blood_types} isDisabled={isDisabled} />
+            <LittleCardSelector register={register} watch={watch} originalValue={userData?.height} inputName={"height"} label={"Estatura en M."} type={"number"} placeholder={"Ej: 1.50"} isDisabled={isDisabled} />
+            <LittleCardSelector register={register} watch={watch} originalValue={userData?.weight} inputName={"weight"} label={"Peso en Kg."} type={"number"} placeholder={"Ej: 65.50"} isDisabled={isDisabled} />
+            <LittleCardSelector register={register} watch={watch} originalValue={userData?.imc ?? userIMC} inputName={"imc"} label={"IMC"} isOnlyText={true} isDisabled={isDisabled} />
+          </>)
+        }
+
+      </div>
+
+      <LittleCardSelector register={register} watch={watch} originalValue={userData?.birthdate} inputName={"birthdate"} label={"Fecha de Nacimiento"} addClassName={"col-span-full mx-auto col-span-full min-w-[275px]"} type="date" isDisabled={isDisabled} />
+
+      <div className="divider my-2 col-span-full"></div>
+
+      <h2 className="text-2xl font-bold col-span-full">Datos de contacto</h2>
       <>
         <Input
           isDisabled={isDisabled}
@@ -56,6 +91,7 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
         />
 
         <RegionSelected
+          values={userData?.address}
           register={register}
           watch={watch}
           setValue={setValue}
@@ -83,7 +119,7 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
       {
         userData?.role === "PATIENT" && (<>
           <div className="divider my-2 col-span-full"></div>
-          <h2 className="text-2xl font-bold col-span-full">Tu Plan Médico</h2>
+          <h2 className="text-2xl font-bold col-span-full">Plan Médico</h2>
           <>
             <Select
               column
