@@ -17,7 +17,7 @@ import useAuthStore from "../store/auth-store"
 
 const PatientRoutes = () => {
   const role = useAuthStore(state => state.user?.role) ?? "off"
-  if (role != "PATIENT") return false;
+  if (role != "ROLE_PATIENT") return false;
 
   return [
     < ProtectedRoute path="/" component={Home} />,
