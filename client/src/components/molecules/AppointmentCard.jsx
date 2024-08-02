@@ -44,35 +44,6 @@ const AppointmentCard = ({ status, horaCita, nombre, dni, obraSocial }) => {
           }
         </div>
 
-
-        {/* <div className="flex flex-row flex-wrap gap-14 items-center"> */}
-        {/* <div className="flex flex-col gap-2">
-            <p className="text-black/50 text-xl font-roboto capitalize">
-              Hora cita:
-            </p>
-            <h1 className="text-black text-4xl font-poppins capitalize font-medium">
-              {horaCita}
-            </h1>
-          </div> */}
-
-        {/* <div className="flex flex-col gap-2">
-            <p className="text-black/50 text-xl font-roboto capitalize">
-              Estado:
-            </p>
-            <h1
-              className={`badge ${status === "En espera"
-                ? "badge-success"
-                : status === "Atendido"
-                  ? "badge-warning"
-                  : "badge-error"
-                } text-black text-center text-xl font-roboto w-[172px] h-8 py-1`}
-            >
-              {status}
-            </h1>
-          </div> */}
-        {/* {status === "En espera" && <CustomButton className="is-disabled px-3">Cancelar Cita</CustomButton>}
-        </div> */}
-
         <hr className="mx-auto border-2 rounded-3xl border-black w-full my-3" />
 
         <div className="flex flex-col items-start">
@@ -84,7 +55,7 @@ const AppointmentCard = ({ status, horaCita, nombre, dni, obraSocial }) => {
               {nombre}
             </h1>
           </div>
-          <div className="flex flex-row gap-x-48">
+          <div className="flex flex-col md:flex-row gap-x-48">
             <div className="flex flex-col gap-1">
               <p className="text-black/50 text-xl font-roboto capitalize">
                 DNI:

@@ -164,7 +164,7 @@ const ReportsAndResults = () => {
               ? "[--tab-bg:bg-light] text-black"
               : "[--tab-bg:bg-orange] [--tab-border-color:orange] text-black/50"
           }`}
-          aria-label="Laboratorio"
+          aria-label="Estudios"
           value="2"
           checked={selectedTabIndex === 2}
           onChange={handleTabChange}
