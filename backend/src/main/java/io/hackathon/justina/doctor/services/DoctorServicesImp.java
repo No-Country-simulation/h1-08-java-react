@@ -6,6 +6,7 @@ import io.hackathon.justina.doctor.models.Medico;
 import io.hackathon.justina.doctor.models.dto.DoctorDTO;
 import io.hackathon.justina.doctor.repository.DoctorRepository;
 import io.hackathon.justina.utils.Age;
+import io.hackathon.justina.utils.Enums.Genders;
 import io.hackathon.justina.utils.Enums.Role;
 import io.hackathon.justina.utils.genInterface.IBaseCRUDServices;
 import io.hackathon.justina.utils.modelMapper.Mapper;
@@ -42,7 +43,7 @@ public class DoctorServicesImp implements IBaseCRUDServices<DoctorDTO, Medico> {
         return DoctorMapper.toMedicoDto(doctorRepository.findByDni(dni));
     }
 
-    public Medico findByLicenseNumber(Integer licenseNumber) {
+    public Medico findByLicenseNumber(String licenseNumber) {
         return doctorRepository.findByLicenseNumber(licenseNumber);
     }
 
@@ -55,7 +56,8 @@ public class DoctorServicesImp implements IBaseCRUDServices<DoctorDTO, Medico> {
     public DoctorDTO save(Medico entity) {
         try {
             entity.setId(null);
-            entity.setRole(Role.DOCTOR);
+            entity.setRole(Role.ROLE_DOCTOR);
+            entity.setGender(Genders.NOT_SPECIFIED);
             entity.setAge(Age.calculateAge(entity.getBirthdate()));
             entity.setEnabled(true);
             return mapper.map(doctorRepository.save(entity), DoctorDTO.class).orElseThrow(() -> new RuntimeException("Error al crear el medico."));
@@ -109,7 +111,7 @@ public class DoctorServicesImp implements IBaseCRUDServices<DoctorDTO, Medico> {
         if (entity.getEmail() != null && !entity.getEmail().isBlank()) existingMedico.setEmail(entity.getEmail());
         if (entity.getSpeciality() != null && entity.getSpeciality().getId() != null)
             existingMedico.setSpeciality(entity.getSpeciality());
-        if (entity.getLicenseNumber() != null && entity.getLicenseNumber() != 0)
+        if (entity.getLicenseNumber() != null && !entity.getLicenseNumber().isBlank())
             existingMedico.setLicenseNumber(entity.getLicenseNumber());
 
     }

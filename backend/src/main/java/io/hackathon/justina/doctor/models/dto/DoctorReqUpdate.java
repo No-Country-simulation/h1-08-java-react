@@ -1,9 +1,11 @@
 package io.hackathon.justina.doctor.models.dto;
 
 import io.hackathon.justina.address.models.dto.AddressRequest;
-import io.hackathon.justina.doctor.models.Especialidad;
 import io.hackathon.justina.utils.Enums.Genders;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,8 +42,8 @@ public class DoctorReqUpdate {
 
     private EspecialidadRequest speciality;
 
-    @Min(value = 1000, message = "La matricula debe de tener al menos 4 dígitos")
-    @Max(value = 999999, message = "La matricula puede tener hasta 6 dígitos")
-    private Integer licenseNumber;
+    @Size(min = 4, max = 6, message = "la matricula debe tener entre 4 y 6 dígitos")
+    @Pattern(regexp = "[0-9]+", message = "la matricula solo debe contener dígitos")
+    private String licenseNumber;
 
 }

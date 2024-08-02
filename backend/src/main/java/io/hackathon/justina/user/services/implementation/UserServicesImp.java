@@ -51,7 +51,7 @@ public class UserServicesImp {
 
     private Usuario getDoctorUser(String username) {
         String licence = username.replace(Medico.class.getSimpleName() + ":", "");
-        Medico doctor = doctorServices.findByLicenseNumber(Integer.parseInt(licence));
+        Medico doctor = doctorServices.findByLicenseNumber(licence);
         if (doctor != null) {
             return DoctorMapper.toUsuario(doctor);
         }

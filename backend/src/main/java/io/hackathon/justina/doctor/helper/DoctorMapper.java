@@ -32,8 +32,8 @@ public class DoctorMapper {
                 .password(medico.getPassword().trim())
                 .phoneNumber(medico.getPhoneNumber().trim())
                 .speciality(mapper.map(medico.getDoctor().getSpeciality(), Especialidad.class).orElseGet(Especialidad::new))
-                .licenseNumber(medico.getLicenseNumber())
-                .role(Role.DOCTOR)
+                .licenseNumber(Optional.ofNullable(medico.getLicenseNumber()).orElse(""))
+                .role(Role.ROLE_DOCTOR)
                 .build();
     }
 
@@ -43,7 +43,7 @@ public class DoctorMapper {
                 .dni(medico.getDni())
                 .name(medico.getName())
                 .lastName(medico.getLastName())
-                .gender(Genders.ofString(medico.getGender().toString()))
+                .gender(medico.getGender() == null ? null : Genders.valueOf(medico.getGender().toString()))
                 .birthdate(medico.getBirthdate())
                 .address(mapper.map(medico.getAddress(), AddressDTO.class).orElseGet(AddressDTO::new))
                 .email(medico.getEmail())
@@ -59,7 +59,7 @@ public class DoctorMapper {
                 .name(medico.getName().trim())
                 .lastName(medico.getLastName().trim())
                 .dni(medico.getDni().trim())
-                .licenseNumber(medico.getLicenseNumber())
+                .licenseNumber(Optional.ofNullable(medico.getLicenseNumber()).orElse(""))
                 .email(medico.getEmail().trim())
                 .address(mapper.map(medico.getAddress(), Address.class).orElseGet(Address::new))
                 .birthdate(medico.getBirthdate())
@@ -79,8 +79,8 @@ public class DoctorMapper {
                 .birthdate(doctorDTO.getBirthdate())
                 .phoneNumber(doctorDTO.getPhoneNumber().trim())
                 .speciality(mapper.map(doctorDTO.getSpeciality(), Especialidad.class).orElseGet(Especialidad::new))
-                .licenseNumber(doctorDTO.getLicenseNumber())
-                .role(Role.DOCTOR)
+                .licenseNumber(Optional.ofNullable(doctorDTO.getLicenseNumber()).orElse("").trim())
+                .role(Role.ROLE_DOCTOR)
                 .build();
     }
 
@@ -95,8 +95,8 @@ public class DoctorMapper {
                 .birthdate(doctorRequest.getBirthdate())
                 .phoneNumber(Optional.ofNullable(doctorRequest.getPhoneNumber()).orElse("").trim())
                 .speciality(mapper.map(doctorRequest.getSpeciality(), Especialidad.class).orElseGet(Especialidad::new))
-                .licenseNumber(doctorRequest.getLicenseNumber())
-                .role(Role.DOCTOR)
+                .licenseNumber(Optional.ofNullable(doctorRequest.getLicenseNumber()).orElse("").trim())
+                .role(Role.ROLE_DOCTOR)
                 .build();
     }
 }

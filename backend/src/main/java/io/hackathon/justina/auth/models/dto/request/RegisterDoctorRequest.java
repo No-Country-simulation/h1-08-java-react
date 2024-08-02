@@ -54,10 +54,10 @@ public class RegisterDoctorRequest {
     @Pattern(regexp = "^(?!.*(.)\\1{2})[a-zA-Z0-9!@#$%^&*()_+\\-={};':\"\\\\|,.<>/?]{8,}$", message = "la contraseña no puede tener 3 dígitos iguales consecutivos")
     private String password;
 
-    @NotNull(message = "la matricula es obligatoria")
-    @Min(value = 1000, message = "La matricula debe de tener al menos 4 dígitos")
-    @Max(value = 999999, message = "La matricula puede tener hasta 6 dígitos")
-    private Integer licenseNumber;
+    @NotBlank(message = "la matricula es obligatorio")
+    @Size(min = 4, max = 6, message = "la matricula debe tener entre 4 y 6 dígitos")
+    @Pattern(regexp = "[0-9]+", message = "la matricula solo debe contener dígitos")
+    private String licenseNumber;
 
     @NotNull(message = "El doctor es obligatorio")
     private DoctorRequest doctor;

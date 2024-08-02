@@ -6,6 +6,7 @@ import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.patient.repository.PatientRepository;
 import io.hackathon.justina.utils.Age;
+import io.hackathon.justina.utils.Enums.Genders;
 import io.hackathon.justina.utils.Enums.Role;
 import io.hackathon.justina.utils.IMC;
 import io.hackathon.justina.utils.genInterface.IBaseCRUDServices;
@@ -57,8 +58,9 @@ public class PatientServicesImp implements IBaseCRUDServices<PatientDTO, Patient
     public PatientDTO save(Patient entity) {
         try {
             entity.setId(null);
-            entity.setRole(Role.PATIENT);
+            entity.setRole(Role.ROLE_PATIENT);
             entity.setAge(Age.calculateAge(entity.getBirthdate()));
+            entity.setGender(Genders.NOT_SPECIFIED);
             entity.setEnabled(true);
             return mapper.map(patientRepository.save(entity), PatientDTO.class).orElseThrow(() -> new RuntimeException("Error al crear el paciente."));
         } catch (Exception e) {

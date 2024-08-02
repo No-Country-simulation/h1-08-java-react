@@ -12,6 +12,6 @@ public interface DoctorRepository extends JpaRepository<Medico, Long> {
 
     Medico findByDni(String dni);
 
-    Medico findByLicenseNumber(Integer licenseNumber);
+    Medico findByLicenseNumber(String licenseNumber);
 
 }

@@ -25,13 +25,13 @@ public class Medico extends Usuario {
     private Especialidad speciality;
 
     @Column(name = "license_number", nullable = false, unique = true)
-    private Integer licenseNumber;
+    private String licenseNumber;
 
     @OneToMany(mappedBy = "doctors", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Patient> patients;
 
     @Override
     public String getUsername() {
-        return this.licenseNumber.toString();
+        return this.licenseNumber;
     }
 }

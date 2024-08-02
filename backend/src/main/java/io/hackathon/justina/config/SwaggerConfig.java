@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class SwaggerConfig {
 
     @Bean
-    public OpenAPI openAPI(@Value("1.3.2") String springdocVersion) {
+    public OpenAPI openAPI(@Value("1.3.3") String springdocVersion) {
         return new OpenAPI()
                 .info(new Info()
                         .title("Justina API")

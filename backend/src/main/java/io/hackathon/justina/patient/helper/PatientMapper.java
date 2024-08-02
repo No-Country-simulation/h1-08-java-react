@@ -25,7 +25,7 @@ public class PatientMapper {
                 .address(mapper.map(request.getAddress(), Address.class).orElseGet(Address::new))
                 .phoneNumber(request.getPhoneNumber().trim())
                 .birthdate(request.getBirthdate())
-                .role(Role.PATIENT)
+                .role(Role.ROLE_PATIENT)
                 .build();
 
     }
@@ -40,11 +40,11 @@ public class PatientMapper {
                 .bloodType(Optional.ofNullable(patient.getBloodType()).map(String::trim).orElse(""))
                 .height(patient.getHeight())
                 .weight(patient.getWeight())
-                .healthPlan(HealthPlanMapper.toHealthPlan(patient.getHealthPlan()))
+                .healthPlan(patient.getHealthPlan() != null ? HealthPlanMapper.toHealthPlan(patient.getHealthPlan()) : null)
                 .address(mapper.map(patient.getAddress(), Address.class).orElseGet(Address::new))
                 .phoneNumber(Optional.ofNullable(patient.getPhoneNumber()).map(String::trim).orElse(""))
                 .birthdate(patient.getBirthdate())
-                .role(Role.PATIENT)
+                .role(Role.ROLE_PATIENT)
                 .build();
     }
 
@@ -63,7 +63,7 @@ public class PatientMapper {
                 .address(mapper.map(Optional.ofNullable(patient.getAddress()), AddressDTO.class).orElseGet(AddressDTO::new))
                 .email(Optional.ofNullable(patient.getEmail()).map(String::trim).orElse(null))
                 .phoneNumber(Optional.ofNullable(patient.getPhoneNumber()).map(String::trim).orElse(null))
-                .birthDate(patient.getBirthdate())
+                .birthDate(patient.getBirthdate() != null ? patient.getBirthdate() : null)
                 .role(patient.getRole())
                 .build();
     }

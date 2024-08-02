@@ -52,7 +52,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     try {
                         Claims claims = jwtService.getAllClaims(token);
                         String authorities = (String) ((List<?>) claims.get("role")).stream().toList().get(0);
-                        Class<?> clazz = Role.valueOf(authorities) == Role.PATIENT ? Patient.class : Medico.class;
+                        Class<?> clazz = Role.valueOf(authorities) == Role.ROLE_PATIENT ? Patient.class : Medico.class;
 
                         username = clazz.getSimpleName() + ":" + username;
                     } catch (Exception e) {

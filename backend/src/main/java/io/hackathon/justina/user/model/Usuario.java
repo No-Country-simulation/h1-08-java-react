@@ -37,7 +37,7 @@ public class Usuario implements UserDetails {
     private String dni;
 
     @Transient
-    private Integer licenseNumber;
+    private String licenseNumber;
 
     @Column(nullable = false)
     private int age;
@@ -61,6 +61,7 @@ public class Usuario implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Address address;
 
+    @Column(nullable = false, columnDefinition = "enum('ROLE_PATIENT', 'ROLE_DOCTOR') default 'ROLE_PATIENT'")
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -69,14 +70,14 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_" + role.getAuthority()));
+        return List.of(new SimpleGrantedAuthority(role.getAuthority()));
     }
 
     @Override
     public String getUsername() {
         return switch (role) {
-            case PATIENT -> this.dni;
-            case DOCTOR -> this.licenseNumber.toString();
+            case ROLE_PATIENT -> this.dni;
+            case ROLE_DOCTOR -> this.licenseNumber;
             default -> throw new IllegalStateException("Unexpected value: " + role);
         };
     }

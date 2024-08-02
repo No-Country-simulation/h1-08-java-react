@@ -36,7 +36,7 @@ public class DoctorDTO {
 
     private Especialidad speciality;
 
-    private Integer licenseNumber;
+    private String licenseNumber;
 
     private Role role;
 
