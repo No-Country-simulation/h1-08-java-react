@@ -1,7 +1,7 @@
-package io.hackathon.justina.patient.model.dto;
+package io.hackathon.justina.doctor.models.dto;
 
 import io.hackathon.justina.address.models.dto.AddressRequest;
-import io.hackathon.justina.healthPlan.models.dto.HealthPlanDTO;
+import io.hackathon.justina.doctor.models.Especialidad;
 import io.hackathon.justina.utils.Enums.Genders;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -11,9 +11,9 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-@AllArgsConstructor
 @Builder
-public class PatientRequest {
+@AllArgsConstructor
+public class DoctorReqUpdate {
 
     @Pattern(regexp = "^[a-zA-Z ´¨'\\-ñÑüÜáéíóú]+$", message = "El nombre solo debe contener letras y los siguientes caracteres: ´ ≠'\\-ñÑ")
     private String name;
@@ -32,22 +32,16 @@ public class PatientRequest {
     @Past(message = "La fecha de nacimiento debe ser una fecha pasada")
     private LocalDate birthdate;
 
+    @Size(min = 8, max = 14, message = "El teléfono debe tener entre 8 y 14 dígitos")
     @Pattern(regexp = "[0-9]+", message = "El telfoon solo debe contener dígitos")
     private String phoneNumber;
 
-    @Size(max = 3, message = "El tipo de sangre no puede tener más de 3 caracteres")
-    @Pattern(regexp = "^[aboABO][+-]$")
-    private String bloodType;
-
     private Genders gender;
 
-    @Min(value = 0, message = "La altura no puede ser negativo")
-    private double height;
+    private EspecialidadRequest speciality;
 
-    @Min(value = 0, message = "El peso no puede ser negativo")
-    private double weight;
-
-    private HealthPlanDTO healthPlan;
-
+    @Min(value = 1000, message = "La matricula debe de tener al menos 4 dígitos")
+    @Max(value = 999999, message = "La matricula puede tener hasta 6 dígitos")
+    private Integer licenseNumber;
 
 }

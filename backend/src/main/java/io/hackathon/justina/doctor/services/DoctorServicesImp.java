@@ -1,5 +1,6 @@
 package io.hackathon.justina.doctor.services;
 
+import io.hackathon.justina.address.models.Address;
 import io.hackathon.justina.doctor.helper.DoctorMapper;
 import io.hackathon.justina.doctor.models.Medico;
 import io.hackathon.justina.doctor.models.dto.DoctorDTO;
@@ -13,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.function.Consumer;
 
 @Service
 @RequiredArgsConstructor
@@ -65,15 +68,22 @@ public class DoctorServicesImp implements IBaseCRUDServices<DoctorDTO, Medico> {
     public DoctorDTO update(Medico entity) {
         Medico existingMedico = doctorRepository.findById(entity.getId())
                 .orElseThrow(() -> new RuntimeException("El medico no existe."));
-
         updateFromDto(entity, existingMedico);
 
         return DoctorMapper.toMedicoDto(doctorRepository.save(existingMedico));
 
     }
 
+    public DoctorDTO update(Long id, Medico medico) {
+        Medico existingMedico = doctorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("El medico no existe."));
+        updateFromDto(medico, existingMedico);
+
+        return DoctorMapper.toMedicoDto(doctorRepository.save(existingMedico));
+    }
+
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) throws UsernameNotFoundException {
         if (!doctorRepository.existsById(id)) {
             throw new UsernameNotFoundException("El medico no existe.");
         }
@@ -82,19 +92,43 @@ public class DoctorServicesImp implements IBaseCRUDServices<DoctorDTO, Medico> {
 
     private void updateFromDto(Medico entity, Medico existingMedico) {
 
-        if (entity.getName() != null) existingMedico.setName(entity.getName());
-        if (entity.getLastName() != null) existingMedico.setLastName(entity.getLastName());
-        if (entity.getDni() != null) existingMedico.setDni(entity.getDni());
+        if (entity.getName() != null && !entity.getName().isBlank()) existingMedico.setName(entity.getName());
+        if (entity.getLastName() != null && !entity.getLastName().isBlank())
+            existingMedico.setLastName(entity.getLastName());
+        if (entity.getDni() != null && !entity.getDni().isBlank()) existingMedico.setDni(entity.getDni());
         if (entity.getBirthdate() != null) {
             entity.setAge(Age.calculateAge(entity.getBirthdate()));
             existingMedico.setBirthdate(entity.getBirthdate());
         }
         if (entity.getGender() != null) existingMedico.setGender(entity.getGender());
-        if (entity.getAddress() != null) existingMedico.setAddress(entity.getAddress());
-        if (entity.getPhoneNumber() != null) existingMedico.setPhoneNumber(entity.getPhoneNumber());
-        if (entity.getEmail() != null) existingMedico.setEmail(entity.getEmail());
-        if (entity.getSpeciality() != null) existingMedico.setSpeciality(entity.getSpeciality());
-        if (entity.getLicenseNumber() != null) existingMedico.setLicenseNumber(entity.getLicenseNumber());
+
+        updateAddress(existingMedico.getAddress(), entity.getAddress());
+
+        if (entity.getPhoneNumber() != null && !entity.getPhoneNumber().isBlank())
+            existingMedico.setPhoneNumber(entity.getPhoneNumber());
+        if (entity.getEmail() != null && !entity.getEmail().isBlank()) existingMedico.setEmail(entity.getEmail());
+        if (entity.getSpeciality() != null && entity.getSpeciality().getId() != null)
+            existingMedico.setSpeciality(entity.getSpeciality());
+        if (entity.getLicenseNumber() != null && entity.getLicenseNumber() != 0)
+            existingMedico.setLicenseNumber(entity.getLicenseNumber());
 
     }
+
+
+    private void updateAddress(Address existingAddress, Address newAddress) {
+        if (newAddress != null) {
+            newAddress.setId(existingAddress.getId());
+            updateFieldIfNotNullOrBlank(existingAddress::setStreet, newAddress.getStreet());
+            updateFieldIfNotNullOrBlank(existingAddress::setCity, newAddress.getCity());
+            updateFieldIfNotNullOrBlank(existingAddress::setCountry, newAddress.getCountry());
+        }
+    }
+
+    private void updateFieldIfNotNullOrBlank(Consumer<String> setter, String value) {
+        if (value != null && !value.isBlank()) {
+            setter.accept(value);
+        }
+
+    }
+
 }
