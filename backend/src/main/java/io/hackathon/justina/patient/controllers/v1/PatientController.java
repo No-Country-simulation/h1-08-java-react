@@ -4,6 +4,7 @@ import io.hackathon.justina.patient.helper.PatientMapper;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
 import io.hackathon.justina.patient.model.dto.PatientRequest;
 import io.hackathon.justina.patient.services.PatientServicesImp;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
@@ -41,9 +42,9 @@ public class PatientController {
         return ResponseEntity.ok(patientControllerService.PatientDTOFindByDni(dni));
     }
 
-    @PutMapping
-    public ResponseEntity<PatientDTO> update(@RequestBody PatientRequest patient) {
-        return ResponseEntity.ok(patientControllerService.update(PatientMapper.toPatient(patient)));
+    @PutMapping("/{id}")
+    public ResponseEntity<PatientDTO> update(@Valid @RequestBody PatientRequest patient , @PathVariable Long id) {
+        return ResponseEntity.ok(patientControllerService.update(id,PatientMapper.toPatient(patient)));
     }
 
     @DeleteMapping("/{id}")

@@ -5,5 +5,10 @@ public enum Genders {
     MALE,
     NOT_BINARY,
     TRANS_GENDER,
-    NOT_SPECIFIED
+    NOT_SPECIFIED;
+
+    public static Genders ofString(String authority) {
+        return Genders.valueOf(authority.toUpperCase());
+    }
+
 }
