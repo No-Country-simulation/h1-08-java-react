@@ -14,7 +14,7 @@ function CustomButton({ children, className, onClick }) {
 CustomButton.propTypes = {
   children: PropTypes.string,
   className: PropTypes.string,
-  onClick: PropTypes.string,
+  onClick: PropTypes.func || PropTypes.string ,
 };
 
 export default CustomButton;

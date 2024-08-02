@@ -3,27 +3,33 @@
 @tailwind utilities;
 
 #root {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100vh;
-    max-width: 100vw;
-    scroll-behavior: smooth;
-    background-color: #FAF0D7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  max-width: 100vw;
+  scroll-behavior: smooth;
+  background-color: #faf0d7;
 }
 
 body {
-    background: linear-gradient(180deg, rgba(247, 236, 211, 0.432) 0%, rgba(251, 238, 208, 0.528865) 17.75%, rgba(247, 237, 212, 0.6) 47.67%, rgba(251, 238, 208, 0.544058) 84.18%, rgba(247, 237, 212, 0.432) 100%);
-
+  background: linear-gradient(
+    180deg,
+    rgba(247, 236, 211, 0.432) 0%,
+    rgba(251, 238, 208, 0.528865) 17.75%,
+    rgba(247, 237, 212, 0.6) 47.67%,
+    rgba(251, 238, 208, 0.544058) 84.18%,
+    rgba(247, 237, 212, 0.432) 100%
+  );
 }
 
 .login-shadow {
-    box-shadow: 4px 4px 4px 0px #7030A0;
+  box-shadow: 4px 4px 4px 0px #7030a0;
 }
 
 .card-shadow {
-    box-shadow: 4px 4px 4px 0px #F5C046;
-    transition-duration: 200ms;
+  box-shadow: 4px 4px 4px 0px #f5c046;
+  transition-duration: 200ms;
 }
 
 .shadow-secondary {
@@ -36,28 +42,28 @@ body {
 }
 
 .card-shadow-static {
-    box-shadow: 4px 4px 4px 0px #F5C046;
+  box-shadow: 4px 4px 4px 0px #f5c046;
 }
 
 .card-shadow:hover {
-    box-shadow: 4px 4px 4px 0px #D22A89;
+  box-shadow: 4px 4px 4px 0px #d22a89;
 }
 
 .cardDetails,
 .shadowCard {
-    box-shadow: 4px 4px 4px 0px #F5C046;
+  box-shadow: 4px 4px 4px 0px #f5c046;
 }
 
 .shadow-color-success {
-    box-shadow: 4px 4px 4px 0px #36d399;
+  box-shadow: 4px 4px 4px 0px #36d399;
 }
 
 .shadow-color-warning {
-    box-shadow: 4px 4px 4px 0px #fbbd23;
+  box-shadow: 4px 4px 4px 0px #fbbd23;
 }
 
 .shadow-color-error {
-    box-shadow: 4px 4px 4px 0px #f87272;
+  box-shadow: 4px 4px 4px 0px #f87272;
 }
 
 .is-disabled {
@@ -70,4 +76,15 @@ body {
     opacity: 0.8;
     cursor: not-allowed;
     background-color: #F8E1AC !important;
+}
+
+.modal-bg {
+  background: linear-gradient(
+    180deg,
+    rgba(247, 236, 211, 0.72) 0%,
+    rgba(251, 238, 208, 0.881441) 18.6%,
+    rgba(247, 237, 212, 0.8) 49.92%,
+    rgba(251, 238, 208, 0.8) 81.31%,
+    rgba(245, 192, 70, 0.8) 104.74%
+  );
 }

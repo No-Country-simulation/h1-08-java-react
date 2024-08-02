@@ -15,7 +15,7 @@ const LabResultCard = ({ examination, location, date }) => {
         <p className="font-roboto font-normal text-black/50 text-xl">Fecha:</p>
         <h1 className="font-roboto font-normal text-black text-2xl">{date}</h1>
       </div>
-      <button className="mx-auto w-[268px] h-auto px-6 border border-magenta rounded-lg font-poppins font-normal text-2xl text-magenta text-center py-2 disabled is-disabled">Descargar PDF</button>
+      <button className="mx-auto w-[268px] h-auto px-6 border border-magenta rounded-lg font-poppins font-normal text-2xl text-magenta text-center py-2 disabled is-disabled">Ver</button>
     </div>
   );
 };
