@@ -30,6 +30,7 @@ public class SecurityConfig {
         return http.authorizeHttpRequests(
                         auth -> auth
                                 .requestMatchers("/api/v1/auth/**").permitAll()
+                                .requestMatchers("/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                                 .requestMatchers("/api/v1/patient/**").hasAnyRole("PATIENT", "DOCTOR")
                                 .requestMatchers("/api/v1/doctor/**").hasAnyRole("DOCTOR")
                                 .anyRequest().authenticated()

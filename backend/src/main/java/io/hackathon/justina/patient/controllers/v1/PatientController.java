@@ -32,7 +32,6 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('DOCTOR')")
     public ResponseEntity<PatientDTO> getById(@PathVariable Long id) {
         return ResponseEntity.ok(patientControllerService.findById(id));
     }
@@ -45,11 +44,6 @@ public class PatientController {
     @PutMapping
     public ResponseEntity<PatientDTO> update(@RequestBody PatientRequest patient) {
         return ResponseEntity.ok(patientControllerService.update(PatientMapper.toPatient(patient)));
-    }
-
-    @PatchMapping
-    public ResponseEntity<PatientDTO> partialUpdate(@RequestBody PatientRequest patient) {
-        return null;
     }
 
     @DeleteMapping("/{id}")

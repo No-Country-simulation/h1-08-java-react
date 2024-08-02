@@ -3,10 +3,12 @@ package io.hackathon.justina.healthPlan.models;
 import io.hackathon.justina.utils.Enums.TypeHealth;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @Entity
 @Table(name = "health_plans")
 @AllArgsConstructor

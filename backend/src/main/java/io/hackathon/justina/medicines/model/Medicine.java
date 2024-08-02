@@ -5,12 +5,14 @@ import io.hackathon.justina.medicines.model.Units.Unit;
 import io.hackathon.justina.treatment.prescription.model.PrescriptionMedicine;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
 @Data
+@Builder
 @Entity
 @Table(name = "medicines")
 @AllArgsConstructor
@@ -95,4 +97,7 @@ public class Medicine {
         this.laboratory = laboratory;
     }
 
+    public Medicine(Long medicine) {
+        this.id = medicine;
+    }
 }
