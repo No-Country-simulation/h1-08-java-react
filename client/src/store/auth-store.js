@@ -6,7 +6,7 @@ const fakeUser = {
     id: 666,
     dni: 70000000,
     age: 24,
-    birtDate: "2000-07-11",
+    birtDate: "2000-11-07",
     name: "Franco",
     lastName: "Maidana",
     role: "PATIENT",

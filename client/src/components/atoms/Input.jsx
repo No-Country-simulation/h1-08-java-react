@@ -17,6 +17,7 @@ const Input = ({ label, placeholder, password, register, error, width, viewPassw
       ${error ? "shadow-error" : "shadow-magenta"}
       ${error ? "input-error" : "input-secondary"}
       ${password && "flex items-center"}
+      ${isDisabled && "is-input-disabled"}
       `}
       >
         <input
@@ -26,7 +27,7 @@ const Input = ({ label, placeholder, password, register, error, width, viewPassw
           type={password ? passwordType : typeInput ?? "text"}
           {...register}
           placeholder={placeholder}
-          className={"w-full text-ellipsis overflow-hidden"}
+          className={"w-full text-ellipsis overflow-hidden "}
         />
         {password && viewPassword}
       </div>
