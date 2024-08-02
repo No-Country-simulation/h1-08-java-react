@@ -5,12 +5,14 @@ import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.treatment.model.Treatment;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 @Entity
 @Table(name = "clinic_histories")
 @AllArgsConstructor
@@ -25,28 +27,35 @@ public class ClinicHistory {
     private Patient patient;
 
     @Column
-    private String description;
+    private String medicalHistory;
+
+    @Column
+    private String familyBackground;
 
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Medico doctor;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "treatment_id")
     private Treatment treatment;
 
     @Column
     private String diagnosis;
 
+    @Column
+    private String studies;
+
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(nullable = false, insertable = false)
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
     }
 
     @PreUpdate

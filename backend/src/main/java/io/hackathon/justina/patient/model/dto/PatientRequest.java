@@ -1,5 +1,6 @@
 package io.hackathon.justina.patient.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.hackathon.justina.auth.models.dto.request.RegisterPatientRequest;
 import io.hackathon.justina.healthPlan.models.dto.HealthPlanDTO;
 import io.hackathon.justina.utils.Enums.Genders;
@@ -8,8 +9,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class PatientRequest extends RegisterPatientRequest {
 
     @Size(max = 3, message = "El tipo de sangre no puede tener más de 3 caracteres")
@@ -30,7 +33,8 @@ public class PatientRequest extends RegisterPatientRequest {
     @Pattern(regexp = "^\\d+(\\.\\d+)?$", message = "El peso debe ser un numero")
     private double weight;
 
-    @NotBlank(message = "El plan de salud es obligatorio")
     private HealthPlanDTO healthPlan;
 
+    @JsonIgnore
+    private String password;
 }

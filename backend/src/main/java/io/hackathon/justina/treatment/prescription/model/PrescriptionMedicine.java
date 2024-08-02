@@ -1,14 +1,17 @@
 package io.hackathon.justina.treatment.prescription.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.hackathon.justina.medicines.model.Medicine;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
+@Builder
 @Entity
 @Table(name = "prescription_medicines")
 @AllArgsConstructor
@@ -19,8 +22,9 @@ public class PrescriptionMedicine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prescription_id", nullable = false)
+    @JsonBackReference
     private Prescription prescription;
 
     @ManyToOne
@@ -30,7 +34,7 @@ public class PrescriptionMedicine {
     @Column(nullable = false)
     private String dose;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "integer default 0")
     private Integer dosesTaken;
 
     @Column(nullable = false)

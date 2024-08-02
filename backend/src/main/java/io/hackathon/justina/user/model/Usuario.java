@@ -1,6 +1,7 @@
 package io.hackathon.justina.user.model;
 
 import io.hackathon.justina.address.models.Address;
+import io.hackathon.justina.utils.Enums.Genders;
 import io.hackathon.justina.utils.Enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -40,6 +41,10 @@ public class Usuario implements UserDetails {
 
     @Column(nullable = false)
     private int age;
+
+    @Column(columnDefinition = "enum('MALE', 'FEMALE', 'NOT_BINARY', 'TRANS_GENDER', 'NOT_SPECIFIED') default 'NOT_SPECIFIED'")
+    @Enumerated(EnumType.STRING)
+    private Genders gender;
 
     @Column
     private LocalDate birthdate;

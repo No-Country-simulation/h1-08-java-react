@@ -39,6 +39,8 @@ public class DoctorMapper {
                 .dni(medico.getDni())
                 .name(medico.getName())
                 .lastName(medico.getLastName())
+                .gender(medico.getGender())
+                .birthdate(medico.getBirthdate())
                 .address(mapper.map(medico.getAddress(), AddressDTO.class).orElseGet(AddressDTO::new))
                 .email(medico.getEmail())
                 .phoneNumber(medico.getPhoneNumber())
@@ -60,6 +62,21 @@ public class DoctorMapper {
                 .password(medico.getPassword().trim())
                 .phoneNumber(medico.getPhoneNumber().trim())
                 .role(medico.getRole())
+                .build();
+    }
+
+    public static Medico toMedico(DoctorDTO doctorDTO) {
+        return Medico.builder()
+                .name(doctorDTO.getName().trim())
+                .lastName(doctorDTO.getLastName().trim())
+                .dni(doctorDTO.getDni().trim())
+                .email(doctorDTO.getEmail().trim())
+                .address(mapper.map(doctorDTO.getAddress(), Address.class).orElseGet(Address::new))
+                .birthdate(doctorDTO.getBirthdate())
+                .phoneNumber(doctorDTO.getPhoneNumber().trim())
+                .speciality(mapper.map(doctorDTO.getSpeciality(), Especialidad.class).orElseGet(Especialidad::new))
+                .licenseNumber(doctorDTO.getLicenseNumber())
+                .role(Role.DOCTOR)
                 .build();
     }
 }

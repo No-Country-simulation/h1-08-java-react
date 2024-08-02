@@ -39,9 +39,6 @@ public class GlobalExceptionHandler {
 
         String message = (cause != null && cause.getMessage() != null) ? cause.getMessage() : e.getMessage();
 
-       // String message = cause.getMessage();
-
-
         if (message != null && message.contains("could not execute statement [Cannot add or update a child row")) {
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Se intentó utilizar un id inexistente"), HttpStatus.BAD_REQUEST);
         }

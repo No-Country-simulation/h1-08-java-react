@@ -29,9 +29,6 @@ public class Patient extends Usuario {
     @Column()
     private String bloodType;
 
-    @Enumerated(EnumType.STRING)
-    private Genders gender;
-
     @Column()
     private double height;
 
