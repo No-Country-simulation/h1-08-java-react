@@ -18,7 +18,7 @@ public class TreatmentMapper {
         return TreatmentRes.builder()
                 .id(entity.getId())
                 .pathology(pathologyName)
-                .prescription(PrescriptionMapper.toPrescriptionMinRes(entity.getPrescription()))
+                .prescription(entity.getPrescription() != null ? PrescriptionMapper.toPrescriptionMinRes(entity.getPrescription()) : null)
                 .description(entity.getDescription())
                 .status(entity.getStatus()).build();
     }

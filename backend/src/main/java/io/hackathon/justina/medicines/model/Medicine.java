@@ -97,7 +97,4 @@ public class Medicine {
         this.laboratory = laboratory;
     }
 
-    public Medicine(Long medicine) {
-        this.id = medicine;
-    }
 }

@@ -38,12 +38,13 @@ public class ClinicHistoryMapper {
         return ClinicHistoryRes.builder()
                 .id(entity.getId())
                 .patient(PatientMapper.toPatientMinRes(entity.getPatient()))
-                .doctor(entity.getDoctor().getId())
+                .doctor(entity.getDoctor() != null ? entity.getDoctor().getId() : null)
                 .medicalHistory(entity.getMedicalHistory())
                 .familyBackground(entity.getFamilyBackground())
                 .diagnosis(entity.getDiagnosis())
                 .studies(entity.getStudies())
-                .treatment(TreatmentMapper.toTreatmentRes(entity.getTreatment())).build();
+                .treatment(TreatmentMapper.toTreatmentRes(entity.getTreatment()))
+                .build();
     }
 
 }

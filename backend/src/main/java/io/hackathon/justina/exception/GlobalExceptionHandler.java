@@ -4,6 +4,7 @@ import io.hackathon.justina.exception.custom.ErrorResponse;
 import io.hackathon.justina.exception.custom.ErrorValidationResponse;
 import io.hackathon.justina.exception.custom.ValidationError;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
@@ -55,6 +56,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({BadCredentialsException.class})
     public ResponseEntity<ErrorResponse> handleBadCredentialsException(BadCredentialsException e) {
         return new ResponseEntity<>(new ErrorResponse(HttpStatus.UNAUTHORIZED, "Contraseña incorrectas"), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    public ResponseEntity<ErrorResponse> handleEmptyResultDataAccessException(EmptyResultDataAccessException e) {
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND, e.getMessage()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler({Exception.class, RuntimeException.class})

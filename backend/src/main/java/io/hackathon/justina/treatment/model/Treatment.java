@@ -1,6 +1,8 @@
 package io.hackathon.justina.treatment.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.hackathon.justina.clinicHistory.model.ClinicHistory;
 import io.hackathon.justina.pathologies.model.Pathology;
 import io.hackathon.justina.treatment.prescription.model.Prescription;
 import io.hackathon.justina.utils.Enums.TreatmentStatus;
@@ -34,6 +36,10 @@ public class Treatment {
     @Column
     private String description;
 
+    @OneToOne(mappedBy = "treatment", fetch = FetchType.LAZY)
+    @JsonBackReference
+    private ClinicHistory clinicHistory;
+    
     @Column(nullable = false, columnDefinition = "enum('PENDING', 'IN_PROGRESS', 'COMPLETED') default 'PENDING' ")
     @Enumerated(EnumType.STRING)
     private TreatmentStatus status;

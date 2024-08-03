@@ -7,9 +7,6 @@ import io.hackathon.justina.treatment.prescription.repository.PrescriptionReposi
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Set;
-
 @Service
 @RequiredArgsConstructor
 public class PrescriptionService {
@@ -21,8 +18,12 @@ public class PrescriptionService {
         return prescriptionRepository.save(prescription);
     }
 
-    public List<PrescriptionMedicine> savePrescriptionMedicine(Set<PrescriptionMedicine> prescriptionMedicine) {
-        return prescriptionMedicineRepository.saveAll(prescriptionMedicine);
+    public void savePrescriptionMedicine(PrescriptionMedicine prescriptionMedicine) {
+        prescriptionMedicineRepository.save(prescriptionMedicine);
+    }
+
+    public Prescription findPrescriptionById(Long id) {
+        return prescriptionRepository.findById(id).orElse(null);
     }
 
 }

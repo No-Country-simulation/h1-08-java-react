@@ -9,6 +9,7 @@ import io.hackathon.justina.pathologies.model.Pathology;
 import io.hackathon.justina.pathologies.services.PathologiesServices;
 import io.hackathon.justina.treatment.model.Treatment;
 import io.hackathon.justina.treatment.prescription.model.Prescription;
+import io.hackathon.justina.treatment.prescription.model.PrescriptionMedicine;
 import io.hackathon.justina.treatment.services.PrescriptionService;
 import io.hackathon.justina.utils.genInterface.IBaseCRUDServices;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -32,10 +36,12 @@ public class ClinicHistoryServices implements IBaseCRUDServices<ClinicHistoryRes
 
     @Override
     public ClinicHistoryRes findById(Long id) {
-        return ClinicHistoryMapper.toResponse(clinicHistoryRepository.findById(id).orElse(null));
+        ClinicHistory clinicHistory = clinicHistoryRepository.findById(id).orElse(null);
+        return ClinicHistoryMapper.toResponse(clinicHistory);
     }
 
     public Page<ClinicHistoryRes> findAllByPatientId(Long id, Pageable pageable) {
+
         return clinicHistoryRepository.findByPatientId(id, pageable).map(ClinicHistoryMapper::toResponse);
     }
 
@@ -50,16 +56,25 @@ public class ClinicHistoryServices implements IBaseCRUDServices<ClinicHistoryRes
         Treatment treatment = clinicHistory.getTreatment();
         Pathology pathology = treatment.getPathology();
         Prescription prescription = treatment.getPrescription();
+        List<PrescriptionMedicine> prescriptionMedicines = prescription.getPrescriptionMedicines();
+
+        for (PrescriptionMedicine pm : prescriptionMedicines) {
+            if (pm.getMedicine() == null || pm.getMedicine().getId() == null) {
+                throw new IllegalArgumentException("Each PrescriptionMedicine must have a valid Medicine reference.");
+            }
+        }
 
         if (pathology != null) {
             pathology = pathologiesServices.findPathologyById(pathology.getId());
             treatment.setPathology(pathology);
         }
 
-        if (prescription != null) {
-            Prescription savedPrescription = prescriptionService.savePrescription(prescription);
-            savedPrescription.setPrescriptionMedicines(prescription.getPrescriptionMedicines());
-            treatment.setPrescription(savedPrescription);
+        prescription.setPrescriptionMedicines(new ArrayList<>());
+        Prescription savedPrescription = prescriptionService.savePrescription(prescription);
+
+        for (PrescriptionMedicine pm : prescriptionMedicines) {
+            pm.setPrescription(savedPrescription);
+            prescriptionService.savePrescriptionMedicine(pm);
         }
 
         ClinicHistory savedClinicHistory = clinicHistoryRepository.save(clinicHistory);

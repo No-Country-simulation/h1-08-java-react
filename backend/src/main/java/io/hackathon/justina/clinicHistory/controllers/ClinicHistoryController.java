@@ -28,8 +28,12 @@ public class ClinicHistoryController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('DOCTOR')")
-    public ClinicHistoryRes findById(@PathVariable Long id) {
-        return clinicHistoryServices.findById(id);
+    public ResponseEntity<ClinicHistoryRes> findById(@PathVariable Long id) {
+        ClinicHistoryRes clinicHistory = clinicHistoryServices.findById(id);
+        if (clinicHistory == null) {
+            throw new EmptyResultDataAccessException("No se a encontrado la historia clinica con el id: " + id, 1);
+        }
+        return ResponseEntity.ok(clinicHistory);
     }
 
     @GetMapping("/patient/{id}")

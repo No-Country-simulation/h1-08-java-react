@@ -1,5 +1,6 @@
 package io.hackathon.justina.clinicHistory.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.hackathon.justina.doctor.models.Medico;
 import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.treatment.model.Treatment;
@@ -22,9 +23,13 @@ public class ClinicHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id")
     private Patient patient;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id")
+    private Medico doctor;
 
     @Column
     private String medicalHistory;
@@ -32,12 +37,10 @@ public class ClinicHistory {
     @Column
     private String familyBackground;
 
-    @ManyToOne
-    @JoinColumn(name = "doctor_id")
-    private Medico doctor;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "treatment_id")
+    @JsonManagedReference
     private Treatment treatment;
 
     @Column

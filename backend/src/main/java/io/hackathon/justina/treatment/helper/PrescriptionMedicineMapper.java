@@ -12,8 +12,7 @@ public class PrescriptionMedicineMapper {
     }
 
     public static PrescriptionMedicine toPrescriptionMedicine(PrescriptionMedicineReq prescriptionMedicineReq) {
-        Medicine medicine = new Medicine();
-        medicine.setId(prescriptionMedicineReq.getMedicine());
+        Medicine medicine = Medicine.builder().id(prescriptionMedicineReq.getMedicine()).build();
         return PrescriptionMedicine.builder()
                 .medicine(medicine)
                 .dose(prescriptionMedicineReq.getDose())

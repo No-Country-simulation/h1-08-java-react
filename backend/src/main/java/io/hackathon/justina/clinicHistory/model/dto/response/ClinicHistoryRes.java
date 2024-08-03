@@ -1,7 +1,6 @@
 package io.hackathon.justina.clinicHistory.model.dto.response;
 
 import io.hackathon.justina.patient.model.dto.PatientMinRes;
-import io.hackathon.justina.treatment.model.dto.request.TreatmentReq;
 import io.hackathon.justina.treatment.model.dto.response.TreatmentRes;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

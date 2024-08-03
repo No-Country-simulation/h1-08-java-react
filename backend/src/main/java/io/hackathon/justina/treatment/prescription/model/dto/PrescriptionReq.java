@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Builder
@@ -13,6 +13,6 @@ import java.util.Set;
 @NoArgsConstructor
 public class PrescriptionReq {
 
-    private Set<PrescriptionMedicineReq> medicines;
+    private List<PrescriptionMedicineReq> medicines;
 
 }
