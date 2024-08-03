@@ -8,7 +8,7 @@ const WelcomeCard = () => {
   const { name, lastName, role, gender } = useAuthStore(state => state.user)
 
   return (
-    <div className="p-6 rounded-xl bg-light backdrop-blur-sm shadowCard border border-orange text-black w-8/12 min-w-[330px] h-36 flex flex-col justify-between gap-2 font-poppins">
+    <div className="px-6 py-4 rounded-xl bg-light backdrop-blur-sm shadowCard border border-orange text-black w-8/12 min-w-[330px] h-36 flex flex-col justify-between font-poppins">
 
       <h2 className="text-black text-xl md:text-2xl">
         {

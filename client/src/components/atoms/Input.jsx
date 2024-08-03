@@ -22,15 +22,24 @@ const Input = ({ label, placeholder, password, register, error, width, viewPassw
       ${isDisabled && "is-input-disabled"}
       `}
       >
-        <input
-          disabled={isDisabled}
-          value={originalValue}
-          autoComplete="off"
-          type={password ? passwordType : typeInput ?? "text"}
-          {...register}
-          placeholder={placeholder}
-          className={"w-full text-ellipsis overflow-hidden "}
-        />
+        {
+          watch ? <input
+            disabled={isDisabled}
+            value={originalValue}
+            autoComplete="off"
+            type={password ? passwordType : typeInput ?? "text"}
+            {...register}
+            placeholder={placeholder}
+            className={"w-full text-ellipsis overflow-hidden "}
+          />
+            : <input
+              autoComplete="off"
+              type={password ? passwordType : typeInput ?? "text"}
+              {...register}
+              placeholder={placeholder}
+              className={"w-full text-ellipsis overflow-hidden "}
+            />
+        }
         {password && viewPassword}
       </div>
 
