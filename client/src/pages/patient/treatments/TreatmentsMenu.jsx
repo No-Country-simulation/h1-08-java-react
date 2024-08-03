@@ -7,6 +7,7 @@ import {
   electrocardiogram_pink,
   folder_pink,
 } from "../../../assets";
+import roles from "../../../data/roles";
 
 function selectIcon(name) {
   switch (name) {
@@ -23,8 +24,7 @@ function selectIcon(name) {
 
 const TreatmentsMenu = () => {
   const navigation = useNavigation();
-  const role = "PATIENT";
-  const treatMentsRoutes = navigation.getNavigation(role)[1].sub_items;
+  const treatMentsRoutes = navigation.getNavigation(roles[0].value)[1].sub_items;
 
   return (
     <section className="flex flex-col gap-5 items-center mt-5 mb-20 py-5 px-2">

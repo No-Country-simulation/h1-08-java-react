@@ -3,8 +3,10 @@ import { CountryDropdown, RegionDropdown, } from 'react-country-region-selector'
 
 
 const RegionSelected = ({ register, watch, setValue, isDisabled, values }) => {
-    const selectedCountry = watch("country", values?.country ?? "Argentina");
-    const selectedRegion = watch("province", values?.province ?? "");
+    const valueCountry = values?.country != "sin especificar" ? values.country : "Argentina"
+    const valueProvince = values?.province != "sin especificar" ? values.province : "Buenos Aires"
+    const selectedCountry = watch("country", valueCountry);
+    const selectedRegion = watch("province", valueProvince);
 
     return (<>
         <div className="form-control">

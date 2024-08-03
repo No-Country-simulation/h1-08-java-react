@@ -2,6 +2,7 @@ import patient_es_routes from "./patient/es-routes.json"
 import patient_en_routes from "./patient/en-routes.json"
 import doctor_es_routes from "./doctor/es-routes.json"
 import doctor_en_routes from "./doctor/en-routes.json"
+import roles from "../data/roles"
 
 export default class Navigation {
     #navigation = [];
@@ -58,8 +59,8 @@ export default class Navigation {
     }
 
     getNavigation(role) {
-        if (role === "DOCTOR") return this.#navigation.doctor_navigation;
-        if (role === "PATIENT") return this.#navigation.patients_navigation;
+        if (role === roles[1].value) return this.#navigation.doctor_navigation;
+        if (role === roles[0].value) return this.#navigation.patients_navigation;
         return [];
     }
 

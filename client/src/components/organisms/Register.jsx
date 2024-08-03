@@ -14,10 +14,11 @@ const Register = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     const validation = transformRegister(data)
+    const role = data.role.toLowerCase().includes("doctor") ? "doctor" : "patient"
 
     if (MODE != "only-front") {
       setMessageErrors([{ message: "Cargando..." }])
-      const response = await fetchData(`auth/register/${data.role}`, "POST", validation)
+      const response = await fetchData(`auth/register/${role}`, "POST", validation)
       setMessageErrors([])
       if (response.token) {
         console.log("TODO SALIO BIEN...");

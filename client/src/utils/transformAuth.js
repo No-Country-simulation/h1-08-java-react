@@ -63,21 +63,3 @@ export function transformRegister(data) {
     }
     return validation
 }
-
-
-
-/*  CAMPO ESPERADO PARA REGISTRO DE PACIENTE
-        "nombre": "KfI'fFItgb'ya C uqJE",
-        "apellido": "uHyDcL'wxAA'zKhIwGSb",
-        "dni": "stringst",
-        "email": "string",
-        "address": {
-            "country": "string",
-            "province": "Pu UTOtqVLvAqJLtWa pdUMFKdKvaC",
-            "city": "VgECXXFmYeNIJwtbCFVJrpuDKsJjqHqtmjXVwcWLOSqpFWtGAT",
-            "street": "XCKo vBrMMLPJGSuEZdFbZeiTvN B gXsfGkoLJVMJxFdzQUpb"
-        },
-        "fechaNacimiento": "2024-07-23",
-        "telefono": "stringstri",
-        "password": "stringst"
-*/

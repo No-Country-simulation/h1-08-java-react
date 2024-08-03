@@ -1,6 +1,6 @@
 const roles = Object.freeze([
-    { name: "Paciente", value: "patient" },
-    { name: "Médico", value: "doctor" }
+    { name: "Paciente", value: "ROLE_PATIENT" },
+    { name: "Médico", value: "ROLE_DOCTOR" }
 ])
 
 
