@@ -43,7 +43,7 @@ const AgendaSection = () => {
 
       <div className="flex items-center w-full p-6 min-h-[86px] rounded-2xl shadowCard border border-orange">
         <p className="text-black text-3xl font-poppins font-semibold">
-          {lang === "es" ? "Para hoy tienes" : "For today you have"} 6
+          {lang === "es" ? "Para hoy tienes" : "For today you have"}{" "} 6 {" "}
           {lang === "es" ? "citas agendadas" : "appointments scheduled"}.
         </p>
       </div>
