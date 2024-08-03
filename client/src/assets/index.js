@@ -33,6 +33,8 @@ import close from "./navigation/hamburger/close-outline.svg"
 
 import home_pink from "./icons/pink/home.svg"
 
+import whatsapp from "./icons/whatsapp-icon.svg"
+
 
 export {
     home_pink,
@@ -64,5 +66,6 @@ export {
     health,
     gotaDeSangre,
     search,
-    arrowFilter
+    arrowFilter,
+    whatsapp
 }
