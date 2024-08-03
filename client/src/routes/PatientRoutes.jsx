@@ -14,10 +14,11 @@ import {
   ShareInfo
 } from "../pages/patient"
 import useAuthStore from "../store/auth-store"
+import roles from "../data/roles"
 
 const PatientRoutes = () => {
   const role = useAuthStore(state => state.user?.role) ?? "off"
-  if (role != "ROLE_PATIENT") return false;
+  if (role != roles[0].value) return false;
 
   return [
     < ProtectedRoute path="/" component={Home} />,

@@ -17,8 +17,9 @@ const Login = () => {
   const onSubmit = handleSubmit(async (data) => {
     const validation = transformLogin(data)
     if (MODE != "only-front") {
+      const role = data.role.toLowerCase().includes("doctor") ? "doctor" : "patient"
       setMessageErrors([{ message: "Cargando..." }])
-      const response = await fetchData(`auth/login/${data.role}`, "POST", validation)
+      const response = await fetchData(`auth/login/${role}`, "POST", validation)
       console.log(response);
       setMessageErrors([])
       if (response.token) {

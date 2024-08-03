@@ -1,6 +1,6 @@
 import useLanguage from "../../hooks/useLanguage"
 import useAuthStore from "../../store/auth-store"
-
+import roles from "../../data/roles"
 
 /* eslint-disable react/prop-types */
 const WelcomeCard = () => {
@@ -8,7 +8,7 @@ const WelcomeCard = () => {
   const { name, lastName, role, gender } = useAuthStore(state => state.user)
 
   return (
-    <div className="p-6 rounded-xl bg-light backdrop-blur-sm shadowCard border border-orange text-black w-8/12 min-w-[330px] h-36 flex flex-col justify-between gap-2 font-poppins">
+    <div className="px-6 py-4 rounded-xl bg-light backdrop-blur-sm shadowCard border border-orange text-black w-8/12 min-w-[330px] h-36 flex flex-col justify-between font-poppins">
 
       <h2 className="text-black text-xl md:text-2xl">
         {
@@ -18,7 +18,7 @@ const WelcomeCard = () => {
               ? lang === "es" ? "Bienvenida " : "Welcome "
               : lang === "es" ? "Bienvenido " : "Welcome "
         }
-        {role && ((role === "DOCTOR") && (gender === "f" ? "Doctora" : "Doctor"))}
+        {role && ((role === roles[1].value) && (gender === "f" ? "Doctora" : "Doctor"))}
       </h2>
 
       <p className="text-black text-2xl md:text-3xl pl-4 pr-1 capitalize font-medium text-nowrap overflow-hidden text-ellipsis">
@@ -26,7 +26,7 @@ const WelcomeCard = () => {
       </p>
 
       {
-        role && (role === "DOCTOR" &&
+        role && (role === roles[1].value &&
           <p className="text-black text-lg md:text-xl text-nowrap overflow-hidden text-ellipsis">
             {lang === "es" ? "N° de matricula" : "N° doctor certificate"}
             : 3594594-76496749

@@ -6,9 +6,10 @@ import RegionSelected from "./RegionSelected"
 import Select from "../atoms/Select"
 import LittleCardSelector from "../../components/atoms/LittleCardSelector";
 import getAge from "../../utils/getAge"
-
+import roles from "../../data/roles"
 const blood_types = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
 const genres = [
+  { name: "-", value: null, isDefaultChecked: true },
   { name: "Masculino", value: "MALE" },
   { name: "Femenino", value: "FEMALE" },
   { name: "Transgénero", value: "TRANS_GENDER" },
@@ -49,15 +50,15 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
     : "-";
 
   return (
-    <form className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-center md:w-fit w-11/12 max-w-[640px] mx-auto mt-5 mb-10 font-poppins">
+    <form className={`grid grid-cols-1 md:grid-cols-2 gap-6 justify-center md:w-fit w-11/12 max-w-[640px] mx-auto mt-5 mb-10 font-poppins ${isDisabled && "opacity-90"}`}>
       <h2 className="text-2xl font-bold col-span-full">Datos Generales</h2>
 
       <div className="col-span-full flex flex-wrap gap-y-5 justify-between items-center mb-5">
         <LittleCardSelector register={register} watch={watch} originalValue={userData?.gender} inputName={"gender"} label={"Género"} isSelector={true} options={genres} isDisabled={isDisabled} />
-        <LittleCardSelector register={register} watch={watch} originalValue={userData?.age ?? userAge} inputName={"age"} label={"Edad"} isOnlyText={true} isDisabled={isDisabled} />
+        <LittleCardSelector register={register} watch={watch} originalValue={userAge} inputName={"age"} label={"Edad"} isOnlyText={true} isDisabled={isDisabled} />
 
         {
-          userData?.role === "PATIENT" && (<>
+          userData?.role === roles[0].value && (<>
             <LittleCardSelector register={register} watch={watch} originalValue={userData?.blood_type} inputName={"blood_type"} label={"G. Sanguíneo"} isSelector={true} options={blood_types} isDisabled={isDisabled} />
             <LittleCardSelector register={register} watch={watch} originalValue={userData?.height} inputName={"height"} label={"Estatura en M."} type={"number"} placeholder={"Ej: 1.50"} isDisabled={isDisabled} />
             <LittleCardSelector register={register} watch={watch} originalValue={userData?.weight} inputName={"weight"} label={"Peso en Kg."} type={"number"} placeholder={"Ej: 65.50"} isDisabled={isDisabled} />
@@ -74,6 +75,8 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
       <h2 className="text-2xl font-bold col-span-full">Datos de contacto</h2>
       <>
         <Input
+          watch={watch}
+          inputName={"email"}
           isDisabled={isDisabled}
           register={register("email", emailValidation)}
           error={errors.email}
@@ -82,9 +85,12 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
         />
 
         <Input
+          watch={watch}
+          inputName={"phone"}
           isDisabled={isDisabled}
           register={register("phone", phoneValidation)}
           error={errors.phone}
+          typeInput={"tel"}
           label={"Teléfono / Celular"}
           placeholder={"Teléfono"}
           value={userData?.phoneNumber ?? "11244545"}
@@ -99,6 +105,8 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
         />
 
         <Input
+          watch={watch}
+          inputName={"locality"}
           isDisabled={isDisabled}
           register={register("locality")}
           error={errors.locality}
@@ -107,6 +115,8 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
         />
 
         <Input
+          watch={watch}
+          inputName={"address"}
           isDisabled={isDisabled}
           register={register("address")}
           error={errors.address}
@@ -117,7 +127,7 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
       </>
 
       {
-        userData?.role === "PATIENT" && (<>
+        userData?.role === roles[0].value && (<>
           <div className="divider my-2 col-span-full"></div>
           <h2 className="text-2xl font-bold col-span-full">Plan Médico</h2>
           <>
@@ -132,6 +142,8 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
 
             {planFields.map(({ label, placeholder, name, value }) => (
               <Input
+                watch={watch}
+                inputName={name}
                 isDisabled={isDisabled}
                 key={name}
                 label={label}
