@@ -1,5 +1,6 @@
 package io.hackathon.justina.user.services.implementation;
 
+import io.hackathon.justina.doctor.helper.DoctorMapper;
 import io.hackathon.justina.doctor.models.Medico;
 import io.hackathon.justina.doctor.services.DoctorServicesImp;
 import io.hackathon.justina.patient.model.Patient;
@@ -18,12 +19,11 @@ public class UserServicesImp {
     private final PatientServicesImp patientServices;
     private final Mapper mapper = Mapper.getInstance();
 
-    public Usuario getUserByUsername(String username)  {
+    public Usuario getUserByUsername(String username) {
         try {
             if (username == null || username.isEmpty()) {
                 throw new UsernameNotFoundException("El dni no puede ser vacio");
             }
-            System.out.println(username);
 
             if (username.contains(Patient.class.getSimpleName() + ":")) {
                 return getPatientUser(username);
@@ -51,9 +51,9 @@ public class UserServicesImp {
 
     private Usuario getDoctorUser(String username) {
         String licence = username.replace(Medico.class.getSimpleName() + ":", "");
-        Medico doctor = doctorServices.findByLicenseNumber(Integer.parseInt(licence));
+        Medico doctor = doctorServices.findByLicenseNumber(licence);
         if (doctor != null) {
-            return mapper.map(doctor, Usuario.class).orElse(null);
+            return DoctorMapper.toUsuario(doctor);
         }
         throw new UsernameNotFoundException("No se encontro el medico con la licencia: " + licence);
     }

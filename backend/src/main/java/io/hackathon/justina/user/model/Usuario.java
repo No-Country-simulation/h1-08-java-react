@@ -1,6 +1,7 @@
 package io.hackathon.justina.user.model;
 
 import io.hackathon.justina.address.models.Address;
+import io.hackathon.justina.utils.Enums.Genders;
 import io.hackathon.justina.utils.Enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,8 +36,15 @@ public class Usuario implements UserDetails {
     @Column(nullable = false, unique = true)
     private String dni;
 
+    @Transient
+    private String licenseNumber;
+
     @Column(nullable = false)
     private int age;
+
+    @Column(columnDefinition = "enum('MALE', 'FEMALE', 'NOT_BINARY', 'TRANS_GENDER', 'NOT_SPECIFIED') default 'NOT_SPECIFIED'")
+    @Enumerated(EnumType.STRING)
+    private Genders gender;
 
     @Column
     private LocalDate birthdate;
@@ -53,6 +61,7 @@ public class Usuario implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Address address;
 
+    @Column(nullable = false, columnDefinition = "enum('ROLE_PATIENT', 'ROLE_DOCTOR') default 'ROLE_PATIENT'")
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -66,6 +75,10 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.email;
+        return switch (role) {
+            case ROLE_PATIENT -> this.dni;
+            case ROLE_DOCTOR -> this.licenseNumber;
+            default -> throw new IllegalStateException("Unexpected value: " + role);
+        };
     }
 }

@@ -1,6 +1,10 @@
 package io.hackathon.justina.auth.JWT.Filters;
 
 import io.hackathon.justina.auth.JWT.Services.JwtService;
+import io.hackathon.justina.doctor.models.Medico;
+import io.hackathon.justina.patient.model.Patient;
+import io.hackathon.justina.utils.Enums.Role;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,6 +22,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -40,8 +45,20 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (token != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             try {
-                username = jwtService.getEmailFromJwtToken(token);
+                username = jwtService.getCredentialFromJwtToken(token);
+
                 if (username != null) {
+
+                    try {
+                        Claims claims = jwtService.getAllClaims(token);
+                        String authorities = (String) ((List<?>) claims.get("role")).stream().toList().get(0);
+                        Class<?> clazz = Role.valueOf(authorities) == Role.ROLE_PATIENT ? Patient.class : Medico.class;
+
+                        username = clazz.getSimpleName() + ":" + username;
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+
                     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                     if (jwtService.validateToken(token, userDetails)) {
                         UsernamePasswordAuthenticationToken authToken =
@@ -53,7 +70,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 }
             } catch (Exception e) {
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                response.getWriter().write("Invalid token");
+                response.getWriter().write("{\"error\":\"Unauthorized\", \"message\":\"" + e.getMessage() + "\"}");
                 return;
             }
         }
