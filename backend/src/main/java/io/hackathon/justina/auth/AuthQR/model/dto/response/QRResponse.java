@@ -1,4 +1,4 @@
-package io.hackathon.justina.auth.AuthQR.model.dto.request;
+package io.hackathon.justina.auth.AuthQR.model.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,4 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QRResponse {
+
+    private String token;
+
 }

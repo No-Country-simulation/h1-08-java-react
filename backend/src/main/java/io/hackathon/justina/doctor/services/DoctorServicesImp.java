@@ -5,6 +5,8 @@ import io.hackathon.justina.doctor.helper.DoctorMapper;
 import io.hackathon.justina.doctor.models.Medico;
 import io.hackathon.justina.doctor.models.dto.DoctorDTO;
 import io.hackathon.justina.doctor.repository.DoctorRepository;
+import io.hackathon.justina.patient.helper.PatientMapper;
+import io.hackathon.justina.patient.model.dto.PatientMinRes;
 import io.hackathon.justina.utils.Age;
 import io.hackathon.justina.utils.Enums.Genders;
 import io.hackathon.justina.utils.Enums.Role;
@@ -32,7 +34,7 @@ public class DoctorServicesImp implements IBaseCRUDServices<DoctorDTO, Medico> {
 
     @Override
     public DoctorDTO findById(Long id) {
-        return null;
+        return this.doctorRepository.findById(id).map(DoctorMapper::toMedicoDto).orElse(null);
     }
 
     public DoctorDTO findByEmail(String email) {
@@ -45,6 +47,13 @@ public class DoctorServicesImp implements IBaseCRUDServices<DoctorDTO, Medico> {
 
     public Medico findByLicenseNumber(String licenseNumber) {
         return doctorRepository.findByLicenseNumber(licenseNumber);
+    }
+
+    public Page<PatientMinRes> findPatientsByDoctorId(Long id, Pageable pageable) {
+        if (!doctorRepository.existsById(id)) {
+            throw new UsernameNotFoundException("El medico con la id " + id + " no existe");
+        }
+        return doctorRepository.findPatientsByDoctorId(id, pageable).map(PatientMapper::toPatientMinRes);
     }
 
     @Override

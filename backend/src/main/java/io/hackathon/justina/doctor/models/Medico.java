@@ -9,13 +9,14 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
 @SuperBuilder
 @Entity
 @Table(name = "Medico")
-@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Medico extends Usuario {
@@ -28,10 +29,30 @@ public class Medico extends Usuario {
     private String licenseNumber;
 
     @OneToMany(mappedBy = "doctors", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Patient> patients;
+    private List<Patient> patients;
 
     @Override
     public String getUsername() {
         return this.licenseNumber;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (Objects.equals(getId(), ((Medico) obj).getId())) return true;
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        return this.licenseNumber.equals(((Medico) obj).getLicenseNumber());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

@@ -49,6 +49,9 @@ public class PatientMapper {
     }
 
     public static PatientDTO toPatientDTO(Patient patient) {
+        if (patient == null) {
+            return null;
+        }
         return PatientDTO.builder()
                 .id(patient.getId())
                 .age(patient.getAge())
@@ -69,6 +72,9 @@ public class PatientMapper {
     }
 
     public static PatientMinRes toPatientMinRes(Patient patient) {
+        if (patient == null) {
+            return null;
+        }
         return PatientMinRes.builder()
                 .id(patient.getId())
                 .dni(patient.getDni())
