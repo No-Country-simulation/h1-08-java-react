@@ -7,6 +7,9 @@ import Select from "../atoms/Select"
 import LittleCardSelector from "../../components/atoms/LittleCardSelector";
 import getAge from "../../utils/getAge"
 import roles from "../../data/roles"
+import SectionCollapse from "../atoms/SectionCollapse"
+import useLanguage from "../../hooks/useLanguage"
+
 const blood_types = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
 const genres = [
   { name: "-", value: null, isDefaultChecked: true },
@@ -30,9 +33,9 @@ const updatedTypePlan = (type) => {
   })
 };
 
-const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
+const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState, isStatic, textStatic }) => {
   const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm()
-
+  const lang = useLanguage()
   const onSubmit = handleSubmit(onSubmitForm)
 
 
@@ -44,129 +47,130 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState }) => {
   const typePlanOptions = userData?.healthPlan?.typeHealth
     ? updatedTypePlan(userData.healthPlan.typeHealth) : type_plan
 
-  const userAge = watch("birthdate") ? getAge(watch("birthdate")) : "-"
-  const userIMC = watch("weight") && watch("height")
+  const userAge = isDisabled ? userData.age : (watch("birthdate") ? getAge(watch("birthdate")) : "-")
+  const userIMC = isDisabled ? userData.imc : (watch("weight") && watch("height")
     ? ((watch("weight") / (watch("height") * watch("height"))).toFixed(2) ?? 0)
-    : "-";
+    : "-");
 
   return (
-    <form className={`grid grid-cols-1 md:grid-cols-2 gap-6 justify-center md:w-fit w-11/12 max-w-[640px] mx-auto mt-5 mb-10 font-poppins ${isDisabled && "opacity-90"}`}>
-      <h2 className="text-2xl font-bold col-span-full">Datos Generales</h2>
+    <form className={`grid grid-cols-1 md:grid-cols-2 gap-6 justify-center md:w-fit w-11/12 ${!isStatic && "max-w-[768px]"} mx-auto mt-5 mb-10 font-poppins ${isDisabled && "opacity-90"}`}>
 
-      <div className="col-span-full flex flex-wrap gap-y-5 justify-between items-center mb-5">
-        <LittleCardSelector register={register} watch={watch} originalValue={userData?.gender} inputName={"gender"} label={"Género"} isSelector={true} options={genres} isDisabled={isDisabled} />
-        <LittleCardSelector register={register} watch={watch} originalValue={userAge} inputName={"age"} label={"Edad"} isOnlyText={true} isDisabled={isDisabled} />
+      <SectionCollapse isStatic={isStatic} text={textStatic} title={lang === "es" ? "Datos Generales" : "General Data"}>
+        <div className="col-span-full flex flex-wrap gap-y-5 justify-between items-center my-5">
+          <LittleCardSelector register={register} watch={watch} originalValue={userData?.gender} inputName={"gender"} label={"Género"} isSelector={true} options={genres} isDisabled={isDisabled} />
+          <LittleCardSelector register={register} watch={watch} originalValue={userAge} inputName={"age"} label={"Edad"} isOnlyText={true} isDisabled={isDisabled} />
 
-        {
-          userData?.role === roles[0].value && (<>
-            <LittleCardSelector register={register} watch={watch} originalValue={userData?.blood_type} inputName={"blood_type"} label={"G. Sanguíneo"} isSelector={true} options={blood_types} isDisabled={isDisabled} />
-            <LittleCardSelector register={register} watch={watch} originalValue={userData?.height} inputName={"height"} label={"Estatura en M."} type={"number"} placeholder={"Ej: 1.50"} isDisabled={isDisabled} />
-            <LittleCardSelector register={register} watch={watch} originalValue={userData?.weight} inputName={"weight"} label={"Peso en Kg."} type={"number"} placeholder={"Ej: 65.50"} isDisabled={isDisabled} />
-            <LittleCardSelector register={register} watch={watch} originalValue={userData?.imc ?? userIMC} inputName={"imc"} label={"IMC"} isOnlyText={true} isDisabled={isDisabled} />
-          </>)
-        }
+          {
+            userData?.role === roles[0].value && (<>
+              <LittleCardSelector register={register} watch={watch} originalValue={userData?.blood_type} inputName={"blood_type"} label={"G. Sanguíneo"} isSelector={true} options={blood_types} isDisabled={isDisabled} />
+              <LittleCardSelector register={register} watch={watch} originalValue={userData?.height} inputName={"height"} label={"Estatura en M."} type={"number"} placeholder={"Ej: 1.50"} isDisabled={isDisabled} />
+              <LittleCardSelector register={register} watch={watch} originalValue={userData?.weight} inputName={"weight"} label={"Peso en Kg."} type={"number"} placeholder={"Ej: 65.50"} isDisabled={isDisabled} />
+              <LittleCardSelector register={register} watch={watch} originalValue={userData?.imc ?? userIMC} inputName={"imc"} label={"IMC"} isOnlyText={true} isDisabled={isDisabled} />
+            </>)
+          }
 
-      </div>
+        </div>
+        <LittleCardSelector register={register} watch={watch} originalValue={userData?.birthdate} inputName={"birthdate"} label={"Fecha de Nacimiento"} addClassName={"col-span-full mx-auto col-span-full min-w-[275px]"} type="date" isDisabled={isDisabled} />
+      </SectionCollapse>
 
-      <LittleCardSelector register={register} watch={watch} originalValue={userData?.birthdate} inputName={"birthdate"} label={"Fecha de Nacimiento"} addClassName={"col-span-full mx-auto col-span-full min-w-[275px]"} type="date" isDisabled={isDisabled} />
+      <SectionCollapse isStatic={isStatic} text={textStatic} title={lang === "es" ? "Datos de contacto" : "Contact Data"}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-center md:w-fit w-11/12 max-w-[768px] mx-auto my-5 font-poppins">
+          <Input
+            watch={watch}
+            inputName={"email"}
+            isDisabled={isDisabled}
+            register={register("email", emailValidation)}
+            error={errors.email}
+            label={"Email"}
+            value={userData?.email ?? "justina.io@gmail.com"}
+          />
 
-      <div className="divider my-2 col-span-full"></div>
+          <Input
+            watch={watch}
+            inputName={"phone"}
+            isDisabled={isDisabled}
+            register={register("phone", phoneValidation)}
+            error={errors.phone}
+            typeInput={"tel"}
+            label={"Teléfono / Celular"}
+            placeholder={"Teléfono"}
+            value={userData?.phoneNumber ?? "11244545"}
+          />
 
-      <h2 className="text-2xl font-bold col-span-full">Datos de contacto</h2>
-      <>
-        <Input
-          watch={watch}
-          inputName={"email"}
-          isDisabled={isDisabled}
-          register={register("email", emailValidation)}
-          error={errors.email}
-          label={"Email"}
-          value={userData?.email ?? "justina.io@gmail.com"}
-        />
+          <RegionSelected
+            values={userData?.address}
+            register={register}
+            watch={watch}
+            setValue={setValue}
+            isDisabled={isDisabled}
+          />
 
-        <Input
-          watch={watch}
-          inputName={"phone"}
-          isDisabled={isDisabled}
-          register={register("phone", phoneValidation)}
-          error={errors.phone}
-          typeInput={"tel"}
-          label={"Teléfono / Celular"}
-          placeholder={"Teléfono"}
-          value={userData?.phoneNumber ?? "11244545"}
-        />
+          <Input
+            watch={watch}
+            inputName={"locality"}
+            isDisabled={isDisabled}
+            register={register("locality")}
+            error={errors.locality}
+            label={"Localidad"}
+            value={userData?.address?.city ?? "Limboriu"}
+          />
 
-        <RegionSelected
-          values={userData?.address}
-          register={register}
-          watch={watch}
-          setValue={setValue}
-          isDisabled={isDisabled}
-        />
-
-        <Input
-          watch={watch}
-          inputName={"locality"}
-          isDisabled={isDisabled}
-          register={register("locality")}
-          error={errors.locality}
-          label={"Localidad"}
-          value={userData?.address?.city ?? "Limboriu"}
-        />
-
-        <Input
-          watch={watch}
-          inputName={"address"}
-          isDisabled={isDisabled}
-          register={register("address")}
-          error={errors.address}
-          label={"Dirección"}
-          placeholder={"Dirección"}
-          value={userData?.address?.street ?? "Calle F. 123"}
-        />
-      </>
+          <Input
+            watch={watch}
+            inputName={"address"}
+            isDisabled={isDisabled}
+            register={register("address")}
+            error={errors.address}
+            label={"Dirección"}
+            placeholder={"Dirección"}
+            value={userData?.address?.street ?? "Calle F. 123"}
+          />
+        </div>
+      </SectionCollapse>
 
       {
-        userData?.role === roles[0].value && (<>
-          <div className="divider my-2 col-span-full"></div>
-          <h2 className="text-2xl font-bold col-span-full">Plan Médico</h2>
-          <>
-            <Select
-              column
-              isDisabled={isDisabled}
-              register={register("plan_type")}
-              error={errors.plan_type}
-              label={"Tipo de Plan"}
-              options={typePlanOptions}
-            />
-
-            {planFields.map(({ label, placeholder, name, value }) => (
-              <Input
-                watch={watch}
-                inputName={name}
+        userData?.role === roles[0].value && (
+          <SectionCollapse isStatic={isStatic} text={textStatic} title={lang === "es" ? "Plan Médico" : "Medical Plan"}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-center md:w-fit w-11/12 max-w-[768px] mx-auto my-5 font-poppins">
+              <Select
+                column
                 isDisabled={isDisabled}
-                key={name}
-                label={label}
-                value={value}
-                placeholder={placeholder ?? label}
-                register={register(name)}
-                error={errors[name]}
+                register={register("plan_type")}
+                error={errors.plan_type}
+                label={"Tipo de Plan"}
+                options={typePlanOptions}
               />
-            ))}
-          </>
-        </>)
-      }
 
-      <SubmitButton
-        addClassName={"col-span-full mt-5 is-disabled"}
-        onClick={isDisabled ?
-          (e) => {
-            e.preventDefault()
-            handleState()
-          }
-          : onSubmit}>
-        {isDisabled ? "editar" : "guardar"}
-      </SubmitButton>
+              {planFields.map(({ label, placeholder, name, value }) => (
+                <Input
+                  watch={watch}
+                  inputName={name}
+                  isDisabled={isDisabled}
+                  key={name}
+                  label={label}
+                  value={value}
+                  placeholder={placeholder ?? label}
+                  register={register(name)}
+                  error={errors[name]}
+                />
+              ))}
+            </div>
+          </SectionCollapse>
+        )
+      }
+      {
+        !isStatic &&
+        <SubmitButton
+          addClassName={"col-span-full mt-5 is-disabled"}
+          onClick={isDisabled ?
+            (e) => {
+              e.preventDefault()
+              handleState()
+            }
+            : onSubmit}>
+          {isDisabled ? "editar" : "guardar"}
+        </SubmitButton>
+      }
 
 
 

@@ -27,7 +27,7 @@ const AgendaSection = () => {
     }
   };
 
-  // <section className="rounded-2xl bg-light backdrop-blur-sm shadowCard border border-orange">
+
   return (
     <section className="flex flex-col items-center gap-10 w-[95%] min-w-[350px] mx-auto mt-6 mb-12 px-3 md:px-6 py-6 rounded-2xl bg-light backdrop-blur-sm shadowCard border border-orange">
       <div className="flex flex-col md:flex-row gap-x-44 gap-3 justify-between max-w-[850px]">
@@ -43,7 +43,7 @@ const AgendaSection = () => {
 
       <div className="flex items-center w-full p-6 min-h-[86px] rounded-2xl shadowCard border border-orange">
         <p className="text-black text-3xl font-poppins font-semibold">
-          {lang === "es" ? "Para hoy tienes " : "For today you have "} 6 
+          {lang === "es" ? "Para hoy tienes " : "For today you have "} 6
           {lang === "es" ? " citas agendadas" : " appointments scheduled"}.
         </p>
       </div>

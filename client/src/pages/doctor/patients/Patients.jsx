@@ -20,6 +20,8 @@ const fakePatients = [
 ]
 
 const Patients = () => {
+  
+
   const handleSubmitSearch = (e) => {
     e.preventDefault()
   }
