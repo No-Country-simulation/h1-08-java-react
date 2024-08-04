@@ -4,6 +4,7 @@ import io.hackathon.justina.doctor.helper.DoctorMapper;
 import io.hackathon.justina.doctor.models.dto.DoctorDTO;
 import io.hackathon.justina.doctor.models.dto.DoctorReqUpdate;
 import io.hackathon.justina.doctor.services.DoctorServicesImp;
+import io.hackathon.justina.patient.model.dto.PatientMinRes;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
@@ -57,6 +58,19 @@ public class DoctorController {
             return ResponseEntity.ok(doctorDTO);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/{id}/patients")
+    public ResponseEntity<PagedModel<PatientMinRes>> getPatientsByDoctorId(@PathVariable Long id, @PageableDefault(page = 0, size = 10, sort = "id") Pageable pageable) {
+        try {
+            PagedModel<PatientMinRes> doctorPage = new PagedModel<>(doctorService.findPatientsByDoctorId(id, pageable));
+            if (doctorPage.getContent().isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.ok(doctorPage);
+        } catch (DataAccessException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping

@@ -32,7 +32,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/v1/auth/**").permitAll()
                                 .requestMatchers("/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                                 .requestMatchers("/api/v1/patient/**").hasAnyRole("PATIENT", "DOCTOR")
-                                .requestMatchers("/api/v1/doctor/**").hasAnyRole("DOCTOR")
+                                .requestMatchers("/api/v1/doctor/**").hasAnyRole("DOCTOR", "ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->

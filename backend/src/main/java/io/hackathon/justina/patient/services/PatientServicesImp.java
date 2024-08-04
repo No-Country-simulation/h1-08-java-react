@@ -1,6 +1,8 @@
 package io.hackathon.justina.patient.services;
 
 import io.hackathon.justina.address.models.Address;
+import io.hackathon.justina.doctor.models.Medico;
+import io.hackathon.justina.doctor.repository.DoctorRepository;
 import io.hackathon.justina.patient.helper.PatientMapper;
 import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.model.dto.PatientDTO;
@@ -24,6 +26,7 @@ import java.util.function.Consumer;
 public class PatientServicesImp implements IBaseCRUDServices<PatientDTO, Patient> {
 
     private final PatientRepository patientRepository;
+    private final DoctorRepository doctorRepository;
     private final Mapper mapper = Mapper.getInstance();
 
     @Override
@@ -33,7 +36,7 @@ public class PatientServicesImp implements IBaseCRUDServices<PatientDTO, Patient
 
     @Override
     public PatientDTO findById(Long id) {
-        return PatientMapper.toPatientDTO(patientRepository.findById(id).orElse(new Patient()));
+        return PatientMapper.toPatientDTO(patientRepository.findById(id).orElse(null));
     }
 
     public Patient findByEmail(String email) {
@@ -41,12 +44,27 @@ public class PatientServicesImp implements IBaseCRUDServices<PatientDTO, Patient
     }
 
     public Patient findByDni(String dni) {
-        return patientRepository.findByDni(dni);
+        return patientRepository.findByDni(dni).orElse(null);
     }
 
     public PatientDTO PatientDTOFindByDni(String dni) {
-        Patient patient = patientRepository.findByDni(dni);
+        Patient patient = patientRepository.findByDni(dni).orElse(null);
         return mapper.map(patient, PatientDTO.class).orElse(null);
+    }
+
+    public void updateListDoctor(String patientId, Long doctorId) {
+        if (patientId == null || doctorId == null) {
+            throw new RuntimeException("El paciente o el medico no pueden ser nulos.");
+        }
+        Patient patient = patientRepository.findByDni(patientId).orElseThrow(() -> new RuntimeException("El paciente no existe."));
+        Medico medico = doctorRepository.findById(doctorId).orElseThrow(() -> new RuntimeException("El medico no existe."));
+
+        if (patient.getDoctors().contains(medico)) {
+            throw new RuntimeException("El medico ya se encuentra asignado al paciente.");
+        }
+
+        patient.getDoctors().add(medico);
+        patientRepository.save(patient);
     }
 
     @Override
