@@ -52,7 +52,7 @@ public class PatientServicesImp implements IBaseCRUDServices<PatientDTO, Patient
         return mapper.map(patient, PatientDTO.class).orElse(null);
     }
 
-    public void updateListDoctor(String patientId, Long doctorId) {
+    public Patient updateListDoctor(String patientId, Long doctorId) {
         if (patientId == null || doctorId == null) {
             throw new RuntimeException("El paciente o el medico no pueden ser nulos.");
         }
@@ -65,6 +65,8 @@ public class PatientServicesImp implements IBaseCRUDServices<PatientDTO, Patient
 
         patient.getDoctors().add(medico);
         patientRepository.save(patient);
+
+        return patient;
     }
 
     @Override

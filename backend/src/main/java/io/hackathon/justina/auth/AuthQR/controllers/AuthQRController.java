@@ -6,6 +6,8 @@ import io.hackathon.justina.auth.AuthQR.model.dto.request.QRRequest;
 import io.hackathon.justina.auth.AuthQR.model.dto.request.QrRequestValid;
 import io.hackathon.justina.auth.AuthQR.model.dto.response.QRResponse;
 import io.hackathon.justina.auth.AuthQR.services.QrServices;
+import io.hackathon.justina.patient.helper.PatientMapper;
+import io.hackathon.justina.patient.model.Patient;
 import io.hackathon.justina.patient.services.PatientServicesImp;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -48,9 +50,9 @@ public class AuthQRController {
         if (qrModel.isPresent()) {
             QrModel qrModel1 = qrModel.get();
 
-            patientServicesImp.updateListDoctor(qrModel1.getDni(), qr.getDoctorId());
+            Patient patient = patientServicesImp.updateListDoctor(qrModel1.getDni(), qr.getDoctorId());
 
-            return new ResponseEntity<>("Validación exitosa", HttpStatus.OK);
+            return new ResponseEntity<>(PatientMapper.toPatientMinRes(patient), HttpStatus.OK);
         } else {
             return new ResponseEntity<>("El token es inválido o ha expirado", HttpStatus.UNAUTHORIZED);
         }
