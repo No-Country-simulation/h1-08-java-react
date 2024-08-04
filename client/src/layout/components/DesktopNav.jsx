@@ -12,6 +12,11 @@ const DesktopNav = ({ navigation }) => {
     if (isLogged) return (
         < div className="navbar-center items-center hidden md:flex" >
             <ul className="menu menu-horizontal px-1 capitalize text-base gap-8">
+                <li>
+                    <Link href={"/"}>
+                        {navigation.getHome()}
+                    </Link>
+                </li>
                 {
                     navigation.getNavigation(role).map((item, i) => (
                         <li key={`${i}-${item.name}`}>

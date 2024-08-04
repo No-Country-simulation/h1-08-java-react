@@ -41,8 +41,8 @@ const Profile = () => {
 
 
             </div>
-            <div className="flex flex-wrap justify-evenly mx-auto w-8/12 min-w-[330px]">
-                <div className="py-5 px-4 rounded-xl bg-light backdrop-blur-sm shadowCard border border-orange text-black w-2/5 min-w-[250px] mb-10 mx-auto max-h-24 flex flex-col gap-2  font-poppins">
+            <div className="flex flex-wrap mx-auto w-8/12 min-w-[330px] mb-10 gap-5">
+                <div className="py-5 px-4 rounded-xl bg-light backdrop-blur-sm shadowCard border border-orange text-black text-xl min-w-[250px] mx-auto max-h-24 flex flex-col gap-2  font-poppins">
                     <h2 className="font-bold">
                         {user?.name} {user?.lastName}
                     </h2>
@@ -55,7 +55,7 @@ const Profile = () => {
                 </div>
 
                 {user.role === roles[1].value && (
-                    <div className="py-5 px-4 rounded-xl bg-light backdrop-blur-sm shadowCard border border-orange text-black  w-2/5 min-w-[250px] mb-10 mx-auto max-h-24 flex flex-col gap-2  font-poppins">
+                    <div className="py-5 px-4 rounded-xl bg-light backdrop-blur-sm shadowCard border border-orange text-black text-xl  w-2/5 min-w-[250px] mx-auto max-h-24 flex flex-col gap-2  font-poppins">
                         <h2 className="font-bold">
                             {lang === "es" ? "Especialidad" : "Speciality"}
                         </h2>

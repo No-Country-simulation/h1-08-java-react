@@ -53,7 +53,7 @@ const ProfileForm = ({ userData, isDisabled, onSubmitForm, handleState, isStatic
     : "-");
 
   return (
-    <form className={`grid grid-cols-1 md:grid-cols-2 gap-6 justify-center md:w-fit w-11/12 ${!isStatic && "max-w-[768px]"} mx-auto mt-5 mb-10 font-poppins ${isDisabled && "opacity-90"}`}>
+    <form className={`grid grid-cols-1 md:grid-cols-2 gap-6 justify-center md:w-fit w-11/12 ${!isStatic && "max-w-[768px]"} mx-auto mt-5 mb-10 font-poppins ${(isDisabled && !isStatic) && "opacity-85"}`}>
 
       <SectionCollapse isStatic={isStatic} text={textStatic} title={lang === "es" ? "Datos Generales" : "General Data"}>
         <div className="col-span-full flex flex-wrap gap-y-5 justify-between items-center my-5">
