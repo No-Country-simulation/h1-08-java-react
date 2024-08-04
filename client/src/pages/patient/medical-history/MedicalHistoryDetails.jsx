@@ -13,7 +13,7 @@ const MedicalHistoryDetails = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const medicalInfo = [
     {
-      specialty: "Cardiólogo",
+      specialty: "cardiólogo",
       location: "Hospital Italiano",
       date: "23/04/2023",
       details: {
@@ -43,7 +43,7 @@ const MedicalHistoryDetails = () => {
       },
     },
     {
-      specialty: "Médico Cabecera",
+      specialty: "médico cabecera",
       location: "Sanatorio Sur",
       date: "23/04/2023",
       details: {
@@ -157,7 +157,7 @@ const MedicalHistoryDetails = () => {
                 <p className="font-roboto font-normal text-black/50 text-xl">
                   Especialidad:
                 </p>
-                <span className="font-roboto font-normal text-black text-2xl xl:text-xl">
+                <span className="capitalize font-roboto font-normal text-black text-2xl xl:text-xl">
                   {detailedData?.datosGenerales?.especialidad}
                 </span>
               </div>

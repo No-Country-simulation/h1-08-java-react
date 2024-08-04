@@ -7,6 +7,7 @@ import {
   personal_id,
 } from "../../../assets";
 import useNavigation from "../../../hooks/useNavigation";
+import roles from "../../../data/roles";
 
 function selectIcon(name) {
   switch (name) {
@@ -23,8 +24,7 @@ function selectIcon(name) {
 
 const MedicalHistory = () => {
   const navigation = useNavigation();
-  const role = "PATIENT";
-  const medicalHistoryRoutes = navigation.getNavigation(role)[2].sub_items;
+  const medicalHistoryRoutes = navigation.getNavigation(roles[0].value)[2].sub_items;
 
   return (
     <section className="flex flex-col gap-5 items-center mt-5 mb-20 py-5 px-2">

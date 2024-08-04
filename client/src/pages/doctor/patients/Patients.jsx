@@ -8,11 +8,13 @@ import TokenModal from '../TokenModal';
 
 const fakePatients = [
   {
+    id: 1,
     firstName: "Pedro",
     lastName: "Alvarez",
     age: 30,
   },
   {
+    id: 2,
     firstName: "Juan",
     lastName: "Ramirez",
     age: 80,
@@ -20,6 +22,8 @@ const fakePatients = [
 ]
 
 const Patients = () => {
+
+
   const handleSubmitSearch = (e) => {
     e.preventDefault()
   }
@@ -36,8 +40,8 @@ const Patients = () => {
           titleSize="text-2xl md:text-3xl text-nowrap"
           buttonClassName="w-10/12"
           onClickOpen={() => document.getElementById("token_modal").showModal()}
-          />
-          <TokenModal/>
+        />
+        <TokenModal />
       </div>
 
       <h1 className="text-4xl font-poppins font-bold text-center my-10 p-3 border-b-4 ">

@@ -16,13 +16,11 @@ const ActionBtnCard = ({
         >
           {title}
         </h1>
-        {buttonText === "Ingresar Código" || buttonText === "Enter Code"  ? (
-          <CustomButton className={buttonClassName} onClick={onClickOpen}>
-            {buttonText}
-          </CustomButton>
-        ) : (
-          <CustomButton className={buttonClassName}>{buttonText}</CustomButton>
-        )}
+
+        <CustomButton className={buttonClassName} onClick={onClickOpen ?? (() => { })}>
+          {buttonText}
+        </CustomButton>
+
       </div>
     </div>
   );

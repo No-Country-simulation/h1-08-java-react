@@ -2,6 +2,7 @@ import patient_es_routes from "./patient/es-routes.json"
 import patient_en_routes from "./patient/en-routes.json"
 import doctor_es_routes from "./doctor/es-routes.json"
 import doctor_en_routes from "./doctor/en-routes.json"
+import roles from "../data/roles"
 
 export default class Navigation {
     #navigation = [];
@@ -46,6 +47,7 @@ export default class Navigation {
                 patients_navigation: this.#es_patients_navigation,
                 profile_navigation: this.#es_profile_navigation,
                 languages: this.#es_languages,
+                home: "inicio"
             });
         } else if (language === "en") {
             this.#navigation = Object.freeze({
@@ -53,13 +55,14 @@ export default class Navigation {
                 patients_navigation: this.#en_patients_navigation,
                 profile_navigation: this.#en_profile_navigation,
                 languages: this.#en_languages,
+                home: "home"
             });
         }
     }
 
     getNavigation(role) {
-        if (role === "DOCTOR") return this.#navigation.doctor_navigation;
-        if (role === "PATIENT") return this.#navigation.patients_navigation;
+        if (role === roles[1].value) return this.#navigation.doctor_navigation;
+        if (role === roles[0].value) return this.#navigation.patients_navigation;
         return [];
     }
 
@@ -69,5 +72,9 @@ export default class Navigation {
 
     getProfileNavigation() {
         return this.#navigation.profile_navigation
+    }
+
+    getHome() {
+        return this.#navigation.home
     }
 }

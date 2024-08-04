@@ -13,14 +13,12 @@
 }
 
 body {
-  background: linear-gradient(
-    180deg,
-    rgba(247, 236, 211, 0.432) 0%,
-    rgba(251, 238, 208, 0.528865) 17.75%,
-    rgba(247, 237, 212, 0.6) 47.67%,
-    rgba(251, 238, 208, 0.544058) 84.18%,
-    rgba(247, 237, 212, 0.432) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(247, 236, 211, 0.432) 0%,
+      rgba(251, 238, 208, 0.528865) 17.75%,
+      rgba(247, 237, 212, 0.6) 47.67%,
+      rgba(251, 238, 208, 0.544058) 84.18%,
+      rgba(247, 237, 212, 0.432) 100%);
 }
 
 .login-shadow {
@@ -33,12 +31,12 @@ body {
 }
 
 .shadow-secondary {
-    transition-duration: 200ms;
-    box-shadow: 4px 4px 4px 0px #F5C046;
+  transition-duration: 200ms;
+  box-shadow: 4px 4px 4px 0px #F5C046;
 }
 
 .shadow-secondary:hover {
-    box-shadow: 4px 4px 4px 0px #7030A0;
+  box-shadow: 4px 4px 4px 0px #7030A0;
 }
 
 .card-shadow-static {
@@ -67,24 +65,28 @@ body {
 }
 
 .is-disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    background-color: lightgrey;
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: lightgrey;
 }
 
 .is-input-disabled {
-    opacity: 0.8;
-    cursor: not-allowed;
-    background-color: #F8E1AC !important;
+  opacity: 0.9;
+  cursor: not-allowed;
+  background-color: #F8E1AC !important;
+}
+
+select:disabled,
+input:disabled {
+  cursor: not-allowed;
+  color: black;
 }
 
 .modal-bg {
-  background: linear-gradient(
-    180deg,
-    rgba(247, 236, 211, 0.72) 0%,
-    rgba(251, 238, 208, 0.881441) 18.6%,
-    rgba(247, 237, 212, 0.8) 49.92%,
-    rgba(251, 238, 208, 0.8) 81.31%,
-    rgba(245, 192, 70, 0.8) 104.74%
-  );
+  background: linear-gradient(180deg,
+      rgba(247, 236, 211, 0.72) 0%,
+      rgba(251, 238, 208, 0.881441) 18.6%,
+      rgba(247, 237, 212, 0.8) 49.92%,
+      rgba(251, 238, 208, 0.8) 81.31%,
+      rgba(245, 192, 70, 0.8) 104.74%);
 }
