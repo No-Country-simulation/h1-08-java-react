@@ -22,11 +22,12 @@ import java.util.Set;
 @NoArgsConstructor
 public class Patient extends Usuario {
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "health_plan_id")
+    private HealthPlan healthPlan;
+
     @Column()
     private String bloodType;
-
-    @Enumerated(EnumType.STRING)
-    private Genders gender;
 
     @Column()
     private double height;
@@ -37,14 +38,14 @@ public class Patient extends Usuario {
     @Column()
     private double imc;
 
-    @ManyToOne
-    @JoinColumn(name = "health_plan_id")
-    private HealthPlan healthPlan;
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "patient_doctor",
             joinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "doctor_id"))
     private Set<Medico> doctors;
 
+    @Override
+    public String getUsername() {
+        return this.getDni();
+    }
 }

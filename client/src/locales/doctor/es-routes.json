@@ -1,0 +1,16 @@
+[
+    {
+        "path": "/pacientes",
+        "name": "pacientes"
+    },
+    {
+        "in_dev": "/calendario",
+        "path": "#",
+        "name": "calendario"
+    },
+    {
+        "in_dev": "/codigo-qr",
+        "path": "#",
+        "name": "qr"
+    }
+]

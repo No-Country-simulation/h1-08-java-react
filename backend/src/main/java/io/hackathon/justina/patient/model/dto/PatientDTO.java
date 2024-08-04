@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -31,6 +30,8 @@ public class PatientDTO {
     private Genders gender;
 
     private String bloodType;
+
+    private double imc;
 
     private double height;
 

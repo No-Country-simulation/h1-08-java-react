@@ -1,0 +1,60 @@
+[
+    {
+        "path": "/mis-vacunas",
+        "name": "vacunas"
+    },
+    {
+        "path": "/mis-tratamientos",
+        "name": "tratamientos",
+        "sub_menu": true,
+        "sub_items": [
+            {
+                "path": "/mis-medicamentos",
+                "name": "medicamentos"
+            },
+            {
+                "in_dev": "/dieta-y-nutricion",
+                "path": "#",
+                "name": "dieta y nutrición"
+            },
+            {
+                "in_dev": "/actividad-fisica",
+                "path": "#",
+                "name": "actividad fisica"
+            },
+            {
+                "in_dev": "/visitas-psicologicas",
+                "path": "#",
+                "name": "visitas psicológicas"
+            }
+        ]
+    },
+    {
+        "path": "/historial-clinico",
+        "name": "historial clinico",
+        "sub_menu": true,
+        "sub_items": [
+            {
+                "path": "/mis-patologias",
+                "name": "mis patologias"
+            },
+            {
+                "path": "/mis-datos-de-salud",
+                "name": "mis datos de salud"
+            },
+            {
+                "in_dev": "/credenciales-y-carnets",
+                "path": "#",
+                "name": "credenciales y carnets"
+            },
+            {
+                "path": "/informes-y-resultados",
+                "name": "informes y resultados"
+            }
+        ]
+    },
+    {
+        "path": "/agenda",
+        "name": "agenda"
+    }
+]

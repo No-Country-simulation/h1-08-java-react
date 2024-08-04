@@ -43,11 +43,11 @@ public class AuthService {
         if (clazz.equals(Patient.class) && request instanceof LoginRequest) {
             credentials = ((LoginRequest) request).getDni();
             password = ((LoginRequest) request).getPassword();
-            role = Role.PATIENT;
+            role = Role.ROLE_PATIENT;
         } else if (clazz.equals(Medico.class) && request instanceof LoginDoctorRequest) {
-            credentials = ((LoginDoctorRequest) request).getLicenseNumber().toString();
+            credentials = ((LoginDoctorRequest) request).getLicenseNumber();
             password = ((LoginDoctorRequest) request).getPassword();
-            role = Role.DOCTOR;
+            role = Role.ROLE_DOCTOR;
         } else {
             throw new RuntimeException("Credenciales inválidas");
         }
@@ -59,6 +59,7 @@ public class AuthService {
         T data = getUserData(credentials, clazz);
 
         return new AuthResponseRegister<>(token, data);
+
     }
 
     private <T> T getUserData(String credentials, Class<?> clazz) {
@@ -68,7 +69,7 @@ public class AuthService {
                 return (T) PatientMapper.toPatientDTO(patient);
             }
         } else if (clazz.equals(Medico.class)) {
-            Medico doctor = doctorServices.findByLicenseNumber(Integer.parseInt(credentials));
+            Medico doctor = doctorServices.findByLicenseNumber(credentials);
             if (doctor != null) {
                 return (T) DoctorMapper.toMedicoDto(doctor);
             }
