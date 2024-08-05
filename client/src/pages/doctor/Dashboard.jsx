@@ -8,7 +8,7 @@ import TokenModal from "./TokenModal";
 const Dashboard = () => {
   const lang = useLanguage()
   return (
-    <section className="container mx-auto flex mt-6 mb-12 flex-col items-center gap-y-11 py-6">
+    <section className="w-11/12 min-w-[350px] container mx-auto flex mt-6 mb-12 flex-col items-center gap-y-11 py-6">
       <div className="flex flex-col md:flex-row items-center justify-between gap-5 w-full">
         <WelcomeCard />
 

@@ -72,7 +72,7 @@ const Drawer = ({ navigation }) => {
                     <li className="md:hidden">
                         <Link href={"/"} className={`card-shadow border border-orange hover:border-fucsia hover:bg-white`}>
                             <img src={home_pink} alt={`home-icon`} width={30} height={30} />
-                            inicio
+                            {navigation.getHome()}
                         </Link>
                     </li>
 

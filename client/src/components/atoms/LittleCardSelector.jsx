@@ -1,7 +1,7 @@
 
 const LittleCardSelector = ({ isDisabled, originalValue, isSelector, options, label, inputName, register, watch, addClassName, type, isOnlyText, placeholder }) => {
     const inputClass = "text-xl text-center font-bold bg-transparent h-full"
-    const value = watch(inputName, originalValue ?? "");
+    const value = isDisabled ? originalValue : watch(inputName, originalValue ?? "");
 
     return (
         <div
@@ -12,7 +12,7 @@ const LittleCardSelector = ({ isDisabled, originalValue, isSelector, options, la
 
             {isSelector
                 ?
-                <select disabled={isDisabled} style={{ border: "none", outline: "none" }} className={inputClass} {...register(inputName)}>
+                <select disabled={isDisabled} style={{ border: "none", outline: "none" }} className={inputClass} {...register(inputName)} value={value}>
                     {options && options.map((item, i) => (
                         <option key={i} value={item.value ?? item} className="bg-orange/70">
                             {item.name ?? item.value ?? item}

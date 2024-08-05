@@ -47,6 +47,7 @@ export default class Navigation {
                 patients_navigation: this.#es_patients_navigation,
                 profile_navigation: this.#es_profile_navigation,
                 languages: this.#es_languages,
+                home: "inicio"
             });
         } else if (language === "en") {
             this.#navigation = Object.freeze({
@@ -54,6 +55,7 @@ export default class Navigation {
                 patients_navigation: this.#en_patients_navigation,
                 profile_navigation: this.#en_profile_navigation,
                 languages: this.#en_languages,
+                home: "home"
             });
         }
     }
@@ -70,5 +72,9 @@ export default class Navigation {
 
     getProfileNavigation() {
         return this.#navigation.profile_navigation
+    }
+
+    getHome() {
+        return this.#navigation.home
     }
 }

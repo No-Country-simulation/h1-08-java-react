@@ -5,7 +5,8 @@ import roles from "../../data/roles"
 /* eslint-disable react/prop-types */
 const WelcomeCard = () => {
   const lang = useLanguage()
-  const { name, lastName, role, gender } = useAuthStore(state => state.user)
+  const user = useAuthStore(state => state.user)
+  const { name, lastName, role, gender } = user
 
   return (
     <div className="px-6 py-4 rounded-xl bg-light backdrop-blur-sm shadowCard border border-orange text-black w-8/12 min-w-[330px] h-36 flex flex-col justify-between font-poppins">
@@ -28,8 +29,8 @@ const WelcomeCard = () => {
       {
         role && (role === roles[1].value &&
           <p className="text-black text-lg md:text-xl text-nowrap overflow-hidden text-ellipsis">
-            {lang === "es" ? "N° de matricula" : "N° doctor certificate"}
-            : 3594594-76496749
+            {lang === "es" ? "N° de matricula" : "N° doctor certificate"}:
+            {user.licenceNumber ?? "3594594-76496749"}
           </p>
         )}
 
