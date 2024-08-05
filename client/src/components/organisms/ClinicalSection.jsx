@@ -14,7 +14,7 @@ const ClinicalSection = ({ data, className, title, onClick, isStudy }) => {
                 </button>
             </div>
 
-            <div className="flex flex-wrap gap-5 md:justify-normal justify-center md:px-1 py-3 bg-orange/30 rounded-2xl">
+            <div className="flex flex-wrap gap-5 md:justify-normal justify-center md:px-3 py-5 bg-orange/30 rounded-2xl">
                 {data.map((item, i) => (
                     <CardMedication key={i} medication={item} isRecipe isStudy={isStudy} />
                 ))}
