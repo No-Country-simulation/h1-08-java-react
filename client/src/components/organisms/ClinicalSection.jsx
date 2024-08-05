@@ -3,9 +3,9 @@ import SubmitButton from '../atoms/SubmitButton'
 import CardMedication from '../molecules/CardMedication'
 
 
-const ClinicalSection = ({ data, title, onClick, isStudy }) => {
+const ClinicalSection = ({ data, className, title, onClick, isStudy }) => {
     return (
-        <SectionCollapse title={title} contentClassName={"md:w-10/12 mx-auto"}>
+        <SectionCollapse title={title} className={className} contentClassName={"md:w-10/12 mx-auto"}>
             <div className="flex flex-wrap justify-between pt-2 pb-5 gap-3 items-center">
                 <h3 className="text-2xl font-bold">Recetar {title}:</h3>
                 <button type="button" onClick={onClick} className="ml-auto border flex justify-between border-secondary items-center h-12 text-center min-w-60 rounded-lg text-secondary text-2xl hover:border-fucsia hover:text-fucsia hover:bg-light">

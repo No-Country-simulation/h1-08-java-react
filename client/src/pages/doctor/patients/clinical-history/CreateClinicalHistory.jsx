@@ -4,6 +4,7 @@ import SubmitButton from "../../../../components/atoms/SubmitButton"
 import CardLink from "../../../../components/atoms/CardLink"
 import ClinicalSection from "../../../../components/organisms/ClinicalSection"
 import MedicationModal from "../../../../components/organisms/MedicationModal"
+import TextArea from "../../../../components/atoms/TextArea"
 
 const es_interconsults = ["nutrición", "psicología", "fisioterapia", "odontología"]
 const en_interconsults = ["nutrition", "psychology", "physiotherapy", "dentistry"]
@@ -42,13 +43,22 @@ const CreateClinicalHistory = ({ id }) => {
                 {lang === "es" ? "historia clínica" : "clinical history"}
             </h1>
             <form className="w-full flex flex-col gap-3.5 mt-8">
-                <SectionCollapse title={"Antecedentes"} contentClassName={""}></SectionCollapse>
 
-                <SectionCollapse title={"Diágnostico"} contentClassName={""}></SectionCollapse>
+                <SectionCollapse title={"Antecedentes"} contentClassName={"md:px-5"}>
+                    <TextArea label={"Antecedentes de la enfermedad"} placeholder={"Motivo de la consulta."} />
+
+                    <TextArea label={"Antecedentes familiares"} placeholder={"Observaciones."} />
+                </SectionCollapse>
+
+                <SectionCollapse title={"Diágnostico"} contentClassName={"md:px-5"}>
+                    <TextArea placeholder={"Diagnosticar manualmente."}>
+
+                    </TextArea>
+                </SectionCollapse>
 
                 <ClinicalSection title={"Medicamentos"} onClick={() => document.getElementById('medication_modal').showModal()} data={medications} isStudy={false} />
 
-                <ClinicalSection title={"Estudios"} data={studies} isStudy={true} onClick={() => { }} />
+                <ClinicalSection title={"Estudios"} className={" is-disabled"} data={studies} isStudy={true} onClick={() => { }} />
 
                 <SectionCollapse title={"Interconsultas"} className={" is-disabled"} contentClassName={"flex flex-wrap justify-evenly gap-5 w-full"}>
                     {interconsults.map((item, i) => <CardLink width={"w-3/4 md:w-[248px]"} title={item} imgClass={"rotate-90"} key={i} />)}

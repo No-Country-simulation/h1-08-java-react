@@ -90,3 +90,7 @@ input:disabled {
       rgba(251, 238, 208, 0.8) 81.31%,
       rgba(245, 192, 70, 0.8) 104.74%);
 }
+
+textarea {
+  field-sizing: content;
+}
