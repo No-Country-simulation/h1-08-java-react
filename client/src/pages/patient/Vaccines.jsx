@@ -26,15 +26,17 @@ const vaccinesList = [
     },
 ]
 
-const Vaccines = () => {
+const Vaccines = ({ isModal }) => {
     return (
         <section className="flex flex-col gap-5 items-center mt-5 mb-20 py-5 px-2">
-            <SectionCard
-                sectionName="Vacunas"
-                sectionIcon={injectionIcon}
-                altIcon="injection-icon"
-                description={"Aquí podrás ver las vacunas que te has aplicado hasta el momento, asimismo, saber si llevas una o varias dosis según la vacuna."}
-            />
+            {
+                !isModal && <SectionCard
+                    sectionName="Vacunas"
+                    sectionIcon={injectionIcon}
+                    altIcon="injection-icon"
+                    description={"Aquí podrás ver las vacunas que te has aplicado hasta el momento, asimismo, saber si llevas una o varias dosis según la vacuna."}
+                />
+            }
             {
                 vaccinesList.map(({ title, items }, index) => (
                     <Collapse

@@ -1,8 +1,8 @@
 import { Link } from "wouter"
 import { arrow } from "../../assets/index"
 
-const CardLink = ({ title, icon, href, onClick, width, imgClass }) => (
-    <div className={`flex justify-between items-center bg-base-200 font-poppins bg-light h-[68px] rounded-2xl border border-orange max-w-[95%] ${width ?? "w-[315px]"} hover:bg-white transition`}>
+const CardLink = ({ title, icon, href, onClick, width, imgClass, clasName }) => (
+    <div className={`flex justify-between items-center bg-base-200 font-poppins bg-light h-[68px] rounded-2xl border border-orange max-w-[95%] ${width ?? "w-[315px]"} hover:bg-white transition ${clasName}`}>
 
         <div
             className="flex gap-3 items-center overflow-hidden text-2xl font-bold px-5">
