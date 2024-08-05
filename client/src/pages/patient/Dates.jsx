@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { es } from "date-fns/locale";
+import { es, enUS } from "date-fns/locale";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
 import { addDays, addMonths, addYears } from "date-fns";
 import useLanguage from "../../hooks/useLanguage";
@@ -38,8 +38,8 @@ const Dates = () => {
                 altIcon={"schedule-section-icon"}
                 sectionName={
                     currentLanguage == "es"
-                        ? "Mi Agenda"
-                        : "My Schedule"
+                        ? "Mis Citas"
+                        : "My Dates"
                 }
                 description={
                     currentLanguage == "es"
@@ -50,7 +50,7 @@ const Dates = () => {
             <div className="flex flex-wrap gap-4 md:gap-8 max-w-[770px] justify-center md:justify-normal mx-auto">
 
                 <DayPicker
-                    locale={es}
+                    locale={currentLanguage == "es" ? es : enUS}
                     captionLayout="dropdown"
                     startMonth={startMonth}
                     endMonth={endMonth}
@@ -74,6 +74,24 @@ const Dates = () => {
                     }}
                 />
 
+                <div className="text-xl font-poppin flex flex-col gap-2 py-5 justify-evenly items-center w-[362px]">
+                    <p className="flex justify-between w-3/5"><span className="bg-fucsia px-3 rounded-full"></span>  {currentLanguage == "es" ? "Día actual" : "Current Date"}.</p>
+                    <p className="flex justify-between w-3/5"><span className="bg-orange px-3 rounded-full"></span>  {currentLanguage == "es" ? "Próxima cita" : "Next appointment"}.</p>
+
+                    <p className="text-center p-2 w-full">
+                        {currentLanguage == "es" ? `Usted tiene ${selected.length} citas pendientes` : `You have ${selected.length} pending appointments`}
+                    </p>
+
+                    <button className="cursor-not-allowed bg-fucsia px-6 py-3 rounded-xl text-white font-semibold hover:bg-darkOrange transition ease duration-200">
+                        {currentLanguage == "es" ? "Solicitar cita" : "Request an appointment"}
+                    </button>
+
+                    <p className="text-textColor/60 text-center text-lg">
+                        {currentLanguage == "es"
+                            ? "A continuación encontrarás los detalles de tus citas pendientes"
+                            : "Below you will find the details of your pending appointments"}.
+                    </p>
+                </div>
 
                 {
                     selected.map((date, key) => (
@@ -104,6 +122,15 @@ const Dates = () => {
                                 </p>
                             </div>
 
+                            <div className="flex flex-row flex-wrap justify-evenly mt-5">
+                                <button type="button" className="btn cursor-not-allowed bg-darkOrange/75 hover:bg-darkOrange border-none text-lg text-textColor mx-autor">
+                                    {currentLanguage === "es" ? "Reagendar" : "Reschedule"}
+                                </button>
+
+                                <button type="button" className="btn cursor-not-allowed btn-error text-lg text-white mx-autor">
+                                    {currentLanguage === "es" ? "Cancelar" : "Cancel"}
+                                </button>
+                            </div>
                         </div>
                     ))
                 }

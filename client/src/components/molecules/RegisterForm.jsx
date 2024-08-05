@@ -23,7 +23,7 @@ const RegisterForm = ({ register, onSubmit, watch, errors }) => {
                 options={roles}
             />
             {
-                watch("role") == "doctor" &&
+                watch("role") == roles[1].value &&
                 <RegisterDoctorFields
                     errorSpeciality={errors.speciality}
                     errorsDoctorValidation={errors.doctorValidation}

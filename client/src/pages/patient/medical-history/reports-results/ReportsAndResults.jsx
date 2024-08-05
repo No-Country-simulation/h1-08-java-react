@@ -3,10 +3,10 @@ import LabResultCard from "../../../../components/molecules/LabResultCard";
 import MedicalHistoryCard from "../../../../components/molecules/MedicalHistoryCard";
 import { search, arrowFilter } from "../../../../assets";
 
-const ReportsAndResults = () => {
+const ReportsAndResults = ({ className }) => {
   const medicalInfo = [
     {
-      specialty: "Cardiólogo",
+      specialty: "cardiólogo",
       location: "Hospital Italiano",
       date: "23/04/2023",
       details: {
@@ -40,7 +40,7 @@ const ReportsAndResults = () => {
       },
     },
     {
-      specialty: "Médico Cabecera",
+      specialty: "médico cabecera",
       location: "Sanatorio Sur",
       date: "23/04/2023",
       details: {
@@ -95,18 +95,17 @@ const ReportsAndResults = () => {
   };
 
   return (
-    <section className="flex flex-col gap-5 items-center mt-5 mb-20 py-5 px-2">
-      <div role="tablist" className="tabs tabs-lifted">
+    <section className={"flex flex-col gap-5 items-center mt-5 mb-20 py-5 px-2"}>
+      <div role="tablist" className={`tabs tabs-lifted ${className}`}>
         <input
           type="radio"
           id="tab1"
           name="my_tabs_2"
           role="tab"
-          className={`tab font-poppins text-xl min-w-[150px] h-14 rounded-2xl [--tab-border-color:orange] ${
-            selectedTabIndex === 1
-              ? "[--tab-bg:bg-light] text-black"
-              : "[--tab-bg:bg-orange] [--tab-border-color:orange] text-black/50"
-          }`}
+          className={`tab font-poppins text-xl min-w-[150px] h-14 rounded-2xl [--tab-border-color:orange] ${selectedTabIndex === 1
+            ? "[--tab-bg:bg-light] text-black"
+            : "[--tab-bg:bg-orange] [--tab-border-color:orange] text-black/50"
+            }`}
           aria-label="Hist. Clínica"
           value="1"
           checked={selectedTabIndex === 1}
@@ -117,14 +116,14 @@ const ReportsAndResults = () => {
           className="tab-content bg-light backdrop-blur-sm border border-orange rounded-box p-3 min-w-[350px]"
         >
           <div className="flex flex-col gap-4">
-            <div className="flex flex-col items-stretch md:flex-row gap-4">
+            <div className="flex flex-col justify-between items-stretch md:flex-row gap-4">
               <div className="flex flex-row gap-2 justify-center">
                 <input
                   type="text"
                   placeholder="Buscar"
-                  className="w-full min-w-[244px] max-w-xs h-[50px] rounded-2xl p-4 bg-transparent border border-magenta"
+                  className="w-full min-w-[244px] max-w-xs h-[50px] rounded-2xl p-4 bg-transparent border border-magenta disabled is-disabled"
                 />
-                <button className="w-[46px] h-auto p-1 bg-transparent border border-magenta rounded-2xl font-poppins font-normal text-2xl text-magenta text-center">
+                <button className="w-[46px] h-auto p-1 bg-transparent border border-magenta rounded-2xl font-poppins font-normal text-2xl text-magenta text-center disabled is-disabled">
                   <img src={search} alt="Search icon" />
                 </button>
               </div>
@@ -132,7 +131,7 @@ const ReportsAndResults = () => {
                 <h1 className="font-poppins font-normal text-black text-2xl">
                   Filtrar por
                 </h1>
-                <button className="w-[109px] h-10 p-2 border border-magenta rounded-lg font-poppins font-normal text-2xl text-magenta flex items-center justify-center">
+                <button className="w-[109px] h-10 p-2 border border-magenta rounded-lg font-poppins font-normal text-2xl text-magenta flex items-center justify-center disabled is-disabled">
                   <img src={arrowFilter} alt="arrow icon" />
                 </button>
               </div>
@@ -148,7 +147,7 @@ const ReportsAndResults = () => {
                   location={medicalInfoItem.location}
                   date={medicalInfoItem.date}
                 />
-                
+
               ))}
             </div>
           </div>
@@ -159,12 +158,11 @@ const ReportsAndResults = () => {
           id="tab2"
           name="my_tabs_2"
           role="tab"
-          className={`tab font-poppins text-xl min-w-[150px] h-14 rounded-2xl [--tab-border-color:orange] ${
-            selectedTabIndex === 2
-              ? "[--tab-bg:bg-light] text-black"
-              : "[--tab-bg:bg-orange] [--tab-border-color:orange] text-black/50"
-          }`}
-          aria-label="Laboratorio"
+          className={`tab font-poppins text-xl min-w-[150px] h-14 rounded-2xl [--tab-border-color:orange] ${selectedTabIndex === 2
+            ? "[--tab-bg:bg-light] text-black"
+            : "[--tab-bg:bg-orange] [--tab-border-color:orange] text-black/50"
+            }`}
+          aria-label="Estudios"
           value="2"
           checked={selectedTabIndex === 2}
           onChange={handleTabChange}
@@ -179,9 +177,9 @@ const ReportsAndResults = () => {
                 <input
                   type="text"
                   placeholder="Buscar"
-                  className="w-full min-w-[244px] max-w-xs h-[50px] rounded-2xl p-4 bg-transparent border border-magenta"
+                  className="w-full min-w-[244px] max-w-xs h-[50px] rounded-2xl p-4 bg-transparent border border-magenta disabled is-disabled"
                 />
-                <button className="w-[46px] h-auto p-1 bg-transparent border border-magenta rounded-2xl font-poppins font-normal text-2xl text-magenta text-center">
+                <button className="w-[46px] h-auto p-1 bg-transparent border border-magenta rounded-2xl font-poppins font-normal text-2xl text-magenta text-center disabled is-disabled">
                   <img src={search} alt="Search icon" />
                 </button>
               </div>
@@ -189,7 +187,7 @@ const ReportsAndResults = () => {
                 <h1 className="font-poppins font-normal text-black text-2xl">
                   Filtrar por
                 </h1>
-                <button className="w-[109px] h-10 p-2 border border-magenta rounded-lg font-poppins font-normal text-2xl text-magenta flex items-center justify-center">
+                <button className="w-[109px] h-10 p-2 border border-magenta rounded-lg font-poppins font-normal text-2xl text-magenta flex items-center justify-center disabled is-disabled">
                   <img src={arrowFilter} alt="arrow icon" />
                 </button>
               </div>

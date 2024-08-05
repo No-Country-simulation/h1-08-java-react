@@ -31,8 +31,13 @@ import injectionIcon from "./icons/injection.svg"
 import hamburger from "./navigation/hamburger/hamburger.svg"
 import close from "./navigation/hamburger/close-outline.svg"
 
+import home_pink from "./icons/pink/home.svg"
+
+import whatsapp from "./icons/whatsapp-icon.svg"
+
 
 export {
+    home_pink,
     help,
     person_pink,
     injectionIcon,
@@ -61,5 +66,6 @@ export {
     health,
     gotaDeSangre,
     search,
-    arrowFilter
+    arrowFilter,
+    whatsapp
 }

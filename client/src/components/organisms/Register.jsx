@@ -14,16 +14,18 @@ const Register = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     const validation = transformRegister(data)
+    const role = data.role.toLowerCase().includes("doctor") ? "doctor" : "patient"
 
     if (MODE != "only-front") {
       setMessageErrors([{ message: "Cargando..." }])
-      const response = await fetchData(`auth/register/${data.role}`, "POST", validation)
+      const response = await fetchData(`auth/register/${role}`, "POST", validation)
       setMessageErrors([])
-      if (!response.errors && !response.error) {
+      if (response.token) {
         console.log("TODO SALIO BIEN...");
-        return login(response)
+        const { token, data: user } = response
+        return login({ token, user })
       }
-
+      else if (response.message) { setMessageErrors([response]) }
       else if (response.errors) { setMessageErrors(response.errors) }
       else if (response.error) { setMessageErrors([response]) }
       console.log(response);

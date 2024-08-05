@@ -17,14 +17,18 @@ const Login = () => {
   const onSubmit = handleSubmit(async (data) => {
     const validation = transformLogin(data)
     if (MODE != "only-front") {
+      const role = data.role.toLowerCase().includes("doctor") ? "doctor" : "patient"
       setMessageErrors([{ message: "Cargando..." }])
-      const response = await fetchData(`auth/login/${data.role}`, "POST", validation)
+      const response = await fetchData(`auth/login/${role}`, "POST", validation)
+      console.log(response);
       setMessageErrors([])
-      if (!response.errors && !response.error) {
+      if (response.token) {
+        const { token, data: user } = response
         console.log("TODO SALIO BIEN...");
-        return login(response)
+        return login({ token, user })
       }
-
+      else if (response.message) { setMessageErrors([response]) }
+      // ESTOS SE USABANN CUANDO NO SE DEVOLVIA UN MENSAGE DE RESPUESTA DESDE EL BACKEND. LO DEJARÉ POR LAS DUDAS DE QUE VUELVA A PASAR.
       else if (response.errors) { setMessageErrors(response.errors) }
       else if (response.error.toString().includes("Bad credentials")) { setMessageErrors([{ message: "Usuario y/o contraseña incorrectos." }]) }
       else if (response.error) { setMessageErrors([response]) }

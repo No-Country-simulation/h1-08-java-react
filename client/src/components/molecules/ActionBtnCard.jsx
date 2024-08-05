@@ -1,7 +1,13 @@
 import PropTypes from "prop-types";
 import CustomButton from "../atoms/CustomButtom";
 
-const ActionBtnCard = ({ title, buttonText, titleSize, buttonClassName }) => {
+const ActionBtnCard = ({
+  title,
+  buttonText,
+  titleSize,
+  buttonClassName,
+  onClickOpen,
+}) => {
   return (
     <div className="font-roboto p-6 rounded-2xl bg-light backdrop-blur-sm shadowCard border border-orange text-black w-8/12 min-w-[330px]  h-36">
       <div className="flex flex-col gap-3 items-center">
@@ -10,7 +16,11 @@ const ActionBtnCard = ({ title, buttonText, titleSize, buttonClassName }) => {
         >
           {title}
         </h1>
-        <CustomButton className={buttonClassName}>{buttonText}</CustomButton>
+
+        <CustomButton className={buttonClassName} onClick={onClickOpen ?? (() => { })}>
+          {buttonText}
+        </CustomButton>
+
       </div>
     </div>
   );
@@ -21,6 +31,7 @@ ActionBtnCard.propTypes = {
   buttonText: PropTypes.string,
   titleSize: PropTypes.string,
   buttonClassName: PropTypes.string,
+  onClickOpen: PropTypes.func || PropTypes.string,
 };
 
 export default ActionBtnCard;

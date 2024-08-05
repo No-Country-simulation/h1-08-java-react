@@ -54,7 +54,7 @@
         ]
     },
     {
-        "path": "/agenda",
-        "name": "schedule"
+        "path": "/mis-citas",
+        "name": "my dates"
     }
 ]

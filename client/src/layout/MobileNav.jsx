@@ -5,11 +5,13 @@ import home from "../assets/navigation/home.svg"
 import medical from "../assets/navigation/medical.svg"
 import qr_code from "../assets/navigation/qr-code.svg"
 import user from "../assets/navigation/user.svg"
+import roles from "../data/roles"
 
 const MobileNav = () => {
     const [location, setLocation] = useLocation()
-    const { isLogged } = useAuthStore(state => ({
-        isLogged: state.isLogged
+    const { isLogged, role } = useAuthStore(state => ({
+        isLogged: state.isLogged,
+        role: state.user?.role
     }), shallow)
 
     const onClickNavigateTo = (to) => setLocation(to)
@@ -17,7 +19,7 @@ const MobileNav = () => {
     const isActive = (path) => "transition duration-200 ease rounded-t-2xl " + (location === path ? "bg-orange font-semibold" : "hover:bg-hoverOrange")
 
 
-    if (isLogged) return (
+    if (isLogged && role === roles[0].value) return (
         <>  <span className="md:hidden"></span>
             <div className="btm-nav rounded-t-2xl bg-lightOrange h-[68px] md:hidden z-[9]">
 
@@ -27,9 +29,9 @@ const MobileNav = () => {
                 </button>
 
 
-                <button className={isActive("/agenda")} type="button" onClick={() => onClickNavigateTo("/agenda")}>
+                <button className={isActive("/mis-citas")} type="button" onClick={() => onClickNavigateTo("/mis-citas")}>
                     <img src={medical} alt="medical-icon" className="w-7 h-7" />
-                    <span className="btm-nav-label">Agenda</span>
+                    <span className="btm-nav-label">Citas</span>
                 </button>
 
 

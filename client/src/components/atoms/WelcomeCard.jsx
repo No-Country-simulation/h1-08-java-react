@@ -1,31 +1,38 @@
 import useLanguage from "../../hooks/useLanguage"
+import useAuthStore from "../../store/auth-store"
+import roles from "../../data/roles"
 
 /* eslint-disable react/prop-types */
-const WelcomeCard = ({ name, genre, role }) => {
+const WelcomeCard = () => {
   const lang = useLanguage()
+  const user = useAuthStore(state => state.user)
+  const { name, lastName, role, gender } = user
 
   return (
-    <div className="py-4 px-3 rounded-xl bg-light backdrop-blur-sm shadowCard border border-orange text-black  w-8/12 min-w-[330px] max-h-36 flex flex-col justify-between gap-2 font-poppins">
+    <div className={`px-6 py-4 rounded-xl bg-light backdrop-blur-sm shadowCard border border-orange text-black w-8/12 min-w-[330px]  flex flex-col justify-between font-poppins ${role != roles[1].value ? "h-auto" : "h-36"}`}>
 
       <h2 className="text-black text-xl md:text-2xl">
-        {genre === "f"
-          ? lang === "es" ? "Bienvenida " : "Welcome "
-          : lang === "es" ? "Bienvenido " : "Welcome "
+        {
+          !gender
+            ? lang === "es" ? "Bienvenido " : "Welcome "
+            : gender === "FEMALE"
+              ? lang === "es" ? "Bienvenida " : "Welcome "
+              : lang === "es" ? "Bienvenido " : "Welcome "
         }
-        {(role === "doctor") && (genre === "f" ? "Doctora" : "Doctor")}
+        {role && ((role === roles[1].value) && (gender === "f" ? "Doctora" : "Doctor"))}
       </h2>
 
-      <p className="text-black text-2xl md:text-3xl px-1 capitalize font-medium text-nowrap overflow-hidden text-ellipsis">
-        {name}
+      <p className="text-black text-2xl md:text-3xl pl-4 pr-1 capitalize font-medium text-nowrap overflow-hidden text-ellipsis">
+        {name ?? "Usuario"}  {lastName ?? "Invitado"}
       </p>
 
       {
-        role === "doctor" &&
-        <p className="text-black text-lg md:text-xl text-nowrap overflow-hidden text-ellipsis">
-          {lang === "es" ? "N° de matricula" : "N° doctor certificate"}
-          : 3594594-76496749
-        </p>
-      }
+        role && (role === roles[1].value &&
+          <p className="text-black text-lg md:text-xl text-nowrap overflow-hidden text-ellipsis">
+            {lang === "es" ? "N° de matricula" : "N° doctor certificate"}:
+            {user.licenceNumber ?? "3594594-76496749"}
+          </p>
+        )}
 
     </div >
   )

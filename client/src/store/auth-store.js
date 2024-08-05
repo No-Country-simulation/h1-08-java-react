@@ -1,6 +1,6 @@
-import { createWithEqualityFn } from 'zustand/traditional';
-import { persist, createJSONStorage } from 'zustand/middleware'
-
+import { createWithEqualityFn } from "zustand/traditional"
+import { persist, createJSONStorage } from "zustand/middleware"
+import fakeUser from "../data/fake_user"
 
 const useAuthStore = createWithEqualityFn()(
     persist(
@@ -15,7 +15,7 @@ const useAuthStore = createWithEqualityFn()(
                 if (!get().isLogged) {
                     set(() => ({
                         isLogged: true,
-                        user: data?.user,
+                        user: data?.user ?? fakeUser,
                         token: data?.token
                     }))
                 }
@@ -28,7 +28,6 @@ const useAuthStore = createWithEqualityFn()(
                         user: null,
                         token: null
                     }))
-                    window.location.replace("/auth/iniciar-sesion")
                 }
             }
         }),

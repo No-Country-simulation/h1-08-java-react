@@ -1,5 +1,7 @@
 
-const Input = ({ label, placeholder, password, register, error, width, viewPassword, passwordType, typeInput, isDisabled, value }) => {
+const Input = ({ label, placeholder, password, register, error, width, viewPassword, passwordType, typeInput, isDisabled, watch, value, inputName }) => {
+  const originalValue = watch ? watch(inputName, value ?? "") : value ?? "";
+
   return (
     <div className="form-control">
       {
@@ -17,17 +19,27 @@ const Input = ({ label, placeholder, password, register, error, width, viewPassw
       ${error ? "shadow-error" : "shadow-magenta"}
       ${error ? "input-error" : "input-secondary"}
       ${password && "flex items-center"}
+      ${isDisabled && "is-input-disabled"}
       `}
       >
-        <input
-          disabled={isDisabled}
-          defaultValue={value}
-          autoComplete="off"
-          type={password ? passwordType : typeInput ?? "text"}
-          {...register}
-          placeholder={placeholder}
-          className={"w-full text-ellipsis overflow-hidden"}
-        />
+        {
+          watch ? <input
+            disabled={isDisabled}
+            value={originalValue}
+            autoComplete="off"
+            type={password ? passwordType : typeInput ?? "text"}
+            {...register}
+            placeholder={placeholder}
+            className={"w-full text-ellipsis overflow-hidden "}
+          />
+            : <input
+              autoComplete="off"
+              type={password ? passwordType : typeInput ?? "text"}
+              {...register}
+              placeholder={placeholder}
+              className={"w-full text-ellipsis overflow-hidden "}
+            />
+        }
         {password && viewPassword}
       </div>
 
