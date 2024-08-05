@@ -5,34 +5,17 @@ import ProfileForm from "../../../../components/molecules/ProfileForm"
 import SectionCollapse from "../../../../components/atoms/SectionCollapse"
 import CardLink from "../../../../components/atoms/CardLink"
 import { ReportsAndResults } from "../../../patient"
-
-
-
-const fakeUser = {
-    id: 666,
-    dni: 70000000,
-    age: 24,
-    birthdate: "2000-11-07",
-    name: "Franco",
-    lastName: "Maidana",
-    role: "ROLE_PATIENT",
-    gender: "MALE",
-    email: "maidana@test.com",
-    address: {
-        country: "sin especificar",
-        province: "sin especificar",
-        city: "sin especificar",
-        street: "sin especificar"
-    },
-    imc: 25.6
-}
+import VaccinesModal from "../../../../components/organisms/VaccinesModal"
+import HealthDataModal from "../../../../components/organisms/HealthDataModal"
+import { fakePatient as fakeUser } from "../../../../data/fake_user"
+import TreatmentsModal from "../../../../components/organisms/TreatmentsModal"
 
 const healtData = [
-    { es: "diagnóstico", en: "diagnostic", onClick: () => { } },
-    { es: "tratamiento", en: "treatment", onClick: () => { } },
-    { es: "vacunas", en: "vaccines", onClick: () => { } },
-    { es: "carnet", en: "card", onClick: () => { } },
-    { es: "datos importantes", en: "important information", onClick: () => { } },
+    { className: "is-disabled", es: "diagnóstico", en: "diagnostic", onClick: () => { } },
+    { es: "tratamiento", en: "treatment", onClick: () => { document.getElementById('treatments_modal').showModal() } },
+    { es: "vacunas", en: "vaccines", onClick: () => document.getElementById('vaccines_modal').showModal() },
+    { className: "is-disabled", es: "carnet", en: "card", onClick: () => { } },
+    { es: "datos importantes", en: "important information", onClick: () => document.getElementById('health_modal').showModal() },
 ]
 
 const DetailMedicalHistory = ({ id }) => {
@@ -72,7 +55,7 @@ const DetailMedicalHistory = ({ id }) => {
             >
                 <div className="flex flex-wrap justify-center md:justify-normal gap-4 my-5">
                     {healtData.map((item, i) =>
-                        <CardLink key={i} title={lang === "es" ? item.es : item.en} onClick={item.onClick} width={"w-4/5 sm:w-[calc(95%/2)] md:w-[calc(95%/3)]"} />
+                        <CardLink key={i} title={lang === "es" ? item.es : item.en} onClick={item.onClick} width={"w-4/5 sm:w-[calc(95%/2)] md:w-[calc(95%/3)]"} clasName={item.className ?? ""} />
                     )}
                 </div>
             </SectionCollapse>
@@ -86,7 +69,9 @@ const DetailMedicalHistory = ({ id }) => {
             >
                 <ReportsAndResults className={"w-full"} />
             </SectionCollapse>
-
+            <VaccinesModal />
+            <HealthDataModal />
+            <TreatmentsModal />
         </section >
     )
 }
