@@ -70,9 +70,9 @@ const DetailMedicalHistory = ({ id }) => {
                 //text={textStatic} 
                 title={lang === "es" ? "Datos De Salud" : "Health Data"}
             >
-                <div className="flex flex-wrap justify-center md:justify-normal gap-5 my-5">
+                <div className="flex flex-wrap justify-center md:justify-normal gap-4 my-5">
                     {healtData.map((item, i) =>
-                        <CardLink key={i} title={lang === "es" ? item.es : item.en} onClick={item.onClick} />
+                        <CardLink key={i} title={lang === "es" ? item.es : item.en} onClick={item.onClick} width={"w-4/5 sm:w-[calc(95%/2)] md:w-[calc(95%/3)]"} />
                     )}
                 </div>
             </SectionCollapse>

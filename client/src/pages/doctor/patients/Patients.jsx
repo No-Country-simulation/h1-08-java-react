@@ -1,9 +1,10 @@
 import WelcomeCard from '../../../components/atoms/WelcomeCard'
 import ActionBtnCard from "../../../components/molecules/ActionBtnCard";
-import { search, arrowFilter } from "../../../assets";
+import { arrowFilter } from "../../../assets";
 import PatientCard from '../../../components/molecules/PatientCard';
 import useLanguage from '../../../hooks/useLanguage';
 import TokenModal from '../TokenModal';
+import SearchForm from '../../../components/atoms/SearchForm';
 
 
 const fakePatients = [
@@ -49,17 +50,7 @@ const Patients = () => {
       </h1>
 
       <div className="flex flex-col w-11/12 mx-auto md:flex-row justify-between my-10">
-        <form className="flex md:w-5/12 gap-2" onSubmit={handleSubmitSearch}>
-          <input
-            type="text"
-            name="searched"
-            placeholder={lang === "es" ? "Buscar" : "Search"}
-            className="w-10/12 h-[50px] font-poppins text-lg focus:bg-white rounded-2xl input input-secondary p-4 bg-transparent border border-magenta is-disabled"
-          />
-          <button type="submit" className="px-3.5 h-[50px] bg-transparent border border-magenta rounded-2xl text-center is-disabled">
-            <img src={search} height={30} width={30} alt="Search icon" />
-          </button>
-        </form>
+        <SearchForm handleSubmitSearch={handleSubmitSearch} />
 
         <div className="flex md:w-5/12 gap-4 justify-end md:mt-0 mt-5">
           <label className="font-poppins my-auto font-normal text-black text-2xl">
