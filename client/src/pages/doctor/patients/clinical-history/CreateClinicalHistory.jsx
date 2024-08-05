@@ -3,7 +3,7 @@ import useLanguage from "../../../../hooks/useLanguage"
 import SubmitButton from "../../../../components/atoms/SubmitButton"
 import CardLink from "../../../../components/atoms/CardLink"
 import ClinicalSection from "../../../../components/organisms/ClinicalSection"
-import MedicationModal from "../../MedicationModal"
+import MedicationModal from "../../../../components/organisms/MedicationModal"
 
 const es_interconsults = ["nutrición", "psicología", "fisioterapia", "odontología"]
 const en_interconsults = ["nutrition", "psychology", "physiotherapy", "dentistry"]
@@ -48,7 +48,7 @@ const CreateClinicalHistory = ({ id }) => {
 
                 <ClinicalSection title={"Medicamentos"} onClick={() => document.getElementById('medication_modal').showModal()} data={medications} isStudy={false} />
 
-                <ClinicalSection title={"Estudios"} data={studies} isStudy={true} />
+                <ClinicalSection title={"Estudios"} data={studies} isStudy={true} onClick={() => { }} />
 
                 <SectionCollapse title={"Interconsultas"} className={" is-disabled"} contentClassName={"flex flex-wrap justify-evenly gap-5 w-full"}>
                     {interconsults.map((item, i) => <CardLink width={"w-3/4 md:w-[248px]"} title={item} imgClass={"rotate-90"} key={i} />)}
@@ -58,6 +58,7 @@ const CreateClinicalHistory = ({ id }) => {
                     {lang === "es" ? "guardar" : "save"}
                 </SubmitButton>
             </form>
+
             <MedicationModal />
         </section>
     )

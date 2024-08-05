@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import useLanguage from "../../hooks/useLanguage";
 import { search, whatsapp } from "../../assets";
-import SubmitButton from "../../components/atoms/SubmitButton";
+import SubmitButton from "../atoms/SubmitButton";
 
 const MedicationModal = () => {
   const lang = useLanguage();

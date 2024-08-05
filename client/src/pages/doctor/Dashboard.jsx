@@ -18,11 +18,11 @@ const Dashboard = () => {
           titleSize="text-3xl"
           buttonClassName="w-10/12"
           onClickOpen={() => document.getElementById("token_modal").showModal()}
-          />
-          <TokenModal/>
+        />
       </div>
       <AgendaSection />
 
+      <TokenModal />
     </section>
   );
 };
