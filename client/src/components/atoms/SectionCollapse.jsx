@@ -8,7 +8,7 @@ const SectionCollapse = ({ title, children, isStatic, text, className }) => {
                 {title} {isStatic && text}
             </h2>
 
-            <div className="collapse-content peer-checked:py-4">
+            <div className="collapse-content peer-checked:py-4 px-0">
                 {children}
             </div>
         </div>

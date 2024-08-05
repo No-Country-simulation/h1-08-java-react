@@ -40,7 +40,7 @@ const DetailMedicalHistory = ({ id }) => {
     const [medicalHistory, setMedicalHistory] = useState(null)
     const lang = useLanguage()
 
-    const textStatic = (lang === "es" ? " De " : " Of ") + fakeUser.name
+    // const textStatic = (lang === "es" ? " De " : " Of ") + fakeUser.name
     useEffect(() => {
         const getData = async () => {
 
@@ -61,12 +61,16 @@ const DetailMedicalHistory = ({ id }) => {
                 isDisabled={true}
                 userData={fakeUser}
                 isStatic
-                textStatic={textStatic}
+            //       textStatic={textStatic}
             />
 
-
-            <SectionCollapse className={"mt-[-.5rem] mb-9"} isStatic={true} text={textStatic} title={lang === "es" ? "Datos De Salud" : "Health Data"}>
-                <div className="flex flex-wrap gap-5 my-5">
+            <SectionCollapse
+                className={"mt-[-.5rem] mb-9 mx-auto md:w-fit w-11/12"}
+                isStatic={true}
+                //text={textStatic} 
+                title={lang === "es" ? "Datos De Salud" : "Health Data"}
+            >
+                <div className="flex flex-wrap justify-center md:justify-normal gap-5 my-5">
                     {healtData.map((item, i) =>
                         <CardLink key={i} title={lang === "es" ? item.es : item.en} onClick={item.onClick} />
                     )}
@@ -74,8 +78,13 @@ const DetailMedicalHistory = ({ id }) => {
             </SectionCollapse>
 
 
-            <SectionCollapse isStatic={true} title={lang === "es" ? "Historial Médico" : "Medical History"} text={textStatic} >
-                <ReportsAndResults className={"w-full bg-errro"} />
+            <SectionCollapse
+                className={"mx-auto md:w-full w-11/12"}
+                isStatic={true}
+                title={lang === "es" ? "Historial Médico" : "Medical History"}
+            // text={textStatic} 
+            >
+                <ReportsAndResults className={"w-full"} />
             </SectionCollapse>
 
         </section >
