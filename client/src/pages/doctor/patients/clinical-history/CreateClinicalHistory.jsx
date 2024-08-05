@@ -2,9 +2,35 @@ import SectionCollapse from "../../../../components/atoms/SectionCollapse"
 import useLanguage from "../../../../hooks/useLanguage"
 import SubmitButton from "../../../../components/atoms/SubmitButton"
 import CardLink from "../../../../components/atoms/CardLink"
+import ClinicalSection from "../../../../components/organisms/ClinicalSection"
+import MedicationModal from "../../MedicationModal"
 
 const es_interconsults = ["nutrición", "psicología", "fisioterapia", "odontología"]
 const en_interconsults = ["nutrition", "psychology", "physiotherapy", "dentistry"]
+const medications = [
+    {
+        name: "omeprazol",
+        dose: "50mg",
+        type: "pastillas",
+        amount: 10,
+    },
+    {
+        name: "paracetamol",
+        dose: "500mg",
+        type: "tabletas",
+        amount: 20,
+    }]
+
+const studies = [
+    {
+        type: "laboratorio",
+        info: "análisis de sangre ",
+    },
+    {
+
+        type: "imagen",
+        info: "electrocardiograma",
+    }]
 
 const CreateClinicalHistory = ({ id }) => {
     const lang = useLanguage()
@@ -16,17 +42,15 @@ const CreateClinicalHistory = ({ id }) => {
                 {lang === "es" ? "historia clínica" : "clinical history"}
             </h1>
             <form className="w-full flex flex-col gap-3.5 mt-8">
-                <SectionCollapse title={"Antecedentes"} contentClassName={"bg-light"}></SectionCollapse>
+                <SectionCollapse title={"Antecedentes"} contentClassName={""}></SectionCollapse>
 
-                <SectionCollapse title={"Diágnostico"} contentClassName={"bg-light"}></SectionCollapse>
+                <SectionCollapse title={"Diágnostico"} contentClassName={""}></SectionCollapse>
 
-                <SectionCollapse title={"Medicamentos"} contentClassName={"bg-light"}></SectionCollapse>
+                <ClinicalSection title={"Medicamentos"} onClick={() => document.getElementById('medication_modal').showModal()} data={medications} isStudy={false} />
 
-                <SectionCollapse title={"Estudios"} contentClassName={"bg-light"}>
+                <ClinicalSection title={"Estudios"} data={studies} isStudy={true} />
 
-                </SectionCollapse>
-
-                <SectionCollapse title={"Interconsultas"} className={"bg-light is-disabled"} contentClassName={"flex flex-wrap justify-evenly gap-5 w-full"}>
+                <SectionCollapse title={"Interconsultas"} className={" is-disabled"} contentClassName={"flex flex-wrap justify-evenly gap-5 w-full"}>
                     {interconsults.map((item, i) => <CardLink width={"w-3/4 md:w-[248px]"} title={item} imgClass={"rotate-90"} key={i} />)}
                 </SectionCollapse>
 
@@ -34,7 +58,7 @@ const CreateClinicalHistory = ({ id }) => {
                     {lang === "es" ? "guardar" : "save"}
                 </SubmitButton>
             </form>
-
+            <MedicationModal />
         </section>
     )
 }

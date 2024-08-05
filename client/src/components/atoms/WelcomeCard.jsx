@@ -9,7 +9,7 @@ const WelcomeCard = () => {
   const { name, lastName, role, gender } = user
 
   return (
-    <div className="px-6 py-4 rounded-xl bg-light backdrop-blur-sm shadowCard border border-orange text-black w-8/12 min-w-[330px] h-36 flex flex-col justify-between font-poppins">
+    <div className={`px-6 py-4 rounded-xl bg-light backdrop-blur-sm shadowCard border border-orange text-black w-8/12 min-w-[330px]  flex flex-col justify-between font-poppins ${role != roles[1].value ? "h-auto" : "h-36"}`}>
 
       <h2 className="text-black text-xl md:text-2xl">
         {
